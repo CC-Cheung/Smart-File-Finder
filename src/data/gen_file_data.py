@@ -15,10 +15,12 @@ PROCESSED_DATA_PATH=os.path.join(DATA_PATH, 'processed')
 RAW_DATA_PATH=os.path.join(DATA_PATH, 'raw')
 USED_DATA_PATH=os.path.join(DATA_PATH, 'used')
 
-MODEL = 'llama3.1:8b'   # Name of your local model (verify with `ollama list`)
+MODEL = 'dolphin3:latest'   # Name of your local model (verify with `ollama list`)
 SLEEP_TIME = 1    # Delay between requests to avoid overloading local model
 description_prompt_template = """Create a less than 5 word description of this Linux file/folder. You may mention if it's a file or folder but do not mention its name:
 {ff}"""
+class ParenthesesNotAllowedError(Exception):
+    pass
 
 def generate_description(ff):       
     # Generate file tree
@@ -58,15 +60,20 @@ def generate_description(ff):
 
 def parse_tab_tree(tree_str):
     """Parse tab-indented file system structure into treelib Tree"""
-    tree = Tree()
+    tree = Tree()    
     lines = [line.rstrip() for line in tree_str.split('\n') 
-            if line.strip() and not line.startswith(('<START>', '<END>'))]
-    start_idx = 0
+            if line.strip() and not 'START' in line and not 'END' in line]
+    
+    for line in lines:
+        if '(' in line or ')' in line:  # Check for parentheses in tree_str 
+            raise ParenthesesNotAllowedError("Parentheses not allowed in tree_str")    
+    start_idx=0
     for line in lines:
         if line.startswith('~'):
             break
         else:
             start_idx += 1
+
     lines=lines[start_idx:]            
     if not lines:
         return tree  # Empty tree
@@ -142,42 +149,46 @@ def get_deepest_visible(complete_tree, visible_tree, desired):
     return not_in_visible[-1][:not_in_visible[-1].rfind('/')]
 
 def generate_visibility_data(complete_tree, num_desired=3):
-    all_desired= random.sample(list(complete_tree.nodes),num_desired)
+    #don't want ~ removed
+    all_desired= random.sample(list(complete_tree.nodes)[1:],num_desired)
     visibility_data=[generate_visibility(complete_tree=complete_tree, desired=desired) for desired in all_desired]
     return visibility_data
 
 def generate_dataset(file_system_dataset):
     dataset=[]
     for i,example in enumerate(file_system_dataset):
-        complete_tree=parse_tab_tree(example['tree'])
-        visibility_data=generate_visibility_data(complete_tree=complete_tree, num_desired=3)
-        dataset.append({
-            'persona': example['persona'],
+        try:
+            complete_tree=parse_tab_tree(example['tree'])
+            visibility_data=generate_visibility_data(complete_tree=complete_tree, num_desired=3)
+            dataset.append({
+            # 'persona': example['persona'],
             'complete_tree': str(complete_tree),
             'visibility_data': visibility_data
         })
+        except ParenthesesNotAllowedError as e:
+            print(f"skipped {i} {e}")
+        else:
+            print(f"generated {i}")
         # if i>2: break
     return dataset
 
 # Example usage
 if __name__ == "__main__":
-    # with open(os.path.join(RAW_DATA_PATH, 'file_systems_dataset.json'), 'r') as f:
-    #     file_system_dataset = json.load(f)   
+    with open(os.path.join(RAW_DATA_PATH, 'file_systems_dataset.json'), 'r') as f:
+        file_system_dataset = json.load(f)   
 
-    # all_dataset = generate_dataset(file_system_dataset)
-    # # print(json.dumps(used_dataset[:2], indent=2))  # Print first 2 samples
-    # print(all_dataset)
-    # with open(os.path.join(PROCESSED_DATA_PATH, 'all_dataset.json'), 'w') as f:
-    #     json.dump(all_dataset, f, indent=2)
+    all_dataset = generate_dataset(file_system_dataset)
+    # print(json.dumps(used_dataset[:2], indent=2))  # Print first 2 samples
+    print(all_dataset)
+    with open(os.path.join(PROCESSED_DATA_PATH, 'all_dataset.json'), 'w') as f:
+        json.dump(all_dataset, f, indent=2)
 
-    with open(os.path.join(PROCESSED_DATA_PATH, 'all_dataset.json'), 'r') as f:
-        all_dataset = json.load(f) 
     used_dataset = []
-    with open(os.path.join(USED_DATA_PATH, 'used_dataset.json'), "w") as f:
-        for persona in all_dataset:
-            for desired in persona['visibility_data']:
-                instruction = f"Visible Tree: {desired['visible_tree']}\nDescription: {desired['desired_description']}"
-                output = desired["deepest_folder"]       
-                used_dataset.append({"text": f"### Instruction: {instruction}\n### Output: {output}"})
-        f.write(json.dumps(used_dataset, indent=2))
-    print(f"\nDataset saved to used_dataset.json ({len(all_dataset)} samples)")
+    # with open(os.path.join(USED_DATA_PATH, 'used_dataset.json'), "w") as f:
+    #     for persona in all_dataset:
+    #         for desired in persona['visibility_data']:
+    #             instruction = f"Visible Tree: {desired['visible_tree']}\nDescription: {desired['desired_description']}"
+    #             output = desired["deepest_folder"]       
+    #             used_dataset.append({"text": f"### Instruction: {instruction}\n### Output: {output}"})
+    #     f.write(json.dumps(used_dataset, indent=2))
+    # print(f"\nDataset saved to used_dataset.json ({len(all_dataset)} samples)")
