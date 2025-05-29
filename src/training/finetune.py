@@ -29,24 +29,18 @@ MODEL_NAME="unsloth/Meta-Llama-3.1-8B-bnb-4bit"
 MODEL_NAME="unsloth/mistral-7b-instruct-v0.3-bnb-4bit"
 WANDB_API_KEY="c20d41ecf28a9b0efa2c5acb361828d1319bc62e"
 
-
+def pre_apply_chat_template(example):  
+    conversations = example["text"]  
+    text = tokenizer.apply_chat_template(conversations, tokenize=False, add_generation_prompt=False)  
+    return {"text": text}  
 
 if __name__ == "__main__":
     # psutil.virtual_memory().available
 
-    with open(os.path.join(USED_DATA_PATH, 'used_dataset.json'), 'r') as f:
+    with open(os.path.join(USED_DATA_PATH, 'used_dataset_sys_use_ass.json'), 'r') as f:
         used_dataset = json.load(f)
     
-    dataset = Dataset.from_list(used_dataset)
-    # Get the template for your model, e.g., "llama-3" or "mistral"
-    chat_template_name = "mistral" if MODEL_NAME == "unsloth/mistral-7b-instruct-v0.3-bnb-4bit" else "llama-3"
-    chat_template = get_chat_template(chat_template_name)
-
-    # Apply the template to your dataset
-    dataset = dataset.map(lambda x: {"text": chat_template.format(
-        instruction=x["instruction"], output=x["output"]
-    )})
-
+    dataset = Dataset.from_list(used_dataset)  
 
     model, tokenizer = FastLanguageModel.from_pretrained(
         model_name=MODEL_NAME,
@@ -54,6 +48,9 @@ if __name__ == "__main__":
         load_in_4bit=True,
         # device_map="cpu",  # Force CPU usage
     )
+
+    dataset = dataset.map(pre_apply_chat_template)  
+
     lora_configs = {
         "r": 16, # Choose any number > 0 ! Suggested 8, 16, 32, 64, 128
         "target_modules": ["q_proj", "k_proj", "v_proj", "o_proj",
@@ -65,7 +62,7 @@ if __name__ == "__main__":
         "loftq_config": None, 
     }
     model = FastLanguageModel.get_peft_model(
-        model, lora_configs
+        model, **lora_configs
         # r = 16, # Choose any number > 0 ! Suggested 8, 16, 32, 64, 128
         # target_modules = ["q_proj", "k_proj", "v_proj", "o_proj",
         #                 "gate_proj", "up_proj", "down_proj",],
@@ -78,10 +75,10 @@ if __name__ == "__main__":
         # use_rslora = False,  # We support rank stabilized LoRA
         # loftq_config = None, # And LoftQ
     )
-    wandb.login(key="WANDB_API_KEY")
+    # wandb.login(key="WANDB_API_KEY")
     
     run=wandb.init(
-        project="my_project",
+        project="Smart File Finder",
         # entity="my_entity",
         name="test",
         tags=[MODEL_NAME, "finetune"],
@@ -99,13 +96,13 @@ if __name__ == "__main__":
             gradient_accumulation_steps=4,
             learning_rate=2e-5,
             output_dir=FINETUNED_PATH,
-            report_to = "WandB", # Use this for WandB etc
+            # report_to = "WandB", # Use this for WandB etc
 
         ),
 
     )
     trainer.train()
-    run.finish()
+    # run.finish()
     torch.cuda.empty_cache()  # Clear any cached memory
     # model.cpu()  # Move model to CPU
     

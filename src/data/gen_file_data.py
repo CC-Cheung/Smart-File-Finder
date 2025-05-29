@@ -2,10 +2,10 @@ import json
 import os
 import json
 import random
-from treelib import Tree
+# from treelib import Tree
 import re
 from copy import deepcopy
-import ollama
+# import ollama
 import numpy as np
 FILE_PATH=os.path.dirname(os.path.abspath(__file__))
 CODE_PATH= os.path.join(FILE_PATH, '..', '..')
@@ -186,18 +186,35 @@ def generate_dataset(file_system_dataset, num_desired=3):
             print(f"generated {i}")
         # if i>2: break
     return dataset
-def formatting_prompts_func(example):
-    # example: dict with keys "folder_tree", "file_description", "target_folder"
-    instruction = (
-        "Given the following folder tree and file/folder description, "
-        "predict the folder to explore next to find where the file/folder should be located.\n"
-        f"Folder tree:\n{example['visible_tree']}\n"
-        f"File/Folder description: {example['desired_description']}"
-    )
-    return {
-        "instruction": instruction,
-        "output": example["deepest_folder"]
-    }
+    
+
+def formatting_prompts_func(example, method):    
+    if method=="io":
+        instruction = (
+            "Given the following partial folder tree and file/folder description, "
+            "predict which file/folder does the user wants or if not visible, predict the folder to explore.\n"
+            f"Folder tree:\n{example['visible_tree']}\n"
+            f"File/Folder description: {example['desired_description']}"
+        )
+        return {
+            "instruction": instruction,
+            "output": example["deepest_folder"]
+        }
+    elif method=="sys_use_ass":
+        return {
+            "text": [
+                    {"role": "system", 
+                     "content": "You are a file retrieval assistant. "
+                                "Given the following partial folder tree and file/folder description, "
+                                "If the desired file/folder is visible, output it, else, predict the next folder to explore.\n"},
+
+                    {"role": "user", 
+                     "content": f"Folder tree:\n{example['visible_tree']}\n"
+                                f"File/Folder description: {example['desired_description']}"},
+
+                    {"role": "assistant", "content": example["deepest_folder"]},
+                ]            
+        }
 # Example usage
 if __name__ == "__main__":
     # random.seed(42)
@@ -209,16 +226,18 @@ if __name__ == "__main__":
     # # print(all_dataset)
     # with open(os.path.join(PROCESSED_DATA_PATH, 'all_dataset.json'), "w") as f:
     #     f.write(json.dumps(all_dataset, indent=2))
-
-    all_dataset = json.load(open(os.path.join(PROCESSED_DATA_PATH, 'all_dataset.json'), 'r'))
+    with open(os.path.join(PROCESSED_DATA_PATH, 'all_dataset.json'), "r") as f:
+        all_dataset = json.load(f)
     
     used_dataset = []
-    with open(os.path.join(USED_DATA_PATH, 'used_dataset.json'), "w") as f:
+    method="sys_use_ass"
+    with open(os.path.join(USED_DATA_PATH, f"used_dataset_{method}.json"), "w") as f:
         for persona in all_dataset:
-            formatted_data = [formatting_prompts_func(desired) for desired in persona['visibility_data']]
+            # formatted_data = [formatting_prompts_func(desired) for desired in persona['visibility_data']]
+            formatted_data = [formatting_prompts_func(desired, method="sys_use_ass") for desired in persona['visibility_data']]
             used_dataset.extend(formatted_data)
             
         f.write(json.dumps(used_dataset, indent=2))
-    print(f"\nDataset saved to used_dataset.json ({len(all_dataset)} samples)")
+    print(f"\nDataset saved to used_dataset_{method}.json ({len(all_dataset)} samples)")
 
 
