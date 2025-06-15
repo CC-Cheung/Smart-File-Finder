@@ -2,3 +2,10 @@
 *.safetensors
 *.model
 *.gguf
+*.bin
+*.pt
+*.pth
+*.csv
+*models/*
+*/unsloth_compiled_cache/*
+*unsloth_compiled_cache/*

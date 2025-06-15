@@ -13,7 +13,7 @@ from transformers import TrainingArguments
 import torch
 import psutil
 from unsloth import get_chat_template
-import wandb
+# import wandb
 
 FILE_PATH=os.path.dirname(os.path.abspath(__file__))
 CODE_PATH= os.path.join(FILE_PATH, '..','..')
@@ -27,7 +27,6 @@ USED_DATA_PATH=os.path.join(DATA_PATH, 'used')
 
 MODEL_NAME="unsloth/Meta-Llama-3.1-8B-bnb-4bit"
 MODEL_NAME="unsloth/mistral-7b-instruct-v0.3-bnb-4bit"
-WANDB_API_KEY="c20d41ecf28a9b0efa2c5acb361828d1319bc62e"
 
 def pre_apply_chat_template(example):  
     conversations = example["text"]  
@@ -77,13 +76,13 @@ if __name__ == "__main__":
     )
     # wandb.login(key="WANDB_API_KEY")
     
-    run=wandb.init(
-        project="Smart File Finder",
-        # entity="my_entity",
-        name="test",
-        tags=[MODEL_NAME, "finetune"],
-        config=lora_configs
-    )
+    # run=wandb.init(
+    #     project="Smart File Finder",
+    #     # entity="my_entity",
+    #     name="test",
+    #     tags=[MODEL_NAME, "finetune"],
+    #     config=lora_configs
+    # )
 
     trainer = SFTTrainer(
         model=model,
@@ -129,14 +128,4 @@ if __name__ == "__main__":
     )
 
 
-    # # Generate Modelfile
-    # from unsloth import Ollama
-    # Ollama.create_modelfile(
-    #     model,
-    #     tokenizer,
-    #     template = "llama3",  # Matches base model's template
-    #     save_path = "Modelfile",
-    # )
 
-# # Create Ollama model
-# ollama create your_model -f Modelfile
