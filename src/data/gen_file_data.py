@@ -200,7 +200,9 @@ def formatting_prompts_func(example, method):
             "instruction": instruction,
             "output": example["deepest_folder"]
         }
+    #used for mistral
     elif method=="sys_use_ass":
+
         return {
             "text": [
                     {"role": "system", 

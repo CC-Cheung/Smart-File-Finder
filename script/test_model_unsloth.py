@@ -97,6 +97,14 @@ if __name__ == "__main__":
     #all 
     outputs = model_generate_text_all(inputs)
     correct_outputs = [example[2]['content'] for example in dataset[example_id]['text']]
-    df=pd.DataFrame({'outputs': outputs, 'correct_outputs': correct_outputs})
+    # example_id=slice(0,df.shape[0])    
+    split_user_prompts=[example[1]['content'].split('File/Folder description: ') for example in dataset[:df.shape[0]]['text']]    
+    df=pd.DataFrame({'outputs': outputs, 
+                     'correct_outputs': correct_outputs, 
+                     'file_system': [user_prompt[0] for user_prompt in split_user_prompts], 
+                     'description': [user_prompt[1] for user_prompt in split_user_prompts]})
+    
+    df['match']=df['correct_outputs']==df['outputs']
+
     print(df)
-    df.to_csv(os.path.join(LOGS_PATH,'outputs.csv'))
+    df.to_csv(os.path.join(LOGS_PATH,'outputs.csv'), index=False)
