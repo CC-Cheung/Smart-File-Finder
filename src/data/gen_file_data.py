@@ -2,11 +2,12 @@ import json
 import os
 import json
 import random
-# from treelib import Tree
+from treelib import Tree
 import re
 from copy import deepcopy
-# import ollama
+import ollama
 import numpy as np
+import pandas as pd
 FILE_PATH=os.path.dirname(os.path.abspath(__file__))
 CODE_PATH= os.path.join(FILE_PATH, '..', '..')
 DATA_PATH=os.path.join(CODE_PATH, 'data')
@@ -17,8 +18,10 @@ USED_DATA_PATH=os.path.join(DATA_PATH, 'used')
 MODEL = 'dolphin3:latest'   # Name of your local model (verify with `ollama list`)
 SLEEP_TIME = 1    # Delay between requests to avoid overloading local model
 NUM_DESIRED = 10
-DESCRIPTION_PROMPT_TEMPLATE = """Create precise and concise description of this Linux file/folder. Must be less than 6 words. You may mention if it's a file or folder but do not mention its name:
+DESCRIPTION_PROMPT_TEMPLATE = """Create precise and concise description of this Linux file/folder. Must be less than 10 words. Mention if it's a file or folder:
 {ff}"""
+PERCENTAGE = 0.5
+NEW_TREE_DENSITY = 1.2
 class ParenthesesNotAllowedError(Exception):
     pass
 
@@ -76,41 +79,38 @@ def parse_tab_tree(tree_str):
     # Create root node
     root_name = lines[0].strip()
     tree.create_node(root_name, root_name)
-    stack = [(root_name, 0)]  # (node_id, depth)
-    prev_line = 0
-    prev_depth = 0
-    #list of previous depths
-    prev_lines = np.array([0])
+    parent_stack = pd.DataFrame.from_dict({'node_id':[root_name], 'indent': [0]})  # (parent_id, depth, indent)
+    
+
+    # Idea is first use indent to find depth, then use depth to find parent (stack)
     for line in lines[1:]:
-        cur_line = len(line) - len(line.lstrip(' '))
+        cur_indent = len(line) - len(line.lstrip(' '))
+        prev_indent=parent_stack['indent'].iloc[-1]
         
-        #If previous line is greater than current line, increment depth
-        if (cur_line> prev_line):
-            cur_depth = prev_depth+1 
-            prev_lines = np.append(prev_lines,cur_line)
+        name = line.strip() 
 
-        #Else look how far back we need to go to find the depth        
-        else:
-            idx = np.searchsorted(prev_lines, cur_line, side='right')
-            cur_depth = idx
-            prev_lines = prev_lines[:idx]            
-
-        prev_line = cur_line
-        prev_depth = cur_depth
-        name = line.strip()
-        
-        # Find parent by comparing depths
-        while stack and stack[-1][1] >= cur_depth:
-            stack.pop()
-        
-        parent_id = stack[-1][0] if stack else None
-        node_id = f"{parent_id}/{name}" if parent_id else name
-        
-        if not tree.contains(node_id):
-            tree.create_node(name, node_id, parent=parent_id)
-            stack.append((node_id, cur_depth))
+        if (cur_indent> prev_indent):
+            parent=parent_stack.iloc[-1]
+            cur_depth = parent['indent']+1
             
+            
+        elif (cur_indent== prev_indent):
+            parent=parent_stack.iloc[-2]            
+            cur_depth = parent['indent']+1
+            
+        else:
+            cur_depth = parent_stack['indent'].searchsorted(cur_indent, side='left')     
+            parent_stack = parent_stack.iloc[:cur_depth] 
+            parent=parent_stack.iloc[-1]
+            
+            
+        parent_id = parent['node_id']
+        node_id = f"{parent_id}/{name}" if parent_id else name
+        tree.create_node(name, node_id, parent=parent_id)
+        parent_stack.loc[cur_depth] = {'node_id':node_id, 'indent':cur_indent}
+
     return tree
+#unused
 def random_tree_subset(complete_tree, percentage=0.5):
     """Creates a random subset of the tree with approximately `num_nodes` nodes"""
     nodes = complete_tree.all_nodes()
@@ -129,6 +129,26 @@ def random_tree_subset(complete_tree, percentage=0.5):
             break
     return subset_tree
 
+def random_tree_subset_ratio(complete_tree, percentage=0.7, new_tree_density=0.7):
+    """Creates a random subset of the tree with approximately `num_nodes` nodes"""
+    nodes = complete_tree.all_nodes()
+    nodes=[(node, complete_tree.depth(node.identifier)) for node in nodes if node.identifier!='~' and not node.is_leaf()]
+    df_nodes=pd.DataFrame(nodes, columns=['node', 'depth'])
+    df_nodes['weight']=new_tree_density**df_nodes['depth']   
+    df_nodes['weight']=df_nodes['weight']/df_nodes['weight'].sum()
+    # subset_tree = Tree(complete_tree.subtree(complete_tree.root), deep=True)
+    subset_tree=deepcopy(complete_tree)
+    nodes=np.random.choice(df_nodes['node'], size=len(df_nodes), p=df_nodes['weight'], replace=False)
+    for node in nodes:
+        try:
+            for child in node.successors(subset_tree.identifier):
+                subset_tree.remove_node(child)
+        except:
+            pass
+        if subset_tree.size() < complete_tree.size()*percentage:
+            break
+    return subset_tree
+
 def generate_visibility(complete_tree, desired):
     """
     Generates dataset of file system visibility levels given the complete tree and desired node:
@@ -142,6 +162,8 @@ def generate_visibility(complete_tree, desired):
     """
 
     visible_tree=random_tree_subset(complete_tree=complete_tree, percentage=0.5)
+    # visible_tree=random_tree_subset_ratio(complete_tree=complete_tree, percentage=PERCENTAGE, new_tree_density=NEW_TREE_DENSITY)
+    
     #remove desired (OLD)
     # if desired in visible_tree.nodes:
     #     for sibling in visible_tree.siblings(desired):
@@ -154,7 +176,9 @@ def generate_visibility(complete_tree, desired):
     
     return {
         'visible_tree': str(visible_tree), #visible_tree,
-        'desired_description': generate_description(desired),
+        # 'desired_description': generate_description(desired),
+        'desired_description': '',
+
         'desired_path': desired,
         'deepest_folder': deepest_visible
     }
@@ -176,15 +200,15 @@ def generate_dataset(file_system_dataset, num_desired=3):
             complete_tree=parse_tab_tree(example['tree'])
             visibility_data=generate_visibility_data(complete_tree=complete_tree, num_desired=num_desired)
             dataset.append({
-            # 'persona': example['persona'],
-            'complete_tree': str(complete_tree),
-            'visibility_data': visibility_data
-        })
+                # 'persona': example['persona'],
+                'complete_tree': str(complete_tree),
+                'visibility_data': visibility_data
+            })
         except ParenthesesNotAllowedError as e:
             print(f"skipped {i} {e}")
         else:
             print(f"generated {i}")
-        # if i>2: break
+        if i>4: break
     return dataset
     
 
@@ -219,27 +243,29 @@ def formatting_prompts_func(example, method):
         }
 # Example usage
 if __name__ == "__main__":
-    # random.seed(42)
-    # with open(os.path.join(RAW_DATA_PATH, 'file_systems_dataset.json'), 'r') as f:
-    #     file_system_dataset = json.load(f)   
+    np.random.seed(42)
+    with open(os.path.join(RAW_DATA_PATH, 'file_systems_dataset.json'), 'r') as f:
+        file_system_dataset = json.load(f)   
 
-    # all_dataset = generate_dataset(file_system_dataset, num_desired=NUM_DESIRED)
-    # # # print(json.dumps(used_dataset[:2], indent=2))  # Print first 2 samples
-    # # print(all_dataset)
-    # with open(os.path.join(PROCESSED_DATA_PATH, 'all_dataset.json'), "w") as f:
-    #     f.write(json.dumps(all_dataset, indent=2))
-    with open(os.path.join(PROCESSED_DATA_PATH, 'all_dataset.json'), "r") as f:
-        all_dataset = json.load(f)
+    all_dataset = generate_dataset(file_system_dataset, num_desired=NUM_DESIRED)
+    # # print(json.dumps(used_dataset[:2], indent=2))  # Print first 2 samples
+    # print(all_dataset)
+
+    with open(os.path.join(PROCESSED_DATA_PATH, 'all_dataset_test.json'), "w") as f:
+        f.write(json.dumps(all_dataset, indent=2))
+
+    # with open(os.path.join(PROCESSED_DATA_PATH, 'all_dataset.json'), "r") as f:
+    #     all_dataset = json.load(f)
     
-    used_dataset = []
-    method="sys_use_ass"
-    with open(os.path.join(USED_DATA_PATH, f"used_dataset_{method}.json"), "w") as f:
-        for persona in all_dataset:
-            # formatted_data = [formatting_prompts_func(desired) for desired in persona['visibility_data']]
-            formatted_data = [formatting_prompts_func(desired, method="sys_use_ass") for desired in persona['visibility_data']]
-            used_dataset.extend(formatted_data)
+    # used_dataset = []
+    # method="sys_use_ass"
+    # with open(os.path.join(USED_DATA_PATH, f"used_dataset_{method}.json"), "w") as f:
+    #     for persona in all_dataset:
+    #         # formatted_data = [formatting_prompts_func(desired) for desired in persona['visibility_data']]
+    #         formatted_data = [formatting_prompts_func(desired, method="sys_use_ass") for desired in persona['visibility_data']]
+    #         used_dataset.extend(formatted_data)
             
-        f.write(json.dumps(used_dataset, indent=2))
-    print(f"\nDataset saved to used_dataset_{method}.json ({len(all_dataset)} samples)")
+    #     f.write(json.dumps(used_dataset, indent=2))
+    # print(f"\nDataset saved to used_dataset_{method}.json ({len(all_dataset)} samples)")
 
 

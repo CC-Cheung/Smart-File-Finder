@@ -11,12 +11,12 @@ PROCESSED_DATA_PATH=os.path.join(DATA_PATH, 'processed')
 RAW_DATA_PATH=os.path.join(DATA_PATH, 'raw')
 FILE_NAME="file_systems_dataset.json"
 
-NUM_SAMPLES = 100  # Number of synthetic file systems to generate
+NUM_SAMPLES = 5  # Number of synthetic file systems to generate
 MODEL = 'dolphin3:latest'   # Name of your local model (verify with `ollama list`)
 SLEEP_TIME = 1    # Delay between requests to avoid overloading local model
 # persona_prompt = """Tell me about {person} and describe how their file system might differ. Keep within 3 sentences."""
 
-TREE_PROMPT_TEMPLATE = """Create the file system structure starting from ~ for {name}, {sex}, born on {date_of_birth} who is a {profession} at {company}.
+TREE_PROMPT_TEMPLATE = """Create the file system structure starting from ~ for {name}, {sex}, born on {date_of_birth} who is a {profession} at {company}. Ensure ~ has more than 3 children folders.
 
 
 Output ONLY:
@@ -133,19 +133,24 @@ def generate_sample():
 
 if __name__ == "__main__":
     # Verify Ollama service is running first (`ollama serve` in another terminal)
-    dataset = []
-    fake=Faker()
-    for i in range(NUM_SAMPLES):
-        try:
-            sample = generate_sample()
-            dataset.append(sample)
-            print(f"Generated sample {i+1}/{NUM_SAMPLES}")
-            time.sleep(SLEEP_TIME)
-        except Exception as e:
-            print(f"Error generating sample {i+1}: {str(e)}")
+    # dataset = []
+    # fake=Faker()
+    # for i in range(NUM_SAMPLES):
+    #     try:
+    #         sample = generate_sample()
+    #         dataset.append(sample)
+    #         print(f"Generated sample {i+1}/{NUM_SAMPLES}")
+    #         time.sleep(SLEEP_TIME)
+    #     except Exception as e:
+    #         print(f"Error generating sample {i+1}: {str(e)}")
     
-    with open(os.path.join(RAW_DATA_PATH,FILE_NAME), 'w') as f:
-        json.dump(dataset, f, indent=2)
+    # with open(os.path.join(RAW_DATA_PATH,FILE_NAME), 'w') as f:
+    #     json.dump(dataset, f, indent=2)
     
-    print(f"\nDataset saved to {FILE_NAME} ({len(dataset)} samples)")
+    # print(f"\nDataset saved to {FILE_NAME} ({len(dataset)} samples)")
+
+    with open(os.path.join(RAW_DATA_PATH,FILE_NAME), 'r') as f:
+        file_system_dataset = json.load(f)   
+        pass
+
 
