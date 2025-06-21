@@ -16,15 +16,15 @@ RAW_DATA_PATH=os.path.join(DATA_PATH, 'raw')
 USED_DATA_PATH=os.path.join(DATA_PATH, 'used')
 
 MODEL = 'dolphin3:latest'   # Name of your local model (verify with `ollama list`)
-SLEEP_TIME = 1    # Delay between requests to avoid overloading local model
 NUM_DESIRED = 10
-DESCRIPTION_PROMPT_TEMPLATE = """Create precise and concise description of this Linux file/folder. Must be less than 10 words. Mention if it's a file or folder:
+DESCRIPTION_PROMPT_TEMPLATE = """Create precise and concise description of the following file/folder in less than 10 words
 {ff}"""
 PERCENTAGE = 0.5
 NEW_TREE_DENSITY = 1.2
 class ParenthesesNotAllowedError(Exception):
     pass
-
+class NoRootError(Exception):
+    pass
 def generate_description(ff):       
     # Generate file tree
     description_response = ollama.chat(
@@ -77,14 +77,24 @@ def parse_tab_tree(tree_str):
             raise ParenthesesNotAllowedError("Parentheses not allowed in tree_str")    
 
     # Create root node
-    root_name = lines[0].strip()
+    home_idx=0
+    if len(lines[0]) - len(lines[0].lstrip()) !=0: 
+        raise NoRootError("There must be a root folder")    
+
+    for line in lines[1:]:
+        cur_indent = len(line) - len(line.lstrip())
+        if cur_indent==0:
+            home_idx+=1
+        else:
+            break
+    root_name = lines[home_idx].strip()
     tree.create_node(root_name, root_name)
     parent_stack = pd.DataFrame.from_dict({'node_id':[root_name], 'indent': [0]})  # (parent_id, depth, indent)
     
 
     # Idea is first use indent to find depth, then use depth to find parent (stack)
-    for line in lines[1:]:
-        cur_indent = len(line) - len(line.lstrip(' '))
+    for line in lines[home_idx+1:]:
+        cur_indent = len(line) - len(line.lstrip())
         prev_indent=parent_stack['indent'].iloc[-1]
         
         name = line.strip() 
@@ -176,8 +186,8 @@ def generate_visibility(complete_tree, desired):
     
     return {
         'visible_tree': str(visible_tree), #visible_tree,
-        # 'desired_description': generate_description(desired),
-        'desired_description': '',
+        'desired_description': generate_description(desired),
+        # 'desired_description': '',
 
         'desired_path': desired,
         'deepest_folder': deepest_visible
@@ -206,9 +216,11 @@ def generate_dataset(file_system_dataset, num_desired=3):
             })
         except ParenthesesNotAllowedError as e:
             print(f"skipped {i} {e}")
+        except NoRootError as e:
+            print(f"skipped {i} {e}")
         else:
             print(f"generated {i}")
-        if i>4: break
+        # if i>4: break
     return dataset
     
 
@@ -243,29 +255,29 @@ def formatting_prompts_func(example, method):
         }
 # Example usage
 if __name__ == "__main__":
-    np.random.seed(42)
-    with open(os.path.join(RAW_DATA_PATH, 'file_systems_dataset.json'), 'r') as f:
-        file_system_dataset = json.load(f)   
+    # np.random.seed(42)
+    # with open(os.path.join(RAW_DATA_PATH, 'file_systems_dataset.json'), 'r') as f:
+    #     file_system_dataset = json.load(f)   
 
-    all_dataset = generate_dataset(file_system_dataset, num_desired=NUM_DESIRED)
-    # # print(json.dumps(used_dataset[:2], indent=2))  # Print first 2 samples
-    # print(all_dataset)
+    # all_dataset = generate_dataset(file_system_dataset, num_desired=NUM_DESIRED)
+    # # # print(json.dumps(used_dataset[:2], indent=2))  # Print first 2 samples
+    # # print(all_dataset)
 
-    with open(os.path.join(PROCESSED_DATA_PATH, 'all_dataset_test.json'), "w") as f:
-        f.write(json.dumps(all_dataset, indent=2))
-
-    # with open(os.path.join(PROCESSED_DATA_PATH, 'all_dataset.json'), "r") as f:
-    #     all_dataset = json.load(f)
+    # with open(os.path.join(PROCESSED_DATA_PATH, 'all_dataset_test.json'), "w") as f:
+    #     f.write(json.dumps(all_dataset, indent=2))
+    # pass
+    with open(os.path.join(PROCESSED_DATA_PATH, 'all_dataset.json'), "r") as f:
+        all_dataset = json.load(f)
     
-    # used_dataset = []
-    # method="sys_use_ass"
-    # with open(os.path.join(USED_DATA_PATH, f"used_dataset_{method}.json"), "w") as f:
-    #     for persona in all_dataset:
-    #         # formatted_data = [formatting_prompts_func(desired) for desired in persona['visibility_data']]
-    #         formatted_data = [formatting_prompts_func(desired, method="sys_use_ass") for desired in persona['visibility_data']]
-    #         used_dataset.extend(formatted_data)
+    used_dataset = []
+    method="sys_use_ass"
+    with open(os.path.join(USED_DATA_PATH, f"used_dataset_{method}.json"), "w") as f:
+        for persona in all_dataset:
+            # formatted_data = [formatting_prompts_func(desired) for desired in persona['visibility_data']]
+            formatted_data = [formatting_prompts_func(desired, method=method) for desired in persona['visibility_data']]
+            used_dataset.extend(formatted_data)
             
-    #     f.write(json.dumps(used_dataset, indent=2))
-    # print(f"\nDataset saved to used_dataset_{method}.json ({len(all_dataset)} samples)")
+        f.write(json.dumps(used_dataset, indent=2))
+    print(f"\nDataset saved to used_dataset_{method}.json ({len(all_dataset)} samples)")
 
 

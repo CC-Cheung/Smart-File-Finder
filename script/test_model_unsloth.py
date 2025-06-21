@@ -69,7 +69,7 @@ if __name__ == "__main__":
     dataset = Dataset.from_list(used_dataset)  
 
     model, tokenizer = FastLanguageModel.from_pretrained(
-        model_name="/home/kids/Linux_Coding/Smart-File-Finder/models/finetuned/Mistral_d66ea65/Mistral_d66ea65_adapters",
+        model_name="/home/kids/Linux_Coding/Smart-File-Finder/models/finetuned/latest",
         max_seq_length=2048,
         load_in_4bit=True,
         # device_map="cpu",  # Force CPU usage
@@ -84,7 +84,7 @@ if __name__ == "__main__":
     inputs = tokenizer(
         dataset_gen['text'] if example_id is None else dataset_gen['text'][example_id],
         return_tensors="pt",
-        add_special_tokens=False, 
+        # add_special_tokens=False, #check if correct?
         padding=True,
     ).to("cuda") 
 
@@ -98,13 +98,21 @@ if __name__ == "__main__":
     outputs = model_generate_text_all(inputs)
     correct_outputs = [example[2]['content'] for example in dataset[example_id]['text']]
     # example_id=slice(0,df.shape[0])    
-    split_user_prompts=[example[1]['content'].split('File/Folder description: ') for example in dataset[:df.shape[0]]['text']]    
+    
+    split_user_prompts=[example[1]['content'].split('File/Folder description: ') for example in dataset[example_id]['text']]    
     df=pd.DataFrame({'outputs': outputs, 
                      'correct_outputs': correct_outputs, 
                      'file_system': [user_prompt[0] for user_prompt in split_user_prompts], 
                      'description': [user_prompt[1] for user_prompt in split_user_prompts]})
-    
     df['match']=df['correct_outputs']==df['outputs']
 
     print(df)
     df.to_csv(os.path.join(LOGS_PATH,'outputs.csv'), index=False)
+
+    df=pd.read_csv(os.path.join(LOGS_PATH,'outputs.csv'))
+    pass
+    # df.to_csv(os.path.join(LOGS_PATH,'outputs.csv'), index=False)
+
+    # df = df.loc[:, ~df.columns.str.contains('^Unnamed')]
+    # df.to_csv(os.path.join(LOGS_PATH,'outputs.csv'), index=False)
+    
