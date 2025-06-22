@@ -33,33 +33,58 @@ def generate_description(ff):
     )
     description = description_response['message']['content'].strip()    
     return description
-# def parse_tree_string(tree_str):
-#     """Improved parser handling box-drawing characters and empty lines"""
-#     lines = [l for l in tree_str.splitlines() if l.strip() and l.strip() not in ('<START>', '<END>')]
-    
-#     tree = Tree()
-#     stack = []  # (parent_node, current_depth)
-    
-#     for line in lines:
-#         # Calculate indent using box-drawing characters
-#         indent = len(re.match(r'[│├└─ ]*', line).group(0))
-#         name = re.sub(r'^[│├└─ ]*', '', line).strip()
-        
-#         # Find parent in stack
-#         while stack and stack[-1][1] >= indent:
-#             stack.pop()
-            
-#         parent = stack[-1][0] if stack else None
-        
-#         # Create node with path-based ID
-#         node_id = f"{parent.identifier}/{name}" if parent else name
-        
-#         if not tree.contains(node_id):
-#             tree.create_node(tag=name, identifier=node_id, parent=parent)
-            
-#         stack.append((tree[node_id], indent))
-    
-#     return tree
+#unused
+def parse_tree_string(tree_str):
+    tree = Tree()
+    lines = tree_str.splitlines()
+    stack = []
+
+    # Extract and create the root node
+    root_name = lines[0].strip()
+    tree.create_node(root_name, root_name)
+    stack.append((root_name, 0))
+
+    for line in lines[1:]:
+        # Remove leading tree characters and get the node name
+        stripped_line = line.lstrip('│ ').replace('├── ', '').replace('└── ', '')
+        # Each level is 4 characters (│   or spaces)
+        level = (len(line) - len(line.lstrip('│ '))) // 4 + 1
+        node_name = stripped_line.strip()
+
+        # Pop stack to find correct parent for this level
+        while stack and stack[-1][1] >= level:
+            stack.pop()
+
+        parent_id = stack[-1][0] if stack else root_name
+        node_id = f'{parent_id}/{node_name}'
+        tree.create_node(node_name, node_id, parent=parent_id)
+        stack.append((node_id, level))
+
+    return tree
+def extract_paths(tree_str):
+    lines = tree_str.splitlines()
+    paths = []
+    stack = []
+
+    # Handle root node
+    root = lines[0].strip()
+    stack = [root]
+    paths.append(root)
+
+    for line in lines[1:]:
+        # Count the number of leading tree characters to determine depth
+        stripped = line.lstrip('│ ')
+        # Each level is 4 spaces (or '│   ')
+        indent = (len(line) - len(stripped)) // 4 + 1
+        name = stripped.replace('├── ', '').replace('└── ', '').strip()
+
+        # Adjust stack to current depth
+        stack = stack[:indent]
+        stack.append(name)
+        # Join stack to make the path
+        paths.append('/'.join(stack))
+
+    return '\n'.join(paths)
 
 def parse_tab_tree(tree_str):
     """Parse tab-indented file system structure into treelib Tree"""
@@ -238,7 +263,6 @@ def formatting_prompts_func(example, method):
         }
     #used for mistral
     elif method=="sys_use_ass":
-
         return {
             "text": [
                     {"role": "system", 
@@ -248,7 +272,25 @@ def formatting_prompts_func(example, method):
 
                     {"role": "user", 
                      "content": f"Folder tree:\n{example['visible_tree']}\n"
-                                f"File/Folder description: {example['desired_description']}"},
+                                f"File/Folder description: {example['desired_description']}"
+                                f"Pick one of the following: {extract_paths(example['visible_tree'])}"},
+
+                    {"role": "assistant", "content": example["deepest_folder"]},
+                ]            
+        }
+    
+    elif method=="sys_use_ass_list":
+
+        return {
+            "text": [
+                    {"role": "system", 
+                     "content": "You are a file retrieval assistant. "
+                                "Given the following file/folder description and a partial folder tree, "
+                                "if the desired file/folder is visible, output it, else, predict the next folder to explore.\n"},
+
+                    {"role": "user", 
+                     "content": f"File/Folder description: {example['desired_description']}\n"
+                                f"Pick from one of the following: {'\n'+extract_paths(example['visible_tree'])}"},
 
                     {"role": "assistant", "content": example["deepest_folder"]},
                 ]            
@@ -270,7 +312,7 @@ if __name__ == "__main__":
         all_dataset = json.load(f)
     
     used_dataset = []
-    method="sys_use_ass"
+    method="sys_use_ass_list"
     with open(os.path.join(USED_DATA_PATH, f"used_dataset_{method}.json"), "w") as f:
         for persona in all_dataset:
             # formatted_data = [formatting_prompts_func(desired) for desired in persona['visibility_data']]

@@ -63,17 +63,23 @@ def model_generate_text_all(inputs, batch_size=10):
 if __name__ == "__main__":
     # psutil.virtual_memory().available
 
-    with open(os.path.join(USED_DATA_PATH, 'used_dataset_sys_use_ass.json'), 'r') as f:
+    with open(os.path.join(USED_DATA_PATH, 'used_dataset_sys_use_ass_list.json'), 'r') as f:
         used_dataset = json.load(f)
     
     dataset = Dataset.from_list(used_dataset)  
 
     model, tokenizer = FastLanguageModel.from_pretrained(
-        model_name="/home/kids/Linux_Coding/Smart-File-Finder/models/finetuned/latest",
+        model_name="/home/kids/Linux_Coding/Smart-File-Finder/models/finetuned/sys_use_ass_list",
         max_seq_length=2048,
         load_in_4bit=True,
         # device_map="cpu",  # Force CPU usage
     )
+    # model, tokenizer = FastLanguageModel.from_pretrained(
+    #     model_name="unsloth/mistral-7b-instruct-v0.3-bnb-4bit",
+    #     max_seq_length=2048,
+    #     load_in_4bit=True,
+    #     # device_map="cpu",  # Force CPU usage
+    # )
     FastLanguageModel.for_inference(model) 
 
     # Apply the chat template to the dataset
@@ -99,7 +105,7 @@ if __name__ == "__main__":
     correct_outputs = [example[2]['content'] for example in dataset[example_id]['text']]
     # example_id=slice(0,df.shape[0])    
     
-    split_user_prompts=[example[1]['content'].split('File/Folder description: ') for example in dataset[example_id]['text']]    
+    split_user_prompts=[example[1]['content'].split('Pick from one of the following: ') for example in dataset[example_id]['text']]    
     df=pd.DataFrame({'outputs': outputs, 
                      'correct_outputs': correct_outputs, 
                      'file_system': [user_prompt[0] for user_prompt in split_user_prompts], 
@@ -107,9 +113,11 @@ if __name__ == "__main__":
     df['match']=df['correct_outputs']==df['outputs']
 
     print(df)
-    df.to_csv(os.path.join(LOGS_PATH,'outputs.csv'), index=False)
+    df.to_csv(os.path.join(LOGS_PATH,'outputs_sys_use_ass_list.csv'), index=False)
 
-    df=pd.read_csv(os.path.join(LOGS_PATH,'outputs.csv'))
+    # df=pd.read_csv(os.path.join(LOGS_PATH,'outputs.csv'))
+    # df2=pd.read_csv(os.path.join(LOGS_PATH,'outputs_no_train.csv'))
+
     pass
     # df.to_csv(os.path.join(LOGS_PATH,'outputs.csv'), index=False)
 
