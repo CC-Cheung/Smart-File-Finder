@@ -27,6 +27,7 @@ USED_DATA_PATH=os.path.join(DATA_PATH, 'used')
 
 MODEL_NAME="unsloth/Meta-Llama-3.1-8B-bnb-4bit"
 MODEL_NAME="unsloth/mistral-7b-instruct-v0.3-bnb-4bit"
+# MODEL_NAME=os.path.join(MODELS_PATH, 'finetuned', 'sys_use_ass_list')
 
 def pre_apply_chat_template(example):  
     conversations = example["text"]  
@@ -75,13 +76,16 @@ if __name__ == "__main__":
         # use_rslora = False,  # We support rank stabilized LoRA
         # loftq_config = None, # And LoftQ
     )
+
     # wandb.login(key="WANDB_API_KEY")
     
     run=wandb.init(
         project="Smart File Finder",
         # entity="my_entity",
         name="test",
-        tags=[MODEL_NAME, "finetune"],
+        tags=[
+            MODEL_NAME, 
+              "finetune"],
         config=lora_configs
     )
 

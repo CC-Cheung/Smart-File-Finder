@@ -16,12 +16,18 @@ RAW_DATA_PATH=os.path.join(DATA_PATH, 'raw')
 USED_DATA_PATH=os.path.join(DATA_PATH, 'used')
 
 
-with open(os.path.join(USED_DATA_PATH, 'used_dataset_sys_use_ass.json'), 'r') as f:
+with open(os.path.join(USED_DATA_PATH, 'used_dataset_sys_use_ass_list.json'), 'r') as f:
     used_dataset = json.load(f)
 dataset = Dataset.from_list(used_dataset)  
 
 all_results = []
-df=pd.read_csv(os.path.join(LOGS_PATH,'outputs.csv'))
+df=pd.read_csv(os.path.join(LOGS_PATH,'outputs_sys_use_ass_list.csv'))
+df2=pd.read_csv(os.path.join(LOGS_PATH,'outputs_sys_use_ass_list_2.csv'))
+df3=df.copy()
+df3['outputs_2']=df2['outputs']
+df3['match_2']=df2['match']
+df3['same']=df2['match']==df['match']
+
 pass
 # df.to_csv(os.path.join(LOGS_PATH,'outputs.csv'), index=False)
 
