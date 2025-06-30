@@ -9,3 +9,6 @@
 *models/*
 **/unsloth_compiled_cache/*
 *unsloth_compiled_cache/*
+*.md
+**/test*
+!test folder

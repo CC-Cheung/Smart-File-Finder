@@ -69,7 +69,7 @@ if __name__ == "__main__":
     dataset = Dataset.from_list(used_dataset)  
 
     model, tokenizer = FastLanguageModel.from_pretrained(
-        model_name="/home/kids/Linux_Coding/Smart-File-Finder/models/finetuned/sys_use_ass_list_2",
+        model_name="/home/kids/Linux_Coding/Smart-File-Finder/model training/models/finetuned/sys_use_ass_list_3",
         max_seq_length=2048,
         load_in_4bit=True,
         # device_map="cpu",  # Force CPU usage
@@ -113,7 +113,7 @@ if __name__ == "__main__":
     df['match']=df['correct_outputs']==df['outputs']
 
     print(df)
-    df.to_csv(os.path.join(LOGS_PATH,'outputs_sys_use_ass_list_2.csv'), index=False)
+    df.to_csv(os.path.join(LOGS_PATH,'outputs_sys_use_ass_list_3.csv'), index=False)
 
     # df=pd.read_csv(os.path.join(LOGS_PATH,'outputs.csv'))
     # df2=pd.read_csv(os.path.join(LOGS_PATH,'outputs_no_train.csv'))

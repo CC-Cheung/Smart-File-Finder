@@ -27,7 +27,7 @@ USED_DATA_PATH=os.path.join(DATA_PATH, 'used')
 
 MODEL_NAME="unsloth/Meta-Llama-3.1-8B-bnb-4bit"
 MODEL_NAME="unsloth/mistral-7b-instruct-v0.3-bnb-4bit"
-# MODEL_NAME=os.path.join(MODELS_PATH, 'finetuned', 'sys_use_ass_list')
+MODEL_NAME=os.path.join(MODELS_PATH, 'finetuned', 'sys_use_ass_list_2')
 
 def pre_apply_chat_template(example):  
     conversations = example["text"]  
@@ -52,30 +52,30 @@ if __name__ == "__main__":
     tokenizer.add_bos_token = False
     dataset = dataset.map(pre_apply_chat_template)  
 
-    lora_configs = {
-        "r": 16, # Choose any number > 0 ! Suggested 8, 16, 32, 64, 128
-        "target_modules": ["q_proj", "k_proj", "v_proj", "o_proj",
-                        "gate_proj", "up_proj", "down_proj",],
-        "lora_alpha": 16,
-        "lora_dropout": 0, # Supports any, but = 0 is optimized
-        "bias": "none",
-        "use_rslora": False, 
-        "loftq_config": None, 
-    }
-    model = FastLanguageModel.get_peft_model(
-        model, **lora_configs
-        # r = 16, # Choose any number > 0 ! Suggested 8, 16, 32, 64, 128
-        # target_modules = ["q_proj", "k_proj", "v_proj", "o_proj",
-        #                 "gate_proj", "up_proj", "down_proj",],
-        # lora_alpha = 16,
-        # lora_dropout = 0, # Supports any, but = 0 is optimized
-        # bias = "none",    # Supports any, but = "none" is optimized
-        # # [NEW] "unsloth" uses 30% less VRAM, fits 2x larger batch sizes!
-        # use_gradient_checkpointing = "unsloth", # True or "unsloth" for very long context
-        # random_state = 3407,
-        # use_rslora = False,  # We support rank stabilized LoRA
-        # loftq_config = None, # And LoftQ
-    )
+    # lora_configs = {
+    #     "r": 16, # Choose any number > 0 ! Suggested 8, 16, 32, 64, 128
+    #     "target_modules": ["q_proj", "k_proj", "v_proj", "o_proj",
+    #                     "gate_proj", "up_proj", "down_proj",],
+    #     "lora_alpha": 16,
+    #     "lora_dropout": 0, # Supports any, but = 0 is optimized
+    #     "bias": "none",
+    #     "use_rslora": False, 
+    #     "loftq_config": None, 
+    # }
+    # model = FastLanguageModel.get_peft_model(
+    #     model, **lora_configs
+    #     # r = 16, # Choose any number > 0 ! Suggested 8, 16, 32, 64, 128
+    #     # target_modules = ["q_proj", "k_proj", "v_proj", "o_proj",
+    #     #                 "gate_proj", "up_proj", "down_proj",],
+    #     # lora_alpha = 16,
+    #     # lora_dropout = 0, # Supports any, but = 0 is optimized
+    #     # bias = "none",    # Supports any, but = "none" is optimized
+    #     # # [NEW] "unsloth" uses 30% less VRAM, fits 2x larger batch sizes!
+    #     # use_gradient_checkpointing = "unsloth", # True or "unsloth" for very long context
+    #     # random_state = 3407,
+    #     # use_rslora = False,  # We support rank stabilized LoRA
+    #     # loftq_config = None, # And LoftQ
+    # )
 
     # wandb.login(key="WANDB_API_KEY")
     
@@ -84,9 +84,9 @@ if __name__ == "__main__":
         # entity="my_entity",
         name="test",
         tags=[
-            MODEL_NAME, 
+            # MODEL_NAME, 
               "finetune"],
-        config=lora_configs
+        # config=lora_configs
     )
 
     trainer = SFTTrainer(
@@ -116,8 +116,8 @@ if __name__ == "__main__":
     # model.save_pretrained(os.path.join(FINETUNED_PATH, "lora_adapters"))
     # tokenizer.save_pretrained(os.path.join(FINETUNED_PATH, "lora_adapters"))
 
-    model.save_pretrained(os.path.join(FINETUNED_PATH, "sys_use_ass_list"))
-    tokenizer.save_pretrained(os.path.join(FINETUNED_PATH, "sys_use_ass_list"))
+    model.save_pretrained(os.path.join(FINETUNED_PATH, "sys_use_ass_list_3"))
+    tokenizer.save_pretrained(os.path.join(FINETUNED_PATH, "sys_use_ass_list_3"))
 
     # # no memory or tuple indices must be integers or slices, not NoneType
     # # model.save_pretrained_merged(
@@ -128,7 +128,7 @@ if __name__ == "__main__":
     # # )
 
     # model, tokenizer = FastLanguageModel.from_pretrained(
-    #     model_name=os.path.join(FINETUNED_PATH, 'latest'),
+    #     model_name=os.path.join(FINETUNED_PATH, 'latest'), 
     #     max_seq_length=2048,
     #     load_in_4bit=True,
     #     # device_map="cpu",  # Force CPU usage
