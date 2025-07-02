@@ -9,6 +9,7 @@ import os
 MODEL_NAME = 'deepseek-r1:8b'  # Change to your fine-tuned model if needed
 SELECTION_PHRASE = "The desired file/folder is "
 EXPLORATION_PHRASE = "The next folder to open is "
+ANSWER_PHRASE= "Final Answer: "
 # def list_tree(root, max_depth=2, prefix='~'):
 #     """Builds a flat list of files/folders up to max_depth."""
 #     tree = []
@@ -42,7 +43,7 @@ class FileExplorerTree:
       
     def handle_suggestion(self, suggestion):
         """Add the real children of folder_path to the tree, only if folder_path is already in the tree."""
-        raw_path = suggestion.strip(SELECTION_PHRASE).strip(EXPLORATION_PHRASE).rstrip('.')
+        raw_path = suggestion.split(ANSWER_PHRASE)[-1]
         path = remove_non_alphanumeric_edges(raw_path)
         full_path = os.path.join(self.path_before_root, path)
         
@@ -123,13 +124,22 @@ def prompt_model(description, tree):
     # )
     # return response['message']['content'].strip()
     if MODEL_NAME == 'deepseek-r1:8b':
+        # system_prompt = """
+        # You are a file-finder AI. Your task:
+        # - The user provides a file/folder description and a list of visible items.
+        # - If the described item is in the visible list:  
+        # Output EXACTLY: "The desired file/folder is {path to file/folder}"  
+        # - If not visible:  
+        # Output EXACTLY: "The next folder to open is {path to file}"
+        # - Again, the answer is within the list of visible items.
+        # """
         system_prompt = """
         You are a file-finder AI. Your task:
         - The user provides a file/folder description and a list of visible items.
-        - If the described item is in the visible list:  
-        Output EXACTLY: "The desired file/folder is {path to file/folder}"  
-        - If not visible:  
-        Output EXACTLY: "The next folder to open is {path to file}"
+        - You must choose one of those items by the following 2 rules:
+            1. If the described item is in the visible list, choose it.         
+            2. If not visible, choose the next folder to open.
+        - The answer is in the format "Final Answer: {path to file/folder}"
         - Again, the answer is within the list of visible items.
         """
         user_prompt = f"""
@@ -176,7 +186,7 @@ def main():
         print(f"\nModel suggestion: {suggestion}")
         try:
             # result=visible_tree.handle_suggestion(suggestion)
-            result=visible_tree.handle_suggestion_streamline(suggestion)
+            result=visible_tree.handle_suggestion(suggestion)
 
         except ValueError as e:
             print(f"Error: {e}")
