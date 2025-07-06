@@ -28,8 +28,8 @@ def pre_apply_chat_template_gen(example):
     return {"text": text}  
 def pre_apply_chat_template_gen_tokenize(example):  
     conversations = example["text"][:-1]  
-    text = tokenizer.apply_chat_template(conversations, tokenize=True, add_generation_prompt=True)  
-    return {"text": text}  
+    input_ids = tokenizer.apply_chat_template(conversations, tokenize=True, add_generation_prompt=True)  
+    return {"input_ids": input_ids}  
 
 def model_text_stream(inputs):
     text_streamer = TextStreamer(tokenizer, skip_prompt = True)
@@ -49,27 +49,29 @@ def model_generate_text(inputs):
     text = tokenizer.batch_decode(outputs[:,inputs['input_ids'].shape[-1]:], skip_special_tokens=True)
 
     return text
-def model_generate_text_all(inputs, batch_size=10):
+def model_generate_text_all(data, batch_size=10):
     all_texts=[]
-    for i in range(inputs['input_ids'].shape[0]//batch_size):
-        batch_slice=slice(i*batch_size, min((i+1)*batch_size, inputs['input_ids'].shape[0]))
-        outputs = model.generate(inputs['input_ids'][batch_slice], 
-                       attention_mask = inputs['attention_mask'][batch_slice], 
+    for i in range(len(data['text'])//batch_size):
+        batch_slice=slice(i*batch_size, min((i+1)*batch_size, len(data['text'])))
+        inputs=tokenizer(data['text'][batch_slice], return_tensors="pt", padding=True, truncation=True).to(model.device)
+
+        outputs = model.generate(inputs['input_ids'], 
                        max_new_tokens = 128, 
                        pad_token_id = tokenizer.eos_token_id,
+                       attention_mask = inputs['attention_mask'],
                        )
         all_texts += tokenizer.batch_decode(outputs[:,inputs['input_ids'].shape[-1]:], skip_special_tokens=True)
     return all_texts
 if __name__ == "__main__":
     # psutil.virtual_memory().available
 
-    with open(os.path.join(USED_DATA_PATH, 'used_dataset_sys_use_ass_list.json'), 'r') as f:
+    with open(os.path.join(USED_DATA_PATH, 'used_dataset_SUA_number_list.json'), 'r') as f:
         used_dataset = json.load(f)
     
     dataset = Dataset.from_list(used_dataset)  
 
     model, tokenizer = FastLanguageModel.from_pretrained(
-        model_name="/home/kids/Linux_Coding/Smart-File-Finder/model training/models/finetuned/sys_use_ass_list_3",
+        model_name="/home/kids/Linux_Coding/Smart-File-Finder/model training/models/finetuned/mistral_SUA_number_list3",
         max_seq_length=2048,
         load_in_4bit=True,
         # device_map="cpu",  # Force CPU usage
@@ -83,16 +85,13 @@ if __name__ == "__main__":
     FastLanguageModel.for_inference(model) 
 
     # Apply the chat template to the dataset
-    dataset_gen = dataset.map(pre_apply_chat_template_gen)
 
     example_id=None
-    example_id=slice(0,100)    
-    inputs = tokenizer(
-        dataset_gen['text'] if example_id is None else dataset_gen['text'][example_id],
-        return_tensors="pt",
-        # add_special_tokens=False, #check if correct?
-        padding=True,
-    ).to("cuda") 
+    example_id=slice(0,100)   
+
+    dataset_gen = dataset.map(pre_apply_chat_template_gen)
+    inputs=dataset_gen[example_id]
+    
 
     #one or a few
     # outputs = model_generate_text(inputs)
@@ -105,7 +104,9 @@ if __name__ == "__main__":
     correct_outputs = [example[2]['content'] for example in dataset[example_id]['text']]
     # example_id=slice(0,df.shape[0])    
     
-    split_user_prompts=[example[1]['content'].split('Pick from one of the following: ') for example in dataset[example_id]['text']]    
+
+    split_user_prompts=[example[1]['content'].split('\nHere are the visible items. Choose one of the following: ') for example in dataset[example_id]['text']]  
+
     df=pd.DataFrame({'outputs': outputs, 
                      'correct_outputs': correct_outputs, 
                      'file_system': [user_prompt[0] for user_prompt in split_user_prompts], 
@@ -113,7 +114,7 @@ if __name__ == "__main__":
     df['match']=df['correct_outputs']==df['outputs']
 
     print(df)
-    df.to_csv(os.path.join(LOGS_PATH,'outputs_sys_use_ass_list_3.csv'), index=False)
+    df.to_csv(os.path.join(LOGS_PATH,'outputs_SUA_number_list3.csv'), index=False)
 
     # df=pd.read_csv(os.path.join(LOGS_PATH,'outputs.csv'))
     # df2=pd.read_csv(os.path.join(LOGS_PATH,'outputs_no_train.csv'))

@@ -84,7 +84,8 @@ def extract_paths(tree_str):
         # Join stack to make the path
         paths.append('/'.join(stack))
 
-    return '\n'.join(paths)
+    return paths
+
 
 def parse_tab_tree(tree_str):
     """Parse tab-indented file system structure into treelib Tree"""
@@ -273,7 +274,7 @@ def formatting_prompts_func(example, method):
                     {"role": "user", 
                      "content": f"Folder tree:\n{example['visible_tree']}\n"
                                 f"File/Folder description: {example['desired_description']}"
-                                f"Pick one of the following: {extract_paths(example['visible_tree'])}"},
+                                f"Pick one of the following: {example['visible_tree']}"}, ###
 
                     {"role": "assistant", "content": example["deepest_folder"]},
                 ]            
@@ -289,11 +290,41 @@ def formatting_prompts_func(example, method):
                                 "if the desired file/folder is visible, output it, else, predict the next folder to explore.\n"},
 
                     {"role": "user", 
-                     "content": f"File/Folder description: {example['desired_description']}\n"
-                                f"Pick from one of the following: {'\n'+extract_paths(example['visible_tree'])}"},
+                     "content": 
+f"""File/Folder description: 
+{example['desired_description']}
+Pick from one of the following:"""+
+'\n'.join(extract_paths(example['visible_tree']))},
 
                     {"role": "assistant", "content": example["deepest_folder"]},
                 ]            
+        }
+    elif method=="SUA_number_list":
+        path_str="\n".join([f"{i+1}. {path}" for i,path in enumerate(extract_paths(example['visible_tree']))])
+        return {
+            "text": [
+                {"role": "system", 
+                    "content": 
+"""You are a file-finder AI. Your task:
+- The user provides a file/folder description and a list of visible items.
+- You must choose one of those items by the following 2 rules:
+    1. If the described item is in the visible list, choose it.         
+    2. If not visible, choose the next folder to open.
+- The answer is in the format "Final Answer: {path to file/folder}"
+- Again, the answer is within the list of visible items.
+"""},
+
+                {"role": "user", 
+                    "content":                     
+f"""Here is the description of what I am searching for: 
+{example['desired_description']}. 
+
+Here are the visible items. Choose one of the following: 
+{path_str},
+"""},
+                
+                {"role": "assistant", "content": "Final Answer: "+ example["deepest_folder"]},
+            ]            
         }
 # Example usage
 if __name__ == "__main__":
@@ -312,7 +343,7 @@ if __name__ == "__main__":
         all_dataset = json.load(f)
     
     used_dataset = []
-    method="sys_use_ass_list"
+    method="SUA_number_list"
     with open(os.path.join(USED_DATA_PATH, f"used_dataset_{method}.json"), "w") as f:
         for persona in all_dataset:
             # formatted_data = [formatting_prompts_func(desired) for desired in persona['visibility_data']]

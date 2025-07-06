@@ -24,20 +24,22 @@ FINETUNED_PATH=os.path.join(MODELS_PATH, 'finetuned')
 PROCESSED_DATA_PATH=os.path.join(DATA_PATH, 'processed')
 RAW_DATA_PATH=os.path.join(DATA_PATH, 'raw')
 USED_DATA_PATH=os.path.join(DATA_PATH, 'used')
+DATASET_PATH=os.path.join(USED_DATA_PATH, 'used_dataset_SUA_number_list.json')
 
-MODEL_NAME="unsloth/Meta-Llama-3.1-8B-bnb-4bit"
+
 MODEL_NAME="unsloth/mistral-7b-instruct-v0.3-bnb-4bit"
-MODEL_NAME=os.path.join(MODELS_PATH, 'finetuned', 'sys_use_ass_list_2')
-
+# MODEL_NAME="unsloth/Meta-Llama-3.1-8B-Instruct-bnb-4bit"
+MODEL_NAME=os.path.join(FINETUNED_PATH, 'mistral_SUA_number_list2')
+SAVE_MODEL_NAME=os.path.join(FINETUNED_PATH, "mistral_SUA_number_list3")
 def pre_apply_chat_template(example):  
     conversations = example["text"]  
-    text = tokenizer.apply_chat_template(conversations, tokenize=False, add_generation_prompt=False)  
-    return {"text": text}  
+    input_ids = tokenizer.apply_chat_template(conversations, tokenize=True, add_generation_prompt=False)  
+    return {"input_ids": input_ids}  
 
 if __name__ == "__main__":
     # psutil.virtual_memory().available
 
-    with open(os.path.join(USED_DATA_PATH, 'used_dataset_sys_use_ass_list.json'), 'r') as f:
+    with open(DATASET_PATH, 'r') as f:
         used_dataset = json.load(f)
     # used_dataset = used_dataset [:20]
     dataset = Dataset.from_list(used_dataset)  
@@ -48,10 +50,17 @@ if __name__ == "__main__":
         load_in_4bit=True,
         # device_map="cpu",  # Force CPU usage
     )
+    #IMPORTANT?
+    tokenizer = get_chat_template(
+        tokenizer,
+        chat_template = "mistral", # change this to the right chat_template name
+    )
     #OR ELSE EXTRA <s>
-    tokenizer.add_bos_token = False
+    # tokenizer.add_bos_token = False
+
     dataset = dataset.map(pre_apply_chat_template)  
 
+    ###Comment out if from my pretrained
     # lora_configs = {
     #     "r": 16, # Choose any number > 0 ! Suggested 8, 16, 32, 64, 128
     #     "target_modules": ["q_proj", "k_proj", "v_proj", "o_proj",
@@ -93,7 +102,7 @@ if __name__ == "__main__":
         model=model,
         train_dataset=dataset,
         tokenizer=tokenizer,
-        dataset_text_field="text",
+        dataset_text_field="input_ids",
         max_seq_length=2048,
         args=TrainingArguments(
             per_device_train_batch_size=2,
@@ -116,8 +125,8 @@ if __name__ == "__main__":
     # model.save_pretrained(os.path.join(FINETUNED_PATH, "lora_adapters"))
     # tokenizer.save_pretrained(os.path.join(FINETUNED_PATH, "lora_adapters"))
 
-    model.save_pretrained(os.path.join(FINETUNED_PATH, "sys_use_ass_list_3"))
-    tokenizer.save_pretrained(os.path.join(FINETUNED_PATH, "sys_use_ass_list_3"))
+    model.save_pretrained(SAVE_MODEL_NAME)
+    tokenizer.save_pretrained(SAVE_MODEL_NAME)
 
     # # no memory or tuple indices must be integers or slices, not NoneType
     # # model.save_pretrained_merged(

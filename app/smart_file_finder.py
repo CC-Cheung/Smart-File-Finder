@@ -2,14 +2,23 @@ import argparse
 import os
 import ollama  # Make sure ollama is installed and running
 import re
-
+import string
 from treelib import Tree
 import os
 
-MODEL_NAME = 'deepseek-r1:8b'  # Change to your fine-tuned model if needed
+# Change to your fine-tuned model if needed
+MODEL_NAME = 'deepseek-r1:8b'  #perfect but slow af
+MODEL_NAME = 'llama3.1:latest'  # alright, pretty fast, but sometimes wrong answer
+# MODEL_NAME = 'dolphin3:latest'  # wrong Final Answer: my files/Uni Sanda club tournament pic folder
+# MODEL_NAME = 'mistral:latest'  # bad format  Final Answer: 1. my files (assuming that under 'my files' there is a subfolder named "Uni Sanda club tournament pic")
+# MODEL_NAME = 'llama3.2' #bad format, only number
+# MODEL_NAME = "deepseek-r1:1.5b" #bad answer
+
+
 SELECTION_PHRASE = "The desired file/folder is "
 EXPLORATION_PHRASE = "The next folder to open is "
 ANSWER_PHRASE= "Final Answer: "
+PUNCTUATION = string.punctuation.replace('/', '')
 # def list_tree(root, max_depth=2, prefix='~'):
 #     """Builds a flat list of files/folders up to max_depth."""
 #     tree = []
@@ -43,8 +52,9 @@ class FileExplorerTree:
       
     def handle_suggestion(self, suggestion):
         """Add the real children of folder_path to the tree, only if folder_path is already in the tree."""
-        raw_path = suggestion.split(ANSWER_PHRASE)[-1]
-        path = remove_non_alphanumeric_edges(raw_path)
+        pattern=f"[{re.escape(PUNCTUATION)}\t\n\r\f\v]"
+        path =  re.split(pattern ,suggestion.split(ANSWER_PHRASE)[-1], 1)[0]
+        # path = remove_non_alphanumeric_edges(raw_path)
         full_path = os.path.join(self.path_before_root, path)
         
         if not self.tree.contains(path):
@@ -123,42 +133,42 @@ def prompt_model(description, tree):
     #     ]
     # )
     # return response['message']['content'].strip()
-    if MODEL_NAME == 'deepseek-r1:8b':
-        # system_prompt = """
-        # You are a file-finder AI. Your task:
-        # - The user provides a file/folder description and a list of visible items.
-        # - If the described item is in the visible list:  
-        # Output EXACTLY: "The desired file/folder is {path to file/folder}"  
-        # - If not visible:  
-        # Output EXACTLY: "The next folder to open is {path to file}"
-        # - Again, the answer is within the list of visible items.
-        # """
-        system_prompt = """
-        You are a file-finder AI. Your task:
-        - The user provides a file/folder description and a list of visible items.
-        - You must choose one of those items by the following 2 rules:
-            1. If the described item is in the visible list, choose it.         
-            2. If not visible, choose the next folder to open.
-        - The answer is in the format "Final Answer: {path to file/folder}"
-        - Again, the answer is within the list of visible items.
-        """
-        user_prompt = f"""
-        Here is the description of what I am searching for: 
-        {description}. 
-        
-        Here are the visible items. Choose one of the following: 
-        {tree}
-        """
-        
-        response = ollama.chat(
-            model='deepseek-r1:8b',
-            messages=[
-                {'role': 'system', 'content': system_prompt},
-                {'role': 'user', 'content': user_prompt}
-            ]
-        )
-        return response['message']['content']
-    return description
+    # system_prompt = """
+    # You are a file-finder AI. Your task:
+    # - The user provides a file/folder description and a list of visible items.
+    # - If the described item is in the visible list:  
+    # Output EXACTLY: "The desired file/folder is {path to file/folder}"  
+    # - If not visible:  
+    # Output EXACTLY: "The next folder to open is {path to file}"
+    # - Again, the answer is within the list of visible items.
+    # """
+    system_prompt = """
+    You are a file-finder AI. Your task:
+    - The user provides a file/folder description and a list of visible items.
+    - You must choose one of those items by the following 2 rules:
+        1. If the described item is in the visible list, choose it.         
+        2. If not visible, choose the next folder to open.
+    - The answer is in the format "Final Answer: {path to file/folder}"
+    - Again, the answer is within the list of visible items.
+    """
+    user_prompt = f"""
+    Here is the description of what I am searching for: 
+    {description}. 
+    
+    Here are the visible items. Choose one of the following: 
+    {tree}
+    """
+    
+    response = ollama.chat(
+        model=MODEL_NAME,
+        messages=[
+            {'role': 'system', 'content': system_prompt},
+            {'role': 'user', 'content': user_prompt}
+        ]
+    )
+    return response['message']['content']
+    
+    # return description
 
 def main():
     parser = argparse.ArgumentParser(description="Smart File Finder with Ollama model")
@@ -197,6 +207,7 @@ def main():
         i+=1
     print(result)
 if __name__ == "__main__":
+    
     main()
 
 # my files
