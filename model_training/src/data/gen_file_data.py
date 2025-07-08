@@ -317,10 +317,10 @@ Pick from one of the following:"""+
                 {"role": "user", 
                     "content":                     
 f"""Here is the description of what I am searching for: 
-{example['desired_description']}. 
+{example['desired_description']} 
 
 Here are the visible items. Choose one of the following: 
-{path_str},
+{path_str}
 """},
                 
                 {"role": "assistant", "content": "Final Answer: "+ example["deepest_folder"]},

@@ -14,6 +14,7 @@ MODEL_NAME = 'llama3.1:latest'  # alright, pretty fast, but sometimes wrong answ
 # MODEL_NAME = 'llama3.2' #bad format, only number
 # MODEL_NAME = "deepseek-r1:1.5b" #bad answer
 
+MODEL_NAME = "mistral_SUA_number_list3:latest"
 
 SELECTION_PHRASE = "The desired file/folder is "
 EXPLORATION_PHRASE = "The next folder to open is "
@@ -117,47 +118,22 @@ class FileExplorerTree:
 
 def prompt_model(description, tree):
     """Send prompt to Ollama and get response."""
-    # prompt = (
-    #     f"File/Folder description: {description}\n"
-    #     "Pick from one of the following:\n"
-    #     + "\n".join(tree)
-    # )
-    # response = ollama.chat(
-    #     model=MODEL_NAME,
-    #     messages=[
-    #         {"role": "system", "content": (
-    #             "You are a file retrieval assistant. Given the following file/folder description and a partial folder tree, "
-    #             "if the desired file/folder is visible, output it, else, predict the next folder to explore.\n"
-    #         )},
-    #         {"role": "user", "content": prompt}
-    #     ]
-    # )
-    # return response['message']['content'].strip()
-    # system_prompt = """
-    # You are a file-finder AI. Your task:
-    # - The user provides a file/folder description and a list of visible items.
-    # - If the described item is in the visible list:  
-    # Output EXACTLY: "The desired file/folder is {path to file/folder}"  
-    # - If not visible:  
-    # Output EXACTLY: "The next folder to open is {path to file}"
-    # - Again, the answer is within the list of visible items.
-    # """
-    system_prompt = """
-    You are a file-finder AI. Your task:
-    - The user provides a file/folder description and a list of visible items.
-    - You must choose one of those items by the following 2 rules:
-        1. If the described item is in the visible list, choose it.         
-        2. If not visible, choose the next folder to open.
-    - The answer is in the format "Final Answer: {path to file/folder}"
-    - Again, the answer is within the list of visible items.
-    """
-    user_prompt = f"""
-    Here is the description of what I am searching for: 
-    {description}. 
+    system_prompt="""You are a file-finder AI. Your task:
+- The user provides a file/folder description and a list of visible items.
+- You must choose one of those items by the following 2 rules:
+    1. If the described item is in the visible list, choose it.         
+    2. If not visible, choose the next folder to open.
+- The answer is in the format "Final Answer: {path to file/folder}"
+- Again, the answer is within the list of visible items.
+"""
+    user_prompt=f'''Here is the description of what I am searching for: 
+{description} 
+
+Here are the visible items. Choose one of the following: 
+{tree}
+'''
+
     
-    Here are the visible items. Choose one of the following: 
-    {tree}
-    """
     
     response = ollama.chat(
         model=MODEL_NAME,

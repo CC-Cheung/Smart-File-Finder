@@ -6,7 +6,7 @@
 *.pt
 *.pth
 *.csv
-*models/*
+*/models/*
 **/unsloth_compiled_cache/*
 *unsloth_compiled_cache/*
 *.md
