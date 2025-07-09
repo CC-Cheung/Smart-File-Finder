@@ -1,11 +1,12 @@
 import argparse
 import os
-import ollama  # Make sure ollama is installed and running
+# import ollama  # Make sure ollama is installed and running
 import re
 import string
 from treelib import Tree
 import os
-
+from unsloth import FastLanguageModel
+from unsloth import get_chat_template
 # Change to your fine-tuned model if needed
 MODEL_NAME = 'deepseek-r1:8b'  #perfect but slow af
 MODEL_NAME = 'llama3.1:latest'  # alright, pretty fast, but sometimes wrong answer
@@ -14,8 +15,8 @@ MODEL_NAME = 'llama3.1:latest'  # alright, pretty fast, but sometimes wrong answ
 # MODEL_NAME = 'llama3.2' #bad format, only number
 # MODEL_NAME = "deepseek-r1:1.5b" #bad answer
 
-# MODEL_NAME = "mistral_SUA_number_list3_big:latest"
 MODEL_NAME = "mistral_SUA_number_list3:latest"
+MODEL_NAME = "/home/kids/Linux_Coding/Smart-File-Finder/model_training/models/finetuned/mistral_SUA_number_list3"
 
 SELECTION_PHRASE = "The desired file/folder is "
 EXPLORATION_PHRASE = "The next folder to open is "
@@ -113,7 +114,10 @@ class FileExplorerTree:
         return output
 
     
-
+def pre_apply_chat_template_gen_tokenize(example):  
+    conversations = example["text"][:-1]  
+    input_ids = tokenizer.apply_chat_template(conversations, tokenize=True, add_generation_prompt=True)  
+    return {"input_ids": input_ids}  
 
 
 
@@ -134,17 +138,32 @@ Here are the visible items. Choose one of the following:
 {tree}
 '''
 
-    
-    
-    response = ollama.chat(
-        model=MODEL_NAME,
-        messages=[
+    messages=[
             {'role': 'system', 'content': system_prompt},
             {'role': 'user', 'content': user_prompt}
         ]
-    )
-    return response['message']['content']
     
+#     response = ollama.chat(
+#         model=MODEL_NAME,
+#         messages=[
+#             {'role': 'system', 'content': system_prompt},
+#             {'role': 'user', 'content': user_prompt}
+#         ]
+#     )
+    # return response['message']['content']
+    
+
+    inputs=tokenizer.apply_chat_template(messages, return_tensors="pt", padding=True, truncation=True).to(model.device)
+
+    outputs = model.generate(inputs, 
+                       max_new_tokens = 128, 
+                       pad_token_id = tokenizer.eos_token_id,
+                       
+                       )
+
+    outputs = tokenizer.batch_decode(outputs, skip_special_tokens=True)[0]
+
+    return outputs
     # return description
 
 def main():
@@ -184,7 +203,13 @@ def main():
         i+=1
     print(result)
 if __name__ == "__main__":
-    
+
+    model, tokenizer = FastLanguageModel.from_pretrained(
+        model_name=MODEL_NAME,
+        max_seq_length=2048,
+        load_in_4bit=True,
+        # device_map="cpu",  # Force CPU usage
+    )
     main()
 
 # my files

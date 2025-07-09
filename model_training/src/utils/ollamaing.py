@@ -17,7 +17,8 @@ ADAPTER_PATH = os.path.join(FINETUNED_PATH, 'mistral_SUA_number_list3')
 
 #Double check
 OLLAMA_PATH = os.path.join(FINETUNED_PATH, 'ollama')
-OLLAMA_MODEL_NAME="mistral_SUA_number_list3"
+OLLAMA_MODEL_NAME="mistral_SUA_number_list3_big"
+MODEL_FILE_NAME="Modelfile_unquantized"
 # def formatting_prompts_func(example, method):    
 #     if method=="io":
 #         instruction = (
@@ -46,7 +47,7 @@ OLLAMA_MODEL_NAME="mistral_SUA_number_list3"
 #                 ]            
 #         }
     
-###WEIRD ERROR IF DIRECTLY FROM ADAPTER_PATH
+##WEIRD ERROR IF DIRECTLY FROM ADAPTER_PATH
 # model, tokenizer = FastLanguageModel.from_pretrained(
 #     model_name="unsloth/mistral-7b-instruct-v0.3-bnb-4bit",
 #     max_seq_length=2048,
@@ -56,40 +57,40 @@ OLLAMA_MODEL_NAME="mistral_SUA_number_list3"
 # model.load_adapter(ADAPTER_PATH)
 
 
-# # 1. Enable inference mode
+# 1. Enable inference mode
 
-# # GET GGUF first if not done
-# # DO NOT model.load_adapter(ADAPTER_PATH). Use adapater path directly with FastLanguageModel.from_pretrained(
+# GET GGUF first if not done
+# DO NOT model.load_adapter(ADAPTER_PATH). Use adapater path directly with FastLanguageModel.from_pretrained(
 # model, tokenizer = FastLanguageModel.from_pretrained(
 #     model_name=ADAPTER_PATH,
 #     max_seq_length=2048,
 #     load_in_4bit=True,
 # )
 
-# # lora_configs = {
-# #     "r": 16, # Choose any number > 0 ! Suggested 8, 16, 32, 64, 128
-# #     "target_modules": ["q_proj", "k_proj", "v_proj", "o_proj",
-# #                     "gate_proj", "up_proj", "down_proj",],
-# #     "lora_alpha": 16,
-# #     "lora_dropout": 0, # Supports any, but = 0 is optimized
-# #     "bias": "none",
-# #     "use_rslora": False, 
-# #     "loftq_config": None, 
-# # }
-# # model = FastLanguageModel.get_peft_model(
-# #     model, **lora_configs
-# #     # r = 16, # Choose any number > 0 ! Suggested 8, 16, 32, 64, 128
-# #     # target_modules = ["q_proj", "k_proj", "v_proj", "o_proj",
-# #     #                 "gate_proj", "up_proj", "down_proj",],
-# #     # lora_alpha = 16,
-# #     # lora_dropout = 0, # Supports any, but = 0 is optimized
-# #     # bias = "none",    # Supports any, but = "none" is optimized
-# #     # # [NEW] "unsloth" uses 30% less VRAM, fits 2x larger batch sizes!
-# #     # use_gradient_checkpointing = "unsloth", # True or "unsloth" for very long context
-# #     # random_state = 3407,
-# #     # use_rslora = False,  # We support rank stabilized LoRA
-# #     # loftq_config = None, # And LoftQ
-# # )
+# lora_configs = {
+#     "r": 16, # Choose any number > 0 ! Suggested 8, 16, 32, 64, 128
+#     "target_modules": ["q_proj", "k_proj", "v_proj", "o_proj",
+#                     "gate_proj", "up_proj", "down_proj",],
+#     "lora_alpha": 16,
+#     "lora_dropout": 0, # Supports any, but = 0 is optimized
+#     "bias": "none",
+#     "use_rslora": False, 
+#     "loftq_config": None, 
+# }
+# model = FastLanguageModel.get_peft_model(
+#     model, **lora_configs
+#     # r = 16, # Choose any number > 0 ! Suggested 8, 16, 32, 64, 128
+#     # target_modules = ["q_proj", "k_proj", "v_proj", "o_proj",
+#     #                 "gate_proj", "up_proj", "down_proj",],
+#     # lora_alpha = 16,
+#     # lora_dropout = 0, # Supports any, but = 0 is optimized
+#     # bias = "none",    # Supports any, but = "none" is optimized
+#     # # [NEW] "unsloth" uses 30% less VRAM, fits 2x larger batch sizes!
+#     # use_gradient_checkpointing = "unsloth", # True or "unsloth" for very long context
+#     # random_state = 3407,
+#     # use_rslora = False,  # We support rank stabilized LoRA
+#     # loftq_config = None, # And LoftQ
+# )
 # FastLanguageModel.for_inference(model) 
 
 # tokenizer = get_chat_template(
@@ -106,7 +107,7 @@ OLLAMA_MODEL_NAME="mistral_SUA_number_list3"
 # )
 
 pass
-modelfile_content='''FROM /home/kids/Linux_Coding/Smart-File-Finder/model_training/models/finetuned/mistral_SUA_number_list3.gguf/unsloth.Q4_K_M.gguf
+modelfile_content='''FROM /home/kids/Linux_Coding/Smart-File-Finder/model_training/models/finetuned/mistral_SUA_number_list3.gguf/unsloth.BF16.gguf
 TEMPLATE """{{- if .Messages }}
 {{- range $index, $_ := .Messages }}
 {{- if eq .Role "user" }}
@@ -133,11 +134,11 @@ PARAMETER stop [INST]
 PARAMETER stop [/INST]
 '''
 
-with open(os.path.join(OLLAMA_PATH, 'Modelfile'), "w") as f:
+with open(os.path.join(OLLAMA_PATH, MODEL_FILE_NAME), "w") as f:
     f.write(modelfile_content)
 
 subprocess.run([
-    "ollama", "create", OLLAMA_MODEL_NAME, "-f", os.path.join(OLLAMA_PATH, 'Modelfile')
+    "ollama", "create", OLLAMA_MODEL_NAME, "-f", os.path.join(OLLAMA_PATH, MODEL_FILE_NAME)
 ], check=True)
 
 print(f"Created Ollama model: {OLLAMA_MODEL_NAME}")
