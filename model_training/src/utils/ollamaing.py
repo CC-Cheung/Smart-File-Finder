@@ -17,8 +17,8 @@ ADAPTER_PATH = os.path.join(FINETUNED_PATH, 'mistral_SUA_number_list3')
 
 #Double check
 OLLAMA_PATH = os.path.join(FINETUNED_PATH, 'ollama')
-OLLAMA_MODEL_NAME="mistral_SUA_number_list3_big"
-MODEL_FILE_NAME="Modelfile_unquantized"
+OLLAMA_MODEL_NAME="mistral_SUA_number_list3"
+MODEL_FILE_NAME="Modelfile"
 # def formatting_prompts_func(example, method):    
 #     if method=="io":
 #         instruction = (
@@ -107,7 +107,7 @@ MODEL_FILE_NAME="Modelfile_unquantized"
 # )
 
 pass
-modelfile_content='''FROM /home/kids/Linux_Coding/Smart-File-Finder/model_training/models/finetuned/mistral_SUA_number_list3.gguf/unsloth.BF16.gguf
+modelfile_content='''FROM /home/kids/Linux_Coding/Smart-File-Finder/model_training/models/finetuned/mistral_SUA_number_list3.gguf/unsloth.Q4_K_M.gguf
 TEMPLATE """{{- if .Messages }}
 {{- range $index, $_ := .Messages }}
 {{- if eq .Role "user" }}
@@ -132,6 +132,7 @@ TEMPLATE """{{- if .Messages }}
 {{- end }}"""
 PARAMETER stop [INST]
 PARAMETER stop [/INST]
+PARAMETER temperature 0.8
 '''
 
 with open(os.path.join(OLLAMA_PATH, MODEL_FILE_NAME), "w") as f:

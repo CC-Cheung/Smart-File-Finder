@@ -5,37 +5,21 @@ import re
 import string
 from treelib import Tree
 import os
-
+import logging
 # Change to your fine-tuned model if needed
-MODEL_NAME = 'deepseek-r1:8b'  #perfect but slow af
-MODEL_NAME = 'llama3.1:latest'  # alright, pretty fast, but sometimes wrong answer
-# MODEL_NAME = 'dolphin3:latest'  # wrong Final Answer: my files/Uni Sanda club tournament pic folder
-# MODEL_NAME = 'mistral:latest'  # bad format  Final Answer: 1. my files (assuming that under 'my files' there is a subfolder named "Uni Sanda club tournament pic")
-# MODEL_NAME = 'llama3.2' #bad format, only number
-# MODEL_NAME = "deepseek-r1:1.5b" #bad answer
-
-# MODEL_NAME = "mistral_SUA_number_list3_big:latest"
 MODEL_NAME = "mistral_SUA_number_list3:latest"
 
 SELECTION_PHRASE = "The desired file/folder is "
 EXPLORATION_PHRASE = "The next folder to open is "
 ANSWER_PHRASE= "Final Answer: "
 PUNCTUATION = string.punctuation.replace('/', '')
-# def list_tree(root, max_depth=2, prefix='~'):
-#     """Builds a flat list of files/folders up to max_depth."""
-#     tree = []
-#     for dirpath, dirnames, filenames in os.walk(root):
-#         depth = dirpath[len(root):].count(os.sep)
-#         if depth > max_depth:
-#             continue
-#         rel_dir = os.path.relpath(dirpath, os.path.expanduser('~'))
-#         rel_dir = prefix if rel_dir == '.' else f"{prefix}/{rel_dir}"
-#         tree.append(rel_dir)
-#         for d in dirnames:
-#             tree.append(f"{rel_dir}/{d}")
-#         for f in filenames:
-#             tree.append(f"{rel_dir}/{f}")
-#     return sorted(set(tree))
+#logging constants
+MAIN_PROGRAM_INFO= 21
+MAIN_PROGRAM= 22
+class AllowedError(Exception):
+    def __init__(self, message):
+        self.message = message
+        super().__init__(self.message)
 
 def remove_non_alphanumeric_edges(s: str) -> str:
     # Remove non-alphanumeric characters from the start and end of the string
@@ -47,20 +31,20 @@ class FileExplorerTree:
         self.tree = Tree()
         root_path=os.path.basename(full_root_path)
         self.path_before_root = full_root_path.rstrip(root_path)
-        # from starting folder
         self.tree.create_node(tag=root_path, identifier=root_path)
-          # If the suggestion is a file/folder in the current tree, print and exit
-        
-      
-    def handle_suggestion(self, suggestion):
+        self.blacklist=[]
+    def handle_suggestion(self, suggestion, logger):
         """Add the real children of folder_path to the tree, only if folder_path is already in the tree."""
-        pattern=f"[{re.escape(PUNCTUATION)}\t\n\r\f\v]"
-        path =  re.split(pattern ,suggestion.split(ANSWER_PHRASE)[-1], 1)[-1].strip()
-        # path = remove_non_alphanumeric_edges(raw_path)
+        path=suggestion.split(ANSWER_PHRASE)[-1].strip("\t\n\r\f\v"+PUNCTUATION)
+        path=path.lstrip("\t\n\r\f\v "+PUNCTUATION+string.digits)
+        path=path.rstrip("\t\n\r\f\v "+PUNCTUATION)
+
+        logger.main_program_info(f"Model suggestion: {path}")
+
         full_path = os.path.join(self.path_before_root, path)
         
         if not self.tree.contains(path):
-            raise ValueError(f"Folder '{path}' is not in the tree. Cannot explore.")
+            raise AllowedError(f"Folder '{path}' is not in the tree. Cannot explore.")
         elif os.path.isdir(full_path) and self.tree.nodes[path].is_leaf():
             for entry in os.listdir(full_path):
                 entry_path = os.path.join(path, entry)
@@ -69,35 +53,6 @@ class FileExplorerTree:
             return path
         
         return None  
-
-    def handle_suggestion_streamline(self, suggestion):
-        """Add the real children of folder_path to the tree, only if folder_path is already in the tree."""
-        raw_path = suggestion.split(SELECTION_PHRASE)[-1].split(EXPLORATION_PHRASE)[-1]
-        path = remove_non_alphanumeric_edges(raw_path)
-
-        full_path = os.path.join(self.path_before_root, path)
-
-        if not self.tree.contains(path):
-            raise ValueError(f"Folder '{path}' is not in the tree. Cannot explore.")
-        
-        if SELECTION_PHRASE in suggestion:
-            return path
-        elif EXPLORATION_PHRASE in suggestion:
-
-            if os.path.isdir(full_path) and self.tree.nodes[path].is_leaf():
-                for entry in os.listdir(full_path):
-                    entry_path = os.path.join(path, entry)
-                    self.tree.create_node(tag=entry, identifier=entry_path, parent=path)
-            elif not self.tree.nodes[path].is_leaf():
-                raise ValueError(f"'{path}' not leaf, already explored.")
-            elif not os.path.isdir(full_path):
-                raise ValueError(f"'{full_path}' is not a directory, cannot be explored.")
-
-        
-        
-
-        
-
     def get_partial_view(self, folder_path):
         """Return a dict of immediate children under folder_path."""
         children = self.tree.children(folder_path)
@@ -108,17 +63,18 @@ class FileExplorerTree:
     
     def list_nodes(self, folder_path=None):
         output=""
-        for i, key in enumerate(self.tree.nodes.keys()):
+        i=0
+        
+        for key in self.tree.nodes.keys():
+            if key in self.blacklist:
+                continue
             output += f"{i+1}. {key}\n"
+            i+=1
         return output
 
     
-
-
-
-
 def prompt_model(description, tree):
-    """Send prompt to Ollama and get response."""
+    # From training
     system_prompt="""You are a file-finder AI. Your task:
 - The user provides a file/folder description and a list of visible items.
 - You must choose one of those items by the following 2 rules:
@@ -133,9 +89,6 @@ def prompt_model(description, tree):
 Here are the visible items. Choose one of the following: 
 {tree}
 '''
-
-    
-    
     response = ollama.chat(
         model=MODEL_NAME,
         messages=[
@@ -144,9 +97,32 @@ Here are the visible items. Choose one of the following:
         ]
     )
     return response['message']['content']
-    
-    # return description
 
+def get_logger(level=logging.INFO):  
+
+    logging.addLevelName(MAIN_PROGRAM, "MAIN_PROGRAM")
+    logging.addLevelName(MAIN_PROGRAM_INFO, "MAIN_PROGRAM_INFO")
+
+    def main_program(self, message, *args, **kwargs):
+        if self.isEnabledFor(MAIN_PROGRAM):
+            self._log(MAIN_PROGRAM, message, args, **kwargs)
+    def main_program_info(self, message, *args, **kwargs):
+        if self.isEnabledFor(MAIN_PROGRAM_INFO):
+            self._log(MAIN_PROGRAM_INFO, message, args, **kwargs) 
+
+    logging.Logger.main_program = main_program
+    logging.Logger.main_program_info = main_program_info
+
+    logger = logging.getLogger(__name__)
+
+    logger.setLevel(level)
+    if not logger.hasHandlers():
+        handler = logging.StreamHandler()
+        formatter = logging.Formatter('%(levelname)s: %(message)s')
+        handler.setFormatter(formatter)
+        logger.addHandler(handler)
+    return logger
+    # return description
 def main():
     parser = argparse.ArgumentParser(description="Smart File Finder with Ollama model")
     parser.add_argument("description", help="File/folder description to search for")
@@ -155,7 +131,16 @@ def main():
         default=os.getcwd(),
         help="Start folder for the search (default: current working directory)"
     )
+    parser.add_argument(
+        "-v",
+        "--verbose",
+        action='store_true',
+        help="See intermediate folders"
+    )
+
+
     args = parser.parse_args()
+    logger=get_logger(MAIN_PROGRAM_INFO if args.verbose else MAIN_PROGRAM)
 
     description = args.description
     start = args.start
@@ -166,23 +151,36 @@ def main():
     testing+=[testing[-1]]
     i=0
     result=None
+    
     while True:
+        
         suggestion = prompt_model(description, visible_tree.list_nodes())
-        # suggestion = prompt_model(testing[i], str(visible_tree))
 
-        print(f"\nModel suggestion: {suggestion}")
         try:
-            # result=visible_tree.handle_suggestion(suggestion)
-            result=visible_tree.handle_suggestion(suggestion)
+            result=visible_tree.handle_suggestion(suggestion, logger)
 
-        except ValueError as e:
-            print(f"Error: {e}")
+        except AllowedError as e:
+            logger.main_program_info(e)
+            num_bad_outputs+=1
+            if num_bad_outputs>20:
+                logger.main_program("Too many (>20) bad outputs in a row. Try searching yoruself")
+                break
+            continue
+        except Exception as e:
+            logger.error(e)
             break
+        num_bad_outputs=0
         if result is not None:
-            break
-      
+            logger.main_program(f"It should be here: {result}")
+            continue_search = input("Continue searching? (y/n): ")
+            if continue_search.lower() != "y":
+                logger.main_program("Goodbye!")
+                break  
+            visible_tree.blacklist.append(result)
+        
+
         i+=1
-    print(result)
+
 if __name__ == "__main__":
     
     main()
