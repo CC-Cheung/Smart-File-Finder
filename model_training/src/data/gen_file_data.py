@@ -21,10 +21,19 @@ DESCRIPTION_PROMPT_TEMPLATE = """Create precise and concise description of the f
 {ff}"""
 PERCENTAGE = 0.5
 NEW_TREE_DENSITY = 1.2
-class ParenthesesNotAllowedError(Exception):
-    pass
-class NoRootError(Exception):
-    pass
+class SkipFileError(Exception):
+    def __init__(self, message):
+        self.message = message
+    def __str__(self):
+        return self.message
+class BadPunctuationError(SkipFileError):
+    def __init__(self, punctuation):
+        super().__init__(punctuation + " are not allowed in file/folder names")
+    
+class NoRootError(SkipFileError):
+    def __init__(self):
+        super().__init__("No root found")
+
 def generate_description(ff):       
     # Generate file tree
     description_response = ollama.chat(
@@ -99,13 +108,15 @@ def parse_tab_tree(tree_str):
             ]
     
     for line in lines:
-        if '(' in line or ')' in line:  # Check for parentheses in tree_str 
-            raise ParenthesesNotAllowedError("Parentheses not allowed in tree_str")    
+        for punctuation in ["(", ")", "/"]:  
+            if punctuation in line:  # Check for parentheses in tree_str 
+                raise BadPunctuationError(punctuation)   
+             
 
     # Create root node
     home_idx=0
     if len(lines[0]) - len(lines[0].lstrip()) !=0: 
-        raise NoRootError("There must be a root folder")    
+        raise NoRootError()    
 
     for line in lines[1:]:
         cur_indent = len(line) - len(line.lstrip())
@@ -231,7 +242,9 @@ def generate_visibility_data(complete_tree, num_desired=3):
 
 def generate_dataset(file_system_dataset, num_desired=3):
     dataset=[]
-    for i,example in enumerate(file_system_dataset):        
+    for i,example in enumerate(file_system_dataset): 
+        # if i<59: continue
+
         try:
             complete_tree=parse_tab_tree(example['tree'])
             visibility_data=generate_visibility_data(complete_tree=complete_tree, num_desired=num_desired)
@@ -240,13 +253,11 @@ def generate_dataset(file_system_dataset, num_desired=3):
                 'complete_tree': str(complete_tree),
                 'visibility_data': visibility_data
             })
-        except ParenthesesNotAllowedError as e:
+        except SkipFileError as e:
             print(f"skipped {i} {e}")
-        except NoRootError as e:
-            print(f"skipped {i} {e}")
+        
         else:
             print(f"generated {i}")
-        # if i>4: break
     return dataset
     
 
@@ -326,6 +337,34 @@ Here are the visible items. Choose one of the following:
                 {"role": "assistant", "content": "Final Answer: "+ example["deepest_folder"]},
             ]            
         }
+    elif method=="SUA_pick_number":
+        final_answer=str([i+1 for i,path in enumerate(extract_paths(example['visible_tree'])) if path==example["deepest_folder"]][0])
+        path_str="\n".join([f"{i+1}. {path}" for i,path in enumerate(extract_paths(example['visible_tree']))])
+        return {
+            "text": [
+                {"role": "system", 
+                    "content": 
+"""You are a file-finder AI. Your task:
+- The user provides a file/folder description and a list of visible items.
+- You must choose one of those items by the following 2 rules:
+    1. If the described item is in the visible list, choose it.         
+    2. If not visible, choose the next folder to open.
+- The answer is in the format "Final Answer: {the number corresponding to the path to file/folder}" (e.g. "Final Answer: 4")
+- Again, the answer is within the list of visible items.
+"""},
+
+                {"role": "user", 
+                    "content":                     
+f"""Here is the description of what I am searching for: 
+{example['desired_description']} 
+
+Here are the visible items. Choose one of the following: 
+{path_str}
+"""},
+                
+                {"role": "assistant", "content": "Final Answer: "+ final_answer},
+            ]            
+        }
 # Example usage
 if __name__ == "__main__":
     # np.random.seed(42)
@@ -338,19 +377,23 @@ if __name__ == "__main__":
 
     # with open(os.path.join(PROCESSED_DATA_PATH, 'all_dataset_test.json'), "w") as f:
     #     f.write(json.dumps(all_dataset, indent=2))
-    # pass
-    with open(os.path.join(PROCESSED_DATA_PATH, 'all_dataset.json'), "r") as f:
-        all_dataset = json.load(f)
+    pass
+    # with open(os.path.join(PROCESSED_DATA_PATH, 'all_dataset_fix_punc.json'), "r") as f:
+    #     all_dataset = json.load(f)
     
-    used_dataset = []
-    method="SUA_number_list"
-    with open(os.path.join(USED_DATA_PATH, f"used_dataset_{method}.json"), "w") as f:
-        for persona in all_dataset:
-            # formatted_data = [formatting_prompts_func(desired) for desired in persona['visibility_data']]
-            formatted_data = [formatting_prompts_func(desired, method=method) for desired in persona['visibility_data']]
-            used_dataset.extend(formatted_data)
+    # used_dataset = []
+    method="SUA_pick_number"
+    # with open(os.path.join(USED_DATA_PATH, f"used_dataset_{method}.json"), "w") as f:
+    #     for persona in all_dataset:
+    #         # formatted_data = [formatting_prompts_func(desired) for desired in persona['visibility_data']]
+    #         formatted_data = [formatting_prompts_func(desired, method=method) for desired in persona['visibility_data']]
+    #         used_dataset.extend(formatted_data)
             
-        f.write(json.dumps(used_dataset, indent=2))
-    print(f"\nDataset saved to used_dataset_{method}.json ({len(all_dataset)} samples)")
+    #     f.write(json.dumps(used_dataset, indent=2))
+    # print(f"\nDataset saved to used_dataset_{method}.json ({len(all_dataset)} samples)")
 
+    with open(os.path.join(USED_DATA_PATH, f"used_dataset_{method}.json"), "w") as f:
+        used_dataset = json.load(f)
+    
+    pass
 

@@ -1,14 +1,17 @@
-*.json
 *.safetensors
 *.model
 *.gguf
 *.bin
 *.pt
 *.pth
-*.csv
-*/models/*
-**/unsloth_compiled_cache/*
-*unsloth_compiled_cache/*
+unsloth_compiled_cache
 *.md
-**/test*
 !test folder
+**/old/**
+
+**/models/**
+!**/models/
+!**/models/**/finetuned/
+!**/models/**/finetuned/**/ollama/
+!**/models/**/finetuned/**/ollama/**
+

@@ -1,0 +1,2158 @@
+outputs,correct_outputs,file_system,description,match,is_valid,outputs_2,match_2,is_valid_2,outputs_3,match_3,is_valid_3
+Final Answer: 27,Final Answer: 27,"Here is the description of what I am searching for: 
+Folder for client data of Allison Inc's second client. 
+","
+1. ~
+2. ~/Computer Software
+3. ~/Computer Software/Adobe Photoshop
+4. ~/Computer Software/Adobe Photoshop/adobe_photoshop.exe
+5. ~/Computer Software/AutoCAD
+6. ~/Computer Software/AutoCAD/autocad.exe
+7. ~/Hobbies
+8. ~/Hobbies/Travel
+9. ~/Hobbies/Travel/Europe Trip
+10. ~/Music
+11. ~/Personal Documents
+12. ~/Personal Documents/Birth Certificate
+13. ~/Personal Documents/ID Card
+14. ~/University
+15. ~/University/Geology Department
+16. ~/University/Research Publications
+17. ~/University/Research Publications/Journal Articles
+18. ~/University/Research Publications/Journal Articles/Article 1.pdf
+19. ~/University/Research Publications/Journal Articles/Article 2.pdf
+20. ~/Work
+21. ~/Work/Allison Inc
+22. ~/Work/Allison Inc/Client Information
+23. ~/Work/Allison Inc/Client Information/Client 1
+24. ~/Work/Allison Inc/Client Information/Client 1/Project A
+25. ~/Work/Allison Inc/Client Information/Client 1/Project A/Data Analysis.pptx
+26. ~/Work/Allison Inc/Client Information/Client 1/Project A/Data Collection.xlsx
+27. ~/Work/Allison Inc/Client Information/Client 2
+28. ~/Work/Allison Inc/Client Information/Client 2/Project B
+29. ~/Work/Allison Inc/Client Information/Client 2/Project B/Field Notes.pdf
+30. ~/Work/Allison Inc/Client Information/Client 2/Project B/Map Creation.gpx
+31. ~/Work/Allison Inc/Projects
+32. ~/Work/Allison Inc/Projects/Hydrogeology Report.docx
+33. ~/Work/Allison Inc/Projects/Presentation.pptx
+",True,True,Final Answer: 27,True,True,Final Answer: 27,True,True
+Final Answer: 15,Final Answer: 15,"Here is the description of what I am searching for: 
+Academic assignments for hydrogeology course from university geology department. 
+","
+1. ~
+2. ~/Computer Software
+3. ~/Hobbies
+4. ~/Hobbies/Travel
+5. ~/Hobbies/Travel/Europe Trip
+6. ~/Music
+7. ~/Music/Instruments
+8. ~/Music/Instruments/Guitar
+9. ~/Music/Instruments/Piano
+10. ~/Music/Instruments/Piano/Keys
+11. ~/Music/Sheet Music
+12. ~/Music/Sheet Music/Classical Pieces
+13. ~/Personal Documents
+14. ~/University
+15. ~/University/Geology Department
+16. ~/University/Research Publications
+17. ~/University/Research Publications/Journal Articles
+18. ~/University/Research Publications/Journal Articles/Article 1.pdf
+19. ~/University/Research Publications/Journal Articles/Article 2.pdf
+20. ~/Work
+21. ~/Work/Allison Inc
+22. ~/Work/Allison Inc/Client Information
+23. ~/Work/Allison Inc/Client Information/Client 1
+24. ~/Work/Allison Inc/Client Information/Client 1/Project A
+25. ~/Work/Allison Inc/Client Information/Client 1/Project A/Data Analysis.pptx
+26. ~/Work/Allison Inc/Client Information/Client 1/Project A/Data Collection.xlsx
+27. ~/Work/Allison Inc/Client Information/Client 2
+28. ~/Work/Allison Inc/Client Information/Client 2/Project B
+29. ~/Work/Allison Inc/Client Information/Client 2/Project B/Field Notes.pdf
+30. ~/Work/Allison Inc/Client Information/Client 2/Project B/Map Creation.gpx
+31. ~/Work/Allison Inc/Projects
+32. ~/Work/Allison Inc/Projects/Hydrogeology Report.docx
+33. ~/Work/Allison Inc/Projects/Presentation.pptx
+",True,True,Final Answer: 15,True,True,Final Answer: 15,True,True
+Final Answer: 14,Final Answer: 14,"Here is the description of what I am searching for: 
+Home music folder for piano keys digital samples collection. 
+","
+1. ~
+2. ~/Computer Software
+3. ~/Computer Software/Adobe Photoshop
+4. ~/Computer Software/Adobe Photoshop/adobe_photoshop.exe
+5. ~/Computer Software/AutoCAD
+6. ~/Computer Software/AutoCAD/autocad.exe
+7. ~/Hobbies
+8. ~/Hobbies/Travel
+9. ~/Hobbies/Travel/Europe Trip
+10. ~/Music
+11. ~/Music/Instruments
+12. ~/Music/Instruments/Guitar
+13. ~/Music/Instruments/Guitar/Strings
+14. ~/Music/Instruments/Piano
+15. ~/Music/Sheet Music
+16. ~/Music/Sheet Music/Classical Pieces
+17. ~/Personal Documents
+18. ~/Personal Documents/Birth Certificate
+19. ~/Personal Documents/ID Card
+20. ~/University
+21. ~/University/Geology Department
+22. ~/University/Geology Department/Hydrogeology Course
+23. ~/University/Research Publications
+24. ~/University/Research Publications/Journal Articles
+25. ~/University/Research Publications/Journal Articles/Article 1.pdf
+26. ~/University/Research Publications/Journal Articles/Article 2.pdf
+27. ~/Work
+",True,True,Final Answer: 14,True,True,Final Answer: 14,True,True
+Final Answer: 25,Final Answer: 25,"Here is the description of what I am searching for: 
+Home directory work folder for Allison Inc's Client 1 Project A information. 
+","
+1. ~
+2. ~/Computer Software
+3. ~/Hobbies
+4. ~/Hobbies/Travel
+5. ~/Music
+6. ~/Music/Instruments
+7. ~/Music/Sheet Music
+8. ~/Music/Sheet Music/Classical Pieces
+9. ~/Music/Sheet Music/Classical Pieces/Piece A
+10. ~/Music/Sheet Music/Classical Pieces/Piece A/Sheet1.png
+11. ~/Music/Sheet Music/Classical Pieces/Piece A/Sheet2.png
+12. ~/Personal Documents
+13. ~/Personal Documents/Birth Certificate
+14. ~/Personal Documents/ID Card
+15. ~/University
+16. ~/University/Geology Department
+17. ~/University/Research Publications
+18. ~/University/Research Publications/Journal Articles
+19. ~/University/Research Publications/Journal Articles/Article 1.pdf
+20. ~/University/Research Publications/Journal Articles/Article 2.pdf
+21. ~/Work
+22. ~/Work/Allison Inc
+23. ~/Work/Allison Inc/Client Information
+24. ~/Work/Allison Inc/Client Information/Client 1
+25. ~/Work/Allison Inc/Client Information/Client 1/Project A
+26. ~/Work/Allison Inc/Client Information/Client 1/Project A/Data Analysis.pptx
+27. ~/Work/Allison Inc/Client Information/Client 1/Project A/Data Collection.xlsx
+28. ~/Work/Allison Inc/Client Information/Client 2
+29. ~/Work/Allison Inc/Client Information/Client 2/Project B
+30. ~/Work/Allison Inc/Client Information/Client 2/Project B/Field Notes.pdf
+31. ~/Work/Allison Inc/Client Information/Client 2/Project B/Map Creation.gpx
+32. ~/Work/Allison Inc/Projects
+33. ~/Work/Allison Inc/Projects/Hydrogeology Report.docx
+34. ~/Work/Allison Inc/Projects/Presentation.pptx
+",True,True,Final Answer: 25,True,True,Final Answer: 25,True,True
+Final Answer: 7,Final Answer: 7,"Here is the description of what I am searching for: 
+Personal folder for storing hobby-related files and documents. 
+","
+1. ~
+2. ~/Computer Software
+3. ~/Computer Software/Adobe Photoshop
+4. ~/Computer Software/Adobe Photoshop/adobe_photoshop.exe
+5. ~/Computer Software/AutoCAD
+6. ~/Computer Software/AutoCAD/autocad.exe
+7. ~/Hobbies
+8. ~/Hobbies/Travel
+9. ~/Music
+10. ~/Music/Instruments
+11. ~/Music/Instruments/Guitar
+12. ~/Music/Instruments/Guitar/Strings
+13. ~/Music/Instruments/Guitar/Strings/0101.jpg
+14. ~/Music/Instruments/Guitar/Strings/0112.jpg
+15. ~/Music/Instruments/Piano
+16. ~/Music/Instruments/Piano/Keys
+17. ~/Music/Instruments/Piano/Keys/0201.jpg
+18. ~/Music/Instruments/Piano/Keys/0212.jpg
+19. ~/Music/Sheet Music
+20. ~/Music/Sheet Music/Classical Pieces
+21. ~/Music/Sheet Music/Classical Pieces/Piece A
+22. ~/Music/Sheet Music/Classical Pieces/Piece A/Sheet1.png
+23. ~/Music/Sheet Music/Classical Pieces/Piece A/Sheet2.png
+24. ~/Personal Documents
+25. ~/Personal Documents/Birth Certificate
+26. ~/Personal Documents/ID Card
+27. ~/University
+28. ~/University/Geology Department
+29. ~/University/Research Publications
+30. ~/University/Research Publications/Journal Articles
+31. ~/University/Research Publications/Journal Articles/Article 1.pdf
+32. ~/University/Research Publications/Journal Articles/Article 2.pdf
+33. ~/Work
+34. ~/Work/Allison Inc
+",True,True,Final Answer: 7,True,True,Final Answer: 7,True,True
+Final Answer: 33,Final Answer: 33,"Here is the description of what I am searching for: 
+PowerPoint presentation for Client 1's Project A data analysis by Allison Inc. 
+","
+1. ~
+2. ~/Computer Software
+3. ~/Hobbies
+4. ~/Hobbies/Travel
+5. ~/Hobbies/Travel/Europe Trip
+6. ~/Music
+7. ~/Music/Instruments
+8. ~/Music/Instruments/Guitar
+9. ~/Music/Instruments/Guitar/Strings
+10. ~/Music/Instruments/Piano
+11. ~/Music/Instruments/Piano/Keys
+12. ~/Music/Instruments/Piano/Keys/0201.jpg
+13. ~/Music/Instruments/Piano/Keys/0212.jpg
+14. ~/Music/Sheet Music
+15. ~/Music/Sheet Music/Classical Pieces
+16. ~/Music/Sheet Music/Classical Pieces/Piece A
+17. ~/Music/Sheet Music/Classical Pieces/Piece A/Sheet1.png
+18. ~/Music/Sheet Music/Classical Pieces/Piece A/Sheet2.png
+19. ~/Personal Documents
+20. ~/University
+21. ~/University/Geology Department
+22. ~/University/Geology Department/Hydrogeology Course
+23. ~/University/Geology Department/Hydrogeology Course/Assignments
+24. ~/University/Geology Department/Hydrogeology Course/Lecture Notes
+25. ~/University/Geology Department/Hydrogeology Course/Lecture Notes/Lecture 1
+26. ~/University/Geology Department/Hydrogeology Course/Lecture Notes/Lecture 1/Note Taking.txt
+27. ~/University/Geology Department/Hydrogeology Course/Lecture Notes/Lecture 2
+28. ~/University/Geology Department/Hydrogeology Course/Lecture Notes/Note Taking.txt
+29. ~/University/Research Publications
+30. ~/University/Research Publications/Journal Articles
+31. ~/University/Research Publications/Journal Articles/Article 1.pdf
+32. ~/University/Research Publications/Journal Articles/Article 2.pdf
+33. ~/Work
+",True,True,Final Answer: 33,True,True,Final Answer: 33,True,True
+Final Answer: 34,Final Answer: 34,"Here is the description of what I am searching for: 
+Personal work directory for Allison Inc projects. 
+","
+1. ~
+2. ~/Computer Software
+3. ~/Computer Software/Adobe Photoshop
+4. ~/Computer Software/Adobe Photoshop/adobe_photoshop.exe
+5. ~/Computer Software/AutoCAD
+6. ~/Computer Software/AutoCAD/autocad.exe
+7. ~/Hobbies
+8. ~/Hobbies/Travel
+9. ~/Hobbies/Travel/Europe Trip
+10. ~/Hobbies/Travel/Europe Trip/Italy
+11. ~/Hobbies/Travel/Europe Trip/Italy/Eiffel Tower.jpg
+12. ~/Hobbies/Travel/Europe Trip/Italy/Louvre Museum.jpg
+13. ~/Hobbies/Travel/Europe Trip/Italy/Paris
+14. ~/Hobbies/Travel/Europe Trip/Italy/Rome
+15. ~/Hobbies/Travel/Europe Trip/Italy/Rome/Photos
+16. ~/Hobbies/Travel/Europe Trip/USA Tour
+17. ~/Hobbies/Travel/Europe Trip/USA Tour/New York
+18. ~/Hobbies/Travel/Europe Trip/USA Tour/New York/Central Park.jpg
+19. ~/Hobbies/Travel/Europe Trip/USA Tour/New York/Times Square.jpg
+20. ~/Music
+21. ~/Music/Instruments
+22. ~/Music/Instruments/Guitar
+23. ~/Music/Instruments/Guitar/Strings
+24. ~/Music/Instruments/Guitar/Strings/0101.jpg
+25. ~/Music/Instruments/Guitar/Strings/0112.jpg
+26. ~/Music/Instruments/Piano
+27. ~/Music/Instruments/Piano/Keys
+28. ~/Music/Sheet Music
+29. ~/Personal Documents
+30. ~/Personal Documents/Birth Certificate
+31. ~/Personal Documents/ID Card
+32. ~/University
+33. ~/Work
+34. ~/Work/Allison Inc
+",True,True,Final Answer: 34,True,True,Final Answer: 34,True,True
+Final Answer: 12,Final Answer: 12,"Here is the description of what I am searching for: 
+Folder containing university research journal articles. 
+","
+1. ~
+2. ~/Computer Software
+3. ~/Computer Software/Adobe Photoshop
+4. ~/Computer Software/Adobe Photoshop/adobe_photoshop.exe
+5. ~/Computer Software/AutoCAD
+6. ~/Computer Software/AutoCAD/autocad.exe
+7. ~/Hobbies
+8. ~/Hobbies/Travel
+9. ~/Hobbies/Travel/Europe Trip
+10. ~/Music
+11. ~/Personal Documents
+12. ~/University
+13. ~/Work
+14. ~/Work/Allison Inc
+15. ~/Work/Allison Inc/Client Information
+16. ~/Work/Allison Inc/Client Information/Client 1
+17. ~/Work/Allison Inc/Client Information/Client 1/Project A
+18. ~/Work/Allison Inc/Client Information/Client 1/Project A/Data Analysis.pptx
+19. ~/Work/Allison Inc/Client Information/Client 1/Project A/Data Collection.xlsx
+20. ~/Work/Allison Inc/Client Information/Client 2
+21. ~/Work/Allison Inc/Client Information/Client 2/Project B
+22. ~/Work/Allison Inc/Client Information/Client 2/Project B/Field Notes.pdf
+23. ~/Work/Allison Inc/Client Information/Client 2/Project B/Map Creation.gpx
+24. ~/Work/Allison Inc/Projects
+25. ~/Work/Allison Inc/Projects/Hydrogeology Report.docx
+26. ~/Work/Allison Inc/Projects/Presentation.pptx
+",True,True,Final Answer: 12,True,True,Final Answer: 12,True,True
+Final Answer: 10,Final Answer: 10,"Here is the description of what I am searching for: 
+Image of guitar strings close-up with number 01. 
+","
+1. ~
+2. ~/Computer Software
+3. ~/Computer Software/Adobe Photoshop
+4. ~/Computer Software/Adobe Photoshop/adobe_photoshop.exe
+5. ~/Computer Software/AutoCAD
+6. ~/Hobbies
+7. ~/Music
+8. ~/Music/Instruments
+9. ~/Music/Instruments/Guitar
+10. ~/Music/Instruments/Guitar/Strings
+11. ~/Music/Instruments/Piano
+12. ~/Music/Instruments/Piano/Keys
+13. ~/Music/Sheet Music
+14. ~/Music/Sheet Music/Classical Pieces
+15. ~/Music/Sheet Music/Classical Pieces/Piece A
+16. ~/Music/Sheet Music/Classical Pieces/Piece A/Sheet1.png
+17. ~/Music/Sheet Music/Classical Pieces/Piece A/Sheet2.png
+18. ~/Personal Documents
+19. ~/Personal Documents/Birth Certificate
+20. ~/Personal Documents/ID Card
+21. ~/University
+22. ~/University/Geology Department
+23. ~/University/Research Publications
+24. ~/University/Research Publications/Journal Articles
+25. ~/University/Research Publications/Journal Articles/Article 1.pdf
+26. ~/University/Research Publications/Journal Articles/Article 2.pdf
+27. ~/Work
+",True,True,Final Answer: 10,True,True,Final Answer: 10,True,True
+Final Answer: 28,Final Answer: 28,"Here is the description of what I am searching for: 
+University Geology Hydrogeology Lecture Notes Folder 
+","
+1. ~
+2. ~/Computer Software
+3. ~/Computer Software/Adobe Photoshop
+4. ~/Computer Software/AutoCAD
+5. ~/Computer Software/AutoCAD/autocad.exe
+6. ~/Hobbies
+7. ~/Hobbies/Travel
+8. ~/Hobbies/Travel/Europe Trip
+9. ~/Hobbies/Travel/Europe Trip/Italy
+10. ~/Hobbies/Travel/Europe Trip/Italy/Eiffel Tower.jpg
+11. ~/Hobbies/Travel/Europe Trip/Italy/Louvre Museum.jpg
+12. ~/Hobbies/Travel/Europe Trip/Italy/Paris
+13. ~/Hobbies/Travel/Europe Trip/Italy/Rome
+14. ~/Hobbies/Travel/Europe Trip/Italy/Rome/Photos
+15. ~/Hobbies/Travel/Europe Trip/Italy/Rome/Photos/Colosseum.jpg
+16. ~/Hobbies/Travel/Europe Trip/Italy/Rome/Photos/Vatican City.jpg
+17. ~/Hobbies/Travel/Europe Trip/USA Tour
+18. ~/Hobbies/Travel/Europe Trip/USA Tour/New York
+19. ~/Hobbies/Travel/Europe Trip/USA Tour/New York/Central Park.jpg
+20. ~/Hobbies/Travel/Europe Trip/USA Tour/New York/Times Square.jpg
+21. ~/Music
+22. ~/Music/Instruments
+23. ~/Music/Sheet Music
+24. ~/Music/Sheet Music/Classical Pieces
+25. ~/Personal Documents
+26. ~/Personal Documents/Birth Certificate
+27. ~/Personal Documents/ID Card
+28. ~/University
+29. ~/Work
+30. ~/Work/Allison Inc
+31. ~/Work/Allison Inc/Client Information
+32. ~/Work/Allison Inc/Projects
+33. ~/Work/Allison Inc/Projects/Hydrogeology Report.docx
+34. ~/Work/Allison Inc/Projects/Presentation.pptx
+",True,True,Final Answer: 28,True,True,Final Answer: 28,True,True
+Final Answer: 5,Final Answer: 5,"Here is the description of what I am searching for: 
+Excel spreadsheet for February 2020 budget tracking. 
+","
+1. ~
+2. ~/Finance
+3. ~/Finance/Budgets
+4. ~/Finance/Budgets/2020
+5. ~/Finance/Budgets/2020/February.xlsx
+6. ~/Finance/Budgets/2020/January.xlsx
+7. ~/Finance/Expenses
+8. ~/Finance/Expenses/December Receipts.csv
+9. ~/Finance/Expenses/Gas_StationReceipts.xls
+10. ~/Hobbies
+11. ~/Personal
+12. ~/Professional
+13. ~/Professional/Wells, Burton and Walters
+14. ~/Professional/Wells, Burton and Walters/Training Materials
+15. ~/Professional/Wells, Burton and Walters/Work Projects
+16. ~/Professional/Wells, Burton and Walters/Work Projects/Project A
+17. ~/Professional/Wells, Burton and Walters/Work Projects/Project A/Report.docx
+18. ~/Professional/Wells, Burton and Walters/Work Projects/Project B
+19. ~/Professional/Wells, Burton and Walters/Work Projects/Project B/Presentation.pptx
+",True,True,Final Answer: 5,True,True,Final Answer: 5,True,True
+Final Answer: 17,Final Answer: 17,"Here is the description of what I am searching for: 
+Work project documents for Project A by Wells, Burton & Walters. 
+","
+1. ~
+2. ~/Finance
+3. ~/Finance/Budgets
+4. ~/Finance/Expenses
+5. ~/Hobbies
+6. ~/Personal
+7. ~/Personal/Documents
+8. ~/Personal/Documents/Carolyn_Miller_CV.docx
+9. ~/Personal/Documents/ID Card.jpg
+10. ~/Personal/Pictures
+11. ~/Personal/University
+12. ~/Personal/University/CS886
+13. ~/Personal/University/Career
+14. ~/Professional
+15. ~/Professional/Wells, Burton and Walters
+16. ~/Professional/Wells, Burton and Walters/Training Materials
+17. ~/Professional/Wells, Burton and Walters/Work Projects
+",True,True,Final Answer: 17,True,True,Final Answer: 17,False,True
+Final Answer: 12,Final Answer: 11,"Here is the description of what I am searching for: 
+Carolyn Miller's resume document file. 
+","
+1. ~
+2. ~/Finance
+3. ~/Finance/Budgets
+4. ~/Finance/Budgets/2020
+5. ~/Finance/Budgets/2020/February.xlsx
+6. ~/Finance/Budgets/2020/January.xlsx
+7. ~/Finance/Expenses
+8. ~/Finance/Expenses/December Receipts.csv
+9. ~/Finance/Expenses/Gas_StationReceipts.xls
+10. ~/Hobbies
+11. ~/Personal
+12. ~/Professional
+13. ~/Professional/Wells, Burton and Walters
+14. ~/Professional/Wells, Burton and Walters/Training Materials
+15. ~/Professional/Wells, Burton and Walters/Training Materials/Seminar Notes.docx
+16. ~/Professional/Wells, Burton and Walters/Training Materials/Workshop Handouts.pdf
+17. ~/Professional/Wells, Burton and Walters/Work Projects
+18. ~/Professional/Wells, Burton and Walters/Work Projects/Project A
+19. ~/Professional/Wells, Burton and Walters/Work Projects/Project A/Report.docx
+20. ~/Professional/Wells, Burton and Walters/Work Projects/Project B
+21. ~/Professional/Wells, Burton and Walters/Work Projects/Project B/Presentation.pptx
+",False,True,Final Answer: 11,True,True,Final Answer: 11,True,True
+Final Answer: 19,Final Answer: 19,"Here is the description of what I am searching for: 
+User's personal folder for university career documents. 
+","
+1. ~
+2. ~/Finance
+3. ~/Hobbies
+4. ~/Hobbies/Fitness
+5. ~/Hobbies/Fitness/Running Logs
+6. ~/Hobbies/Fitness/Running Logs/April_Log.csv
+7. ~/Hobbies/Fitness/Running Logs/March_Log.csv
+8. ~/Hobbies/Fitness/Yoga Class Schedule.xlsx
+9. ~/Hobbies/Reading
+10. ~/Hobbies/Reading/Fantasy Novels
+11. ~/Hobbies/Reading/Fantasy Novels/Harry_Potter_Series.txt
+12. ~/Hobbies/Reading/Horror Novels
+13. ~/Hobbies/Reading/Horror Novels/Stephen_King_Collection.docx
+14. ~/Personal
+15. ~/Personal/Documents
+16. ~/Personal/Pictures
+17. ~/Personal/Pictures/1999-01-20_Birth Certificate.jpg
+18. ~/Personal/Pictures/Family_Portrait.png
+19. ~/Personal/University
+20. ~/Professional
+",True,True,Final Answer: 19,True,True,Final Answer: 19,True,True
+Final Answer: 4,Final Answer: 2,"Here is the description of what I am searching for: 
+Personal financial budgets folder on home directory. 
+","
+1. ~
+2. ~/Finance
+3. ~/Hobbies
+4. ~/Hobbies/Fitness
+5. ~/Hobbies/Reading
+6. ~/Personal
+7. ~/Personal/Documents
+8. ~/Personal/Documents/Carolyn_Miller_CV.docx
+9. ~/Personal/Documents/ID Card.jpg
+10. ~/Personal/Pictures
+11. ~/Personal/Pictures/1999-01-20_Birth Certificate.jpg
+12. ~/Personal/Pictures/Family_Portrait.png
+13. ~/Personal/University
+14. ~/Professional
+15. ~/Professional/Wells, Burton and Walters
+",False,True,Final answer: 4,False,True,Final answer: 4,False,True
+Final Answer: 8,Final Answer: 8,"Here is the description of what I am searching for: 
+Personal folder for horror novels within reading hobby. 
+","
+1. ~
+2. ~/Finance
+3. ~/Finance/Budgets
+4. ~/Finance/Budgets/2020
+5. ~/Finance/Budgets/2020/February.xlsx
+6. ~/Finance/Budgets/2020/January.xlsx
+7. ~/Finance/Expenses
+8. ~/Hobbies
+9. ~/Personal
+10. ~/Personal/Documents
+11. ~/Personal/Documents/Carolyn_Miller_CV.docx
+12. ~/Personal/Documents/ID Card.jpg
+13. ~/Personal/Pictures
+14. ~/Personal/Pictures/1999-01-20_Birth Certificate.jpg
+15. ~/Personal/Pictures/Family_Portrait.png
+16. ~/Personal/University
+17. ~/Personal/University/CS886
+18. ~/Personal/University/Career
+19. ~/Professional
+20. ~/Professional/Wells, Burton and Walters
+",True,True,Final Answer: 8,True,True,Final Answer: 8,False,True
+Final Answer: 14,Final Answer: 15,"Here is the description of what I am searching for: 
+Professional training materials on seminar notes by Wells, Burton and Walters. 
+","
+1. ~
+2. ~/Finance
+3. ~/Finance/Budgets
+4. ~/Finance/Budgets/2020
+5. ~/Finance/Expenses
+6. ~/Hobbies
+7. ~/Hobbies/Fitness
+8. ~/Hobbies/Reading
+9. ~/Hobbies/Reading/Fantasy Novels
+10. ~/Hobbies/Reading/Horror Novels
+11. ~/Personal
+12. ~/Professional
+13. ~/Professional/Wells, Burton and Walters
+14. ~/Professional/Wells, Burton and Walters/Training Materials
+15. ~/Professional/Wells, Burton and Walters/Training Materials/Seminar Notes.docx
+16. ~/Professional/Wells, Burton and Walters/Training Materials/Workshop Handouts.pdf
+17. ~/Professional/Wells, Burton and Walters/Work Projects
+18. ~/Professional/Wells, Burton and Walters/Work Projects/Project A
+19. ~/Professional/Wells, Burton and Walters/Work Projects/Project A/Report.docx
+20. ~/Professional/Wells, Burton and Walters/Work Projects/Project B
+",False,True,Final Answer: 15,True,True,Final Answer: 15,False,True
+Final Answer: 13,Final Answer: 13,"Here is the description of what I am searching for: 
+A folder containing university CS886 course materials. 
+","
+1. ~
+2. ~/Finance
+3. ~/Finance/Budgets
+4. ~/Finance/Budgets/2020
+5. ~/Finance/Expenses
+6. ~/Hobbies
+7. ~/Hobbies/Fitness
+8. ~/Hobbies/Reading
+9. ~/Personal
+10. ~/Personal/Documents
+11. ~/Personal/Pictures
+12. ~/Personal/University
+13. ~/Personal/University/CS886
+14. ~/Personal/University/CS886/final_presentation.ptx
+15. ~/Personal/University/Career
+16. ~/Personal/University/Career/Portfolio.txt
+17. ~/Personal/University/Career/Resume.pdf
+18. ~/Professional
+19. ~/Professional/Wells, Burton and Walters
+",True,True,Final Answer: 17,False,True,Final Answer: 17,False,True
+Final Answer: 4,Final Answer: 4,"Here is the description of what I am searching for: 
+Personal financial expense management folder. 
+","
+1. ~
+2. ~/Finance
+3. ~/Finance/Budgets
+4. ~/Finance/Expenses
+5. ~/Finance/Expenses/December Receipts.csv
+6. ~/Finance/Expenses/Gas_StationReceipts.xls
+7. ~/Hobbies
+8. ~/Personal
+9. ~/Personal/Documents
+10. ~/Personal/Documents/Carolyn_Miller_CV.docx
+11. ~/Personal/Documents/ID Card.jpg
+12. ~/Personal/Pictures
+13. ~/Personal/Pictures/1999-01-20_Birth Certificate.jpg
+14. ~/Personal/Pictures/Family_Portrait.png
+15. ~/Personal/University
+16. ~/Personal/University/CS886
+17. ~/Personal/University/CS886/final_presentation.ptx
+18. ~/Personal/University/Career
+19. ~/Personal/University/Career/Portfolio.txt
+20. ~/Personal/University/Career/Resume.pdf
+21. ~/Professional
+",True,True,Final Answer: 4,True,True,Final Answer: 4,False,True
+Final Answer: 19,Final Answer: 19,"Here is the description of what I am searching for: 
+Personal work folder for professional projects. 
+","
+1. ~
+2. ~/Finance
+3. ~/Finance/Budgets
+4. ~/Finance/Budgets/2020
+5. ~/Finance/Expenses
+6. ~/Finance/Expenses/December Receipts.csv
+7. ~/Finance/Expenses/Gas_StationReceipts.xls
+8. ~/Hobbies
+9. ~/Hobbies/Fitness
+10. ~/Hobbies/Fitness/Running Logs
+11. ~/Hobbies/Fitness/Running Logs/April_Log.csv
+12. ~/Hobbies/Fitness/Running Logs/March_Log.csv
+13. ~/Hobbies/Fitness/Yoga Class Schedule.xlsx
+14. ~/Hobbies/Reading
+15. ~/Hobbies/Reading/Fantasy Novels
+16. ~/Hobbies/Reading/Horror Novels
+17. ~/Hobbies/Reading/Horror Novels/Stephen_King_Collection.docx
+18. ~/Personal
+19. ~/Professional
+",True,True,Final Answer: 19,True,True,Final Answer: 19,False,True
+Final Answer: 11,Final Answer: 11,"Here is the description of what I am searching for: 
+Personal image storage directory for user's desktop environment. 
+","
+1. ~
+2. ~/Desktop
+3. ~/Desktop/2021 Goals.txt
+4. ~/Desktop/Meeting Notes
+5. ~/Desktop/Wu Ltd Contract.pptx
+6. ~/Documents
+7. ~/Documents/Arthur Waller Resume.pdf
+8. ~/Documents/Project Management Certificate.docx
+9. ~/Documents Archive
+10. ~/Downloads
+11. ~/Pictures
+12. ~/Projects
+13. ~/Projects/Project X
+14. ~/Projects/Project Y
+15. ~/Projects/Project Y/Data Analysis
+16. ~/Projects/Project Y/Presentation.pptx
+",True,True,Final Answer: 11,True,True,Final Answer: 11,True,True
+Final Answer: 11,Final Answer: 11,"Here is the description of what I am searching for: 
+User's download folder, containing various files. 
+","
+1. ~
+2. ~/Desktop
+3. ~/Desktop/2021 Goals.txt
+4. ~/Desktop/Meeting Notes
+5. ~/Desktop/Meeting Notes/04-20-21.txt
+6. ~/Desktop/Meeting Notes/05-10-21.txt
+7. ~/Desktop/Wu Ltd Contract.pptx
+8. ~/Documents
+9. ~/Documents Archive
+10. ~/Documents Archive/Old Resumes
+11. ~/Downloads
+12. ~/Pictures
+13. ~/Pictures/Family
+14. ~/Projects
+15. ~/Projects/Project X
+16. ~/Projects/Project Y
+",True,True,Final Answer: 11,True,True,Final Answer: 11,True,True
+Final Answer: 14,Final Answer: 14,"Here is the description of what I am searching for: 
+Collection of family photographs stored on user's home directory. 
+","
+1. ~
+2. ~/Desktop
+3. ~/Desktop/2021 Goals.txt
+4. ~/Desktop/Meeting Notes
+5. ~/Desktop/Meeting Notes/04-20-21.txt
+6. ~/Desktop/Meeting Notes/05-10-21.txt
+7. ~/Desktop/Wu Ltd Contract.pptx
+8. ~/Documents
+9. ~/Documents/Arthur Waller Resume.pdf
+10. ~/Documents/Project Management Certificate.docx
+11. ~/Documents Archive
+12. ~/Documents Archive/Old Resumes
+13. ~/Downloads
+14. ~/Pictures
+15. ~/Projects
+",True,True,Final Answer: 14,True,True,Final Answer: 14,True,True
+Final Answer: 13,Final Answer: 13,"Here is the description of what I am searching for: 
+Home directory for project files and folders. 
+","
+1. ~
+2. ~/Desktop
+3. ~/Documents
+4. ~/Documents/Arthur Waller Resume.pdf
+5. ~/Documents/Project Management Certificate.docx
+6. ~/Documents Archive
+7. ~/Documents Archive/Old Resumes
+8. ~/Downloads
+9. ~/Pictures
+10. ~/Pictures/Family
+11. ~/Pictures/Family/Christmas 2020.jpg
+12. ~/Pictures/Family/Vacation 2019.zip
+13. ~/Projects
+",True,True,Final Answer: 13,True,True,Final Answer: 13,True,True
+Final Answer: 13,Final Answer: 14,"Here is the description of what I am searching for: 
+Personal project documentation folder. 
+","
+1. ~
+2. ~/Desktop
+3. ~/Documents
+4. ~/Documents/Arthur Waller Resume.pdf
+5. ~/Documents/Project Management Certificate.docx
+6. ~/Documents Archive
+7. ~/Documents Archive/Old Resumes
+8. ~/Documents Archive/Old Resumes/Resume_2017.docx
+9. ~/Documents Archive/Old Resumes/Resume_2018.docx
+10. ~/Downloads
+11. ~/Pictures
+12. ~/Pictures/Family
+13. ~/Projects
+14. ~/Projects/Project X
+15. ~/Projects/Project Y
+",False,True,Final Answer: 14,True,True,Final Answer: 14,True,True
+Final Answer: 12,Final Answer: 12,"Here is the description of what I am searching for: 
+List of required packages for Project X Source Code development. 
+","
+1. ~
+2. ~/Desktop
+3. ~/Documents
+4. ~/Documents/Arthur Waller Resume.pdf
+5. ~/Documents/Project Management Certificate.docx
+6. ~/Documents Archive
+7. ~/Documents Archive/Old Resumes
+8. ~/Documents Archive/Old Resumes/Resume_2017.docx
+9. ~/Documents Archive/Old Resumes/Resume_2018.docx
+10. ~/Downloads
+11. ~/Pictures
+12. ~/Projects
+",True,True,Final Answer: 12,True,True,Final Answer: 12,False,True
+Final Answer: 14,Final Answer: 10,"Here is the description of what I am searching for: 
+Project documentation overview and guidelines in Markdown format. 
+","
+1. ~
+2. ~/Desktop
+3. ~/Documents
+4. ~/Documents Archive
+5. ~/Documents Archive/Old Resumes
+6. ~/Downloads
+7. ~/Pictures
+8. ~/Projects
+9. ~/Projects/Project X
+10. ~/Projects/Project X/Documentation
+11. ~/Projects/Project X/Source Code
+12. ~/Projects/Project X/Source Code/main.py
+13. ~/Projects/Project X/Source Code/requirements.txt
+14. ~/Projects/Project Y
+",False,True,Final Answer: 10,True,True,Final Answer: 10,True,True
+Final Answer: 13,Final Answer: 13,"Here is the description of what I am searching for: 
+Personal project folder for Project Y in home directory. 
+","
+1. ~
+2. ~/Desktop
+3. ~/Documents
+4. ~/Documents Archive
+5. ~/Documents Archive/Old Resumes
+6. ~/Downloads
+7. ~/Downloads/Python3.9.exe
+8. ~/Downloads/Visual Studio Code Installer.exe
+9. ~/Pictures
+10. ~/Pictures/Family
+11. ~/Projects
+12. ~/Projects/Project X
+13. ~/Projects/Project Y
+14. ~/Projects/Project Y/Data Analysis
+15. ~/Projects/Project Y/Presentation.pptx
+",True,True,Final Answer: 13,True,True,Final Answer: 13,True,True
+Final Answer: 12,Final Answer: 12,"Here is the description of what I am searching for: 
+Executable Python 3.9 installer downloaded to Downloads folder 
+","
+1. ~
+2. ~/Desktop
+3. ~/Desktop/2021 Goals.txt
+4. ~/Desktop/Meeting Notes
+5. ~/Desktop/Wu Ltd Contract.pptx
+6. ~/Documents
+7. ~/Documents Archive
+8. ~/Documents Archive/Old Resumes
+9. ~/Documents Archive/Old Resumes/Resume_2017.docx
+10. ~/Documents Archive/Old Resumes/Resume_2018.docx
+11. ~/Downloads
+12. ~/Downloads/Python3.9.exe
+13. ~/Downloads/Visual Studio Code Installer.exe
+14. ~/Pictures
+15. ~/Projects
+",True,True,Final Answer: 12,True,True,Final Answer: 12,True,True
+Final Answer: 15,Final Answer: 15,"Here is the description of what I am searching for: 
+Personal project directory for data analysis under Project Y. 
+","
+1. ~
+2. ~/Desktop
+3. ~/Documents
+4. ~/Documents/Arthur Waller Resume.pdf
+5. ~/Documents/Project Management Certificate.docx
+6. ~/Documents Archive
+7. ~/Documents Archive/Old Resumes
+8. ~/Documents Archive/Old Resumes/Resume_2017.docx
+9. ~/Documents Archive/Old Resumes/Resume_2018.docx
+10. ~/Downloads
+11. ~/Pictures
+12. ~/Pictures/Family
+13. ~/Pictures/Family/Christmas 2020.jpg
+14. ~/Pictures/Family/Vacation 2019.zip
+15. ~/Projects
+",True,True,Final Answer: 15,True,True,Final Answer: 15,True,True
+Final Answer: 11,Final Answer: 11,"Here is the description of what I am searching for: 
+""Adobe Photoshop executable installer for software."" 
+","
+1. ~
+2. ~/Hobbies
+3. ~/Hobbies/Gardening Journal.txt
+4. ~/Hobbies/Photos
+5. ~/Hobbies/Photos/Nature
+6. ~/Hobbies/Photos/Nature/Flowers
+7. ~/Hobbies/Photos/Nature/Flowers/Rose Garden
+8. ~/Hobbies/Photos/Nature/National Parks
+9. ~/Personal Documents
+10. ~/Software Exe
+11. ~/Software Exe/Adobe Photoshop.exe
+12. ~/Software Exe/Audacity.exe
+13. ~/Software Exe/Microsoft Office
+14. ~/Software Exe/Microsoft Office/Excel.xlsx
+15. ~/Software Exe/Microsoft Office/Word.docx
+16. ~/Work
+",True,True,Final Answer: 11,True,True,Final Answer: 11,True,True
+Final Answer: 3,Final Answer: 3,"Here is the description of what I am searching for: 
+Home directory for personal documents and files. 
+","
+1. ~
+2. ~/Hobbies
+3. ~/Personal Documents
+4. ~/Software Exe
+5. ~/Software Exe/Adobe Photoshop.exe
+6. ~/Software Exe/Audacity.exe
+7. ~/Software Exe/Microsoft Office
+8. ~/Software Exe/Microsoft Office/Excel.xlsx
+9. ~/Software Exe/Microsoft Office/Word.docx
+10. ~/Work
+11. ~/Work/Hill Group
+12. ~/Work/Hill Group/Commercial Horticulture
+13. ~/Work/Hill Group/Commercial Horticulture/Portfolio.pptx
+14. ~/Work/Hill Group/Commercial Horticulture/Resume.docx
+",True,True,Final Answer: 3,True,True,Final Answer: 3,True,True
+Final Answer: 6,Final Answer: 6,"Here is the description of what I am searching for: 
+Compressed folder containing university education transcripts. 
+","
+1. ~
+2. ~/Hobbies
+3. ~/Personal Documents
+4. ~/Personal Documents/Education
+5. ~/Personal Documents/Education/High School Diploma.pdf
+6. ~/Personal Documents/Education/University Transcripts.zip
+7. ~/Personal Documents/Identification
+8. ~/Software Exe
+9. ~/Software Exe/Adobe Photoshop.exe
+10. ~/Software Exe/Audacity.exe
+11. ~/Software Exe/Microsoft Office
+12. ~/Work
+13. ~/Work/Hill Group
+14. ~/Work/Hill Group/Commercial Horticulture
+15. ~/Work/Hill Group/Commercial Horticulture/Portfolio.pptx
+16. ~/Work/Hill Group/Commercial Horticulture/Resume.docx
+",True,True,Final Answer: 6,True,True,Final Answer: 6,True,True
+Final Answer: 15,Final Answer: 15,"Here is the description of what I am searching for: 
+Collection of Microsoft Office executable files for software installation. 
+","
+1. ~
+2. ~/Hobbies
+3. ~/Hobbies/Gardening Journal.txt
+4. ~/Hobbies/Photos
+5. ~/Personal Documents
+6. ~/Personal Documents/Education
+7. ~/Personal Documents/Education/High School Diploma.pdf
+8. ~/Personal Documents/Education/University Transcripts.zip
+9. ~/Personal Documents/Identification
+10. ~/Personal Documents/Identification/Birth Certificate.pdf
+11. ~/Personal Documents/Identification/Driver's License.pdf
+12. ~/Software Exe
+13. ~/Software Exe/Adobe Photoshop.exe
+14. ~/Software Exe/Audacity.exe
+15. ~/Software Exe/Microsoft Office
+16. ~/Work
+",True,True,Final Answer: 15,True,True,Final Answer: 15,True,True
+Final Answer: 5,Final Answer: 5,"Here is the description of what I am searching for: 
+Personal nature photography collection stored locally. 
+","
+1. ~
+2. ~/Hobbies
+3. ~/Hobbies/Gardening Journal.txt
+4. ~/Hobbies/Photos
+5. ~/Hobbies/Photos/Nature
+6. ~/Personal Documents
+7. ~/Personal Documents/Education
+8. ~/Personal Documents/Identification
+9. ~/Software Exe
+10. ~/Software Exe/Adobe Photoshop.exe
+11. ~/Software Exe/Audacity.exe
+12. ~/Software Exe/Microsoft Office
+13. ~/Work
+14. ~/Work/Hill Group
+15. ~/Work/Hill Group/Commercial Horticulture
+16. ~/Work/Hill Group/Commercial Horticulture/Portfolio.pptx
+17. ~/Work/Hill Group/Commercial Horticulture/Resume.docx
+",True,True,Final Answer: 5,True,True,Final Answer: 5,True,True
+Final Answer: 4,Final Answer: 4,"Here is the description of what I am searching for: 
+Personal photography collection organized by hobbies. 
+","
+1. ~
+2. ~/Hobbies
+3. ~/Hobbies/Gardening Journal.txt
+4. ~/Hobbies/Photos
+5. ~/Hobbies/Photos/Nature
+6. ~/Personal Documents
+7. ~/Software Exe
+8. ~/Software Exe/Adobe Photoshop.exe
+9. ~/Software Exe/Audacity.exe
+10. ~/Software Exe/Microsoft Office
+11. ~/Software Exe/Microsoft Office/Excel.xlsx
+12. ~/Software Exe/Microsoft Office/Word.docx
+13. ~/Work
+14. ~/Work/Hill Group
+",True,True,Final Answer: 6,False,True,Final Answer: 6,True,True
+Final Answer: 8,Final Answer: 8,"Here is the description of what I am searching for: 
+Personal work folder for Hill Group projects at home directory. 
+","
+1. ~
+2. ~/Hobbies
+3. ~/Hobbies/Gardening Journal.txt
+4. ~/Hobbies/Photos
+5. ~/Hobbies/Photos/Nature
+6. ~/Personal Documents
+7. ~/Software Exe
+8. ~/Work
+",True,True,Final Answer: 8,True,True,Final Answer: 8,False,True
+Final Answer: 7,Final Answer: 7,"Here is the description of what I am searching for: 
+Personal nature photography folder organized by national parks. 
+","
+1. ~
+2. ~/Hobbies
+3. ~/Hobbies/Gardening Journal.txt
+4. ~/Hobbies/Photos
+5. ~/Hobbies/Photos/Nature
+6. ~/Hobbies/Photos/Nature/Flowers
+7. ~/Hobbies/Photos/Nature/National Parks
+8. ~/Personal Documents
+9. ~/Software Exe
+10. ~/Software Exe/Adobe Photoshop.exe
+11. ~/Software Exe/Audacity.exe
+12. ~/Software Exe/Microsoft Office
+13. ~/Software Exe/Microsoft Office/Excel.xlsx
+14. ~/Software Exe/Microsoft Office/Word.docx
+15. ~/Work
+",True,True,Final Answer: 7,True,True,Final Answer: 7,True,True
+Final Answer: 16,Final Answer: 14,"Here is the description of what I am searching for: 
+Home directory work folder. 
+","
+1. ~
+2. ~/Hobbies
+3. ~/Personal Documents
+4. ~/Personal Documents/Education
+5. ~/Personal Documents/Education/High School Diploma.pdf
+6. ~/Personal Documents/Education/University Transcripts.zip
+7. ~/Personal Documents/Identification
+8. ~/Software Exe
+9. ~/Software Exe/Adobe Photoshop.exe
+10. ~/Software Exe/Audacity.exe
+11. ~/Software Exe/Microsoft Office
+12. ~/Software Exe/Microsoft Office/Excel.xlsx
+13. ~/Software Exe/Microsoft Office/Word.docx
+14. ~/Work
+15. ~/Work/Hill Group
+16. ~/Work/Hill Group/Commercial Horticulture
+",False,True,Final Answer: 16,False,True,Final Answer: 16,True,True
+Final Answer: 14,Final Answer: 14,"Here is the description of what I am searching for: 
+Presentation on commercial horticulture portfolio by Hill Group. 
+","
+1. ~
+2. ~/Hobbies
+3. ~/Hobbies/Gardening Journal.txt
+4. ~/Hobbies/Photos
+5. ~/Personal Documents
+6. ~/Personal Documents/Education
+7. ~/Personal Documents/Identification
+8. ~/Personal Documents/Identification/Birth Certificate.pdf
+9. ~/Personal Documents/Identification/Driver's License.pdf
+10. ~/Software Exe
+11. ~/Work
+12. ~/Work/Hill Group
+13. ~/Work/Hill Group/Commercial Horticulture
+14. ~/Work/Hill Group/Commercial Horticulture/Portfolio.pptx
+15. ~/Work/Hill Group/Commercial Horticulture/Resume.docx
+",True,True,Final Answer: 14,True,True,Final Answer: 14,True,True
+Final Answer: 18,Final Answer: 18,"Here is the description of what I am searching for: 
+Personal travel itinerary folder on user's home directory. 
+","
+1. ~
+2. ~/Adams-Black
+3. ~/Adams-Black/Client Lists
+4. ~/Adams-Black/Client Lists/clients.xlsx
+5. ~/Adams-Black/Correspondence
+6. ~/Adams-Black/Correspondence/emails_from_clients.eml
+7. ~/Adams-Black/Office Documents
+8. ~/Adams-Black/Office Documents/Meeting Notes 2022-07-15.txt
+9. ~/Adams-Black/Office Documents/Project Plan - Marketing Strategy.pptx
+10. ~/Personal
+11. ~/Personal/Brenda Wilcox - Resume.pdf
+12. ~/Personal/Professional Portfolio.pptx
+13. ~/Personal Finance
+14. ~/Photos
+15. ~/Software Exe
+16. ~/Travel
+17. ~/Travel/Flight Bookings
+18. ~/Travel/Itinerary
+19. ~/Travel/Itinerary/Paris Trip 2023-09-20-2023-09-25.docx
+",True,True,Final Answer: 18,True,True,Final Answer: 18,True,True
+Final Answer: 10,Final Answer: 10,"Here is the description of what I am searching for: 
+Collection of Rome vacation photos from Europe trip 2022. 
+","
+1. ~
+2. ~/Adams-Black
+3. ~/Personal
+4. ~/Personal/Brenda Wilcox - Resume.pdf
+5. ~/Personal/Professional Portfolio.pptx
+6. ~/Personal Finance
+7. ~/Personal Finance/Budget Tracker.xlsx
+8. ~/Personal Finance/Investments
+9. ~/Personal Finance/Investments/Stocks Performance.csv
+10. ~/Photos
+11. ~/Software Exe
+12. ~/Software Exe/Microsoft Office
+13. ~/Software Exe/Microsoft Office/excel.exe
+14. ~/Software Exe/Microsoft Office/powerpoint.exe
+15. ~/Software Exe/Microsoft Office/word.exe
+16. ~/Travel
+17. ~/Travel/Flight Bookings
+18. ~/Travel/Itinerary
+19. ~/Travel/Itinerary/Paris Trip 2023-09-20-2023-09-25.docx
+",True,True,Final Answer: 10,True,True,Final Answer: 10,True,True
+Final Answer: 8,Final Answer: 8,"Here is the description of what I am searching for: 
+Financial data tracking stock performance over time. 
+","
+1. ~
+2. ~/Adams-Black
+3. ~/Personal
+4. ~/Personal/Brenda Wilcox - Resume.pdf
+5. ~/Personal/Professional Portfolio.pptx
+6. ~/Personal Finance
+7. ~/Personal Finance/Budget Tracker.xlsx
+8. ~/Personal Finance/Investments
+9. ~/Photos
+10. ~/Photos/Vacations
+11. ~/Photos/Vacations/Bali
+12. ~/Photos/Vacations/Europe Trip 2022
+13. ~/Software Exe
+14. ~/Software Exe/Microsoft Office
+15. ~/Travel
+16. ~/Travel/Flight Bookings
+17. ~/Travel/Flight Bookings/Round Trip to France.pdf
+18. ~/Travel/Itinerary
+",True,True,Final Answer: 8,True,True,Final Answer: 8,False,True
+Final Answer: 4,Final Answer: 4,"Here is the description of what I am searching for: 
+Emails from clients correspondence folder in Adam's Black directory. 
+","
+1. ~
+2. ~/Adams-Black
+3. ~/Adams-Black/Client Lists
+4. ~/Adams-Black/Correspondence
+5. ~/Adams-Black/Office Documents
+6. ~/Adams-Black/Office Documents/Meeting Notes 2022-07-15.txt
+7. ~/Adams-Black/Office Documents/Project Plan - Marketing Strategy.pptx
+8. ~/Personal
+9. ~/Personal Finance
+10. ~/Personal Finance/Budget Tracker.xlsx
+11. ~/Personal Finance/Investments
+12. ~/Personal Finance/Investments/Stocks Performance.csv
+13. ~/Photos
+14. ~/Photos/Vacations
+15. ~/Software Exe
+16. ~/Software Exe/Microsoft Office
+17. ~/Travel
+18. ~/Travel/Flight Bookings
+19. ~/Travel/Itinerary
+",True,True,Final Answer: 4,True,True,Final Answer: 4,True,True
+Final Answer: 11,Final Answer: 11,"Here is the description of what I am searching for: 
+Excel budget tracking spreadsheet for personal finance. 
+","
+1. ~
+2. ~/Adams-Black
+3. ~/Adams-Black/Client Lists
+4. ~/Adams-Black/Correspondence
+5. ~/Adams-Black/Correspondence/emails_from_clients.eml
+6. ~/Adams-Black/Office Documents
+7. ~/Adams-Black/Office Documents/Meeting Notes 2022-07-15.txt
+8. ~/Adams-Black/Office Documents/Project Plan - Marketing Strategy.pptx
+9. ~/Personal
+10. ~/Personal Finance
+11. ~/Personal Finance/Budget Tracker.xlsx
+12. ~/Personal Finance/Investments
+13. ~/Photos
+14. ~/Software Exe
+15. ~/Software Exe/Microsoft Office
+16. ~/Software Exe/Microsoft Office/excel.exe
+17. ~/Software Exe/Microsoft Office/powerpoint.exe
+18. ~/Software Exe/Microsoft Office/word.exe
+19. ~/Travel
+",True,True,Final Answer: 11,True,True,Final Answer: 11,True,True
+Final Answer: 13,Final Answer: 13,"Here is the description of what I am searching for: 
+Home directory containing software executables. 
+","
+1. ~
+2. ~/Adams-Black
+3. ~/Adams-Black/Client Lists
+4. ~/Adams-Black/Client Lists/clients.xlsx
+5. ~/Adams-Black/Correspondence
+6. ~/Adams-Black/Correspondence/emails_from_clients.eml
+7. ~/Adams-Black/Office Documents
+8. ~/Adams-Black/Office Documents/Meeting Notes 2022-07-15.txt
+9. ~/Adams-Black/Office Documents/Project Plan - Marketing Strategy.pptx
+10. ~/Personal
+11. ~/Personal Finance
+12. ~/Photos
+13. ~/Software Exe
+14. ~/Travel
+",True,True,Final Answer: 13,True,True,Final Answer: 13,False,True
+Final Answer: 9,Final Answer: 15,"Here is the description of what I am searching for: 
+User's travel documents and photos folder. 
+","
+1. ~
+2. ~/Adams-Black
+3. ~/Personal
+4. ~/Personal Finance
+5. ~/Personal Finance/Budget Tracker.xlsx
+6. ~/Personal Finance/Investments
+7. ~/Personal Finance/Investments/Stocks Performance.csv
+8. ~/Photos
+9. ~/Photos/Vacations
+10. ~/Software Exe
+11. ~/Software Exe/Microsoft Office
+12. ~/Software Exe/Microsoft Office/excel.exe
+13. ~/Software Exe/Microsoft Office/powerpoint.exe
+14. ~/Software Exe/Microsoft Office/word.exe
+15. ~/Travel
+",False,True,Final Answer: 9,False,True,Final Answer: 9,False,True
+Final Answer: 8,Final Answer: 8,"Here is the description of what I am searching for: 
+Home directory's 'Photos' folder containing personal images. 
+","
+1. ~
+2. ~/Adams-Black
+3. ~/Personal
+4. ~/Personal Finance
+5. ~/Personal Finance/Budget Tracker.xlsx
+6. ~/Personal Finance/Investments
+7. ~/Personal Finance/Investments/Stocks Performance.csv
+8. ~/Photos
+9. ~/Photos/Vacations
+10. ~/Software Exe
+11. ~/Software Exe/Microsoft Office
+12. ~/Software Exe/Microsoft Office/excel.exe
+13. ~/Software Exe/Microsoft Office/powerpoint.exe
+14. ~/Software Exe/Microsoft Office/word.exe
+15. ~/Travel
+16. ~/Travel/Flight Bookings
+17. ~/Travel/Flight Bookings/Round Trip to France.pdf
+18. ~/Travel/Itinerary
+",True,True,Final Answer: 8,True,True,Final Answer: 8,True,True
+Final Answer: 11,Final Answer: 3,"Here is the description of what I am searching for: 
+Personal client list folder for Adams-Black law firm. 
+","
+1. ~
+2. ~/Adams-Black
+3. ~/Adams-Black/Client Lists
+4. ~/Adams-Black/Correspondence
+5. ~/Adams-Black/Office Documents
+6. ~/Personal
+7. ~/Personal Finance
+8. ~/Personal Finance/Budget Tracker.xlsx
+9. ~/Personal Finance/Investments
+10. ~/Photos
+11. ~/Software Exe
+12. ~/Travel
+13. ~/Travel/Flight Bookings
+14. ~/Travel/Flight Bookings/Round Trip to France.pdf
+15. ~/Travel/Itinerary
+",False,True,Final Answer: 4,False,True,Final Answer: 4,False,True
+Final Answer: 12,Final Answer: 12,"Here is the description of what I am searching for: 
+Home directory for personal finance investment management folder. 
+","
+1. ~
+2. ~/Adams-Black
+3. ~/Adams-Black/Client Lists
+4. ~/Adams-Black/Correspondence
+5. ~/Adams-Black/Correspondence/emails_from_clients.eml
+6. ~/Adams-Black/Office Documents
+7. ~/Adams-Black/Office Documents/Meeting Notes 2022-07-15.txt
+8. ~/Adams-Black/Office Documents/Project Plan - Marketing Strategy.pptx
+9. ~/Personal
+10. ~/Personal/Brenda Wilcox - Resume.pdf
+11. ~/Personal/Professional Portfolio.pptx
+12. ~/Personal Finance
+13. ~/Photos
+14. ~/Software Exe
+15. ~/Travel
+",True,True,Final Answer: 12,True,True,Final Answer: 12,True,True
+"Final Answer: ~{user's home directory}
+{user's personal files and folders}
+{user's work-related files and folders}
+{user's work directory contains the following subdirectories:}
+{~/Work}
+{~/Work/Projects}
+{~/Work/Projects/Project A}
+{~/Work/Projects/Project B}
+{~/Work/Software}
+{~/Work/Software/Software 1.0}
+{~/Work/Software/Software 1.0",Final Answer: 20,"Here is the description of what I am searching for: 
+Research proposal for medicinal plant studies, written document. 
+","
+1. ~
+2. ~/Documents
+3. ~/Documents/West PLC
+4. ~/Documents/West PLC/Employee Handbook.pdf
+5. ~/Documents/West PLC/Health and Safety Procedures.docx
+6. ~/Documents/West PLC/Training Materials
+7. ~/Personal
+8. ~/Personal/Correspondence
+9. ~/Personal/Financial Statements
+10. ~/Personal/Financial Statements/Budget 2021.xlsx
+11. ~/Personal/Financial Statements/Tax Returns 2019-2020.pdf
+12. ~/Personal/Recipes
+13. ~/Personal/Recipes/Healing Herbs Cookbook.pdf
+14. ~/Personal/Recipes/Seasonal Remedies.docx
+15. ~/Pictures
+16. ~/Pictures/Nature
+17. ~/Pictures/Travel
+18. ~/Resume
+19. ~/Resume/John_Miles_Resume.pdf
+20. ~/Work
+",False,,"Final answer: ~
+Folder/document/image/personal/travel/
+Folder/document/image/personal/correspondence/
+Folder/document/image/personal/finance/
+Folder/document/image/personal/references/
+Folder/document/image/personal/social_media/
+Folder/document/image/personal/work/
+Folder/document/image/personal/work/education/
+Folder/document/image/personal/work/employment_contracts/
+Folder/document/image/personal/work/professional_development/
+Folder",False,,"Final answer: ~
+Folder/document/image/personal/travel/
+Folder/document/image/personal/correspondence/
+Folder/document/image/personal/finance/
+Folder/document/image/personal/references/
+Folder/document/image/personal/social_media/
+Folder/document/image/personal/work/
+Folder/document/image/personal/work/education/
+Folder/document/image/personal/work/employment_contracts/
+Folder/document/image/personal/work/professional_development/
+Folder",False,
+Final Answer: 24,Final Answer: 24,"Here is the description of what I am searching for: 
+Research project on medicinal plants' work directory. 
+","
+1. ~
+2. ~/Documents
+3. ~/Documents/West PLC
+4. ~/Documents/West PLC/Employee Handbook.pdf
+5. ~/Documents/West PLC/Health and Safety Procedures.docx
+6. ~/Documents/West PLC/Training Materials
+7. ~/Documents/West PLC/Training Materials/Herbalism Basics.pptx
+8. ~/Documents/West PLC/Training Materials/Medicinal Plants.pptx
+9. ~/Personal
+10. ~/Pictures
+11. ~/Pictures/Nature
+12. ~/Pictures/Travel
+13. ~/Resume
+14. ~/Resume/John_Miles_Resume.pdf
+15. ~/Work
+16. ~/Work/Projects
+17. ~/Work/Projects/Clients
+18. ~/Work/Projects/Clients/Client A
+19. ~/Work/Projects/Clients/Client A/Consultations
+20. ~/Work/Projects/Clients/Client A/Consultations/Session 1.txt
+21. ~/Work/Projects/Clients/Client A/Consultations/Session 2.txt
+22. ~/Work/Projects/Clients/Client A/Consultations/Session 3.txt
+23. ~/Work/Projects/Clients/Client B
+24. ~/Work/Projects/Medicinal Plant Research
+25. ~/Work/Projects/Medicinal Plant Research/Progress Reports
+26. ~/Work/Projects/Medicinal Plant Research/Progress Reports/Report 1.pdf
+27. ~/Work/Projects/Medicinal Plant Research/Progress Reports/Report 2.pdf
+28. ~/Work/Projects/Medicinal Plant Research/Progress Reports/Report 3.pdf
+29. ~/Work/Projects/Medicinal Plant Research/Proposal.docx
+",True,True,Final Answer: 24,True,True,Final Answer: 24,False,True
+Final Answer: 28,Final Answer: 8,"Here is the description of what I am searching for: 
+A high-resolution photograph of Rome's Colosseum during a 2018 European trip. 
+","
+1. ~
+2. ~/Documents
+3. ~/Documents/West PLC
+4. ~/Documents/West PLC/Employee Handbook.pdf
+5. ~/Documents/West PLC/Health and Safety Procedures.docx
+6. ~/Documents/West PLC/Training Materials
+7. ~/Personal
+8. ~/Pictures
+9. ~/Resume
+10. ~/Resume/John_Miles_Resume.pdf
+11. ~/Work
+12. ~/Work/Projects
+13. ~/Work/Projects/Clients
+14. ~/Work/Projects/Clients/Client A
+15. ~/Work/Projects/Clients/Client A/Consultations
+16. ~/Work/Projects/Clients/Client A/Consultations/Session 1.txt
+17. ~/Work/Projects/Clients/Client A/Consultations/Session 2.txt
+18. ~/Work/Projects/Clients/Client A/Consultations/Session 3.txt
+19. ~/Work/Projects/Clients/Client B
+20. ~/Work/Projects/Clients/Client B/Notes
+21. ~/Work/Projects/Clients/Client B/Notes/Note 1.docx
+22. ~/Work/Projects/Clients/Client B/Notes/Note 2.docx
+23. ~/Work/Projects/Medicinal Plant Research
+24. ~/Work/Projects/Medicinal Plant Research/Progress Reports
+25. ~/Work/Projects/Medicinal Plant Research/Progress Reports/Report 1.pdf
+26. ~/Work/Projects/Medicinal Plant Research/Progress Reports/Report 2.pdf
+27. ~/Work/Projects/Medicinal Plant Research/Progress Reports/Report 3.pdf
+28. ~/Work/Projects/Medicinal Plant Research/Proposal.docx
+",False,True,Final Answer: 8,True,True,Final Answer: 8,False,True
+Final Answer: 14,Final Answer: 14,"Here is the description of what I am searching for: 
+A nature photography image of a forest walk captured on a sunny day. 
+","
+1. ~
+2. ~/Documents
+3. ~/Documents/West PLC
+4. ~/Personal
+5. ~/Personal/Correspondence
+6. ~/Personal/Financial Statements
+7. ~/Personal/Financial Statements/Budget 2021.xlsx
+8. ~/Personal/Financial Statements/Tax Returns 2019-2020.pdf
+9. ~/Personal/Recipes
+10. ~/Personal/Recipes/Healing Herbs Cookbook.pdf
+11. ~/Personal/Recipes/Seasonal Remedies.docx
+12. ~/Pictures
+13. ~/Pictures/Nature
+14. ~/Pictures/Nature/Forest Walk
+15. ~/Pictures/Nature/Mountains Hike
+16. ~/Pictures/Nature/Mountains Hike/0113.jpg
+17. ~/Pictures/Nature/Mountains Hike/0114.jpg
+18. ~/Pictures/Travel
+19. ~/Pictures/Travel/Europe Trip 2018
+20. ~/Pictures/Travel/Europe Trip 2018/Paris
+21. ~/Pictures/Travel/Europe Trip 2018/Paris/Eiffel Tower.jpg
+22. ~/Pictures/Travel/Europe Trip 2018/Paris/Louvre Museum.jpg
+23. ~/Pictures/Travel/Europe Trip 2018/Rome
+24. ~/Pictures/Travel/Europe Trip 2018/Rome/Colosseum.jpg
+25. ~/Pictures/Travel/Europe Trip 2018/Rome/Vatican City.jpg
+26. ~/Resume
+27. ~/Resume/John_Miles_Resume.pdf
+28. ~/Work
+",True,True,Final Answer: 14,True,True,Final Answer: 14,True,True
+Final Answer: 18,Final Answer: 19,"Here is the description of what I am searching for: 
+Personal work project folder for Client A. 
+","
+1. ~
+2. ~/Documents
+3. ~/Documents/West PLC
+4. ~/Documents/West PLC/Employee Handbook.pdf
+5. ~/Documents/West PLC/Health and Safety Procedures.docx
+6. ~/Documents/West PLC/Training Materials
+7. ~/Documents/West PLC/Training Materials/Herbalism Basics.pptx
+8. ~/Documents/West PLC/Training Materials/Medicinal Plants.pptx
+9. ~/Personal
+10. ~/Pictures
+11. ~/Pictures/Nature
+12. ~/Pictures/Travel
+13. ~/Pictures/Travel/Europe Trip 2018
+14. ~/Resume
+15. ~/Resume/John_Miles_Resume.pdf
+16. ~/Work
+17. ~/Work/Projects
+18. ~/Work/Projects/Clients
+19. ~/Work/Projects/Clients/Client A
+20. ~/Work/Projects/Clients/Client A/Consultations
+21. ~/Work/Projects/Clients/Client A/Consultations/Session 1.txt
+22. ~/Work/Projects/Clients/Client A/Consultations/Session 2.txt
+23. ~/Work/Projects/Clients/Client A/Consultations/Session 3.txt
+24. ~/Work/Projects/Clients/Client B
+25. ~/Work/Projects/Clients/Client B/Notes
+26. ~/Work/Projects/Clients/Client B/Notes/Note 1.docx
+27. ~/Work/Projects/Clients/Client B/Notes/Note 2.docx
+28. ~/Work/Projects/Medicinal Plant Research
+",False,True,Final Answer: 21,False,True,Final Answer: 21,False,True
+"Final Answer: {21}
+
+Here are the steps to find the file/folder:
+
+1. You are given a description of a file/folder.
+2. Choose one of the visible items by the following 2 rules:
+   a. If the described item is in the visible list, choose it.
+   b. If not visible, choose the next folder to open.
+3. The answer is in the format ""Final Answer: {the number corresponding to the path to file/folder}"".
+
+Given description:
+- The user provides a file/folder description and a list",Final Answer: 22,"Here is the description of what I am searching for: 
+Research progress reports for medicinal plant projects. 
+","
+1. ~
+2. ~/Documents
+3. ~/Documents/West PLC
+4. ~/Documents/West PLC/Employee Handbook.pdf
+5. ~/Documents/West PLC/Health and Safety Procedures.docx
+6. ~/Documents/West PLC/Training Materials
+7. ~/Documents/West PLC/Training Materials/Herbalism Basics.pptx
+8. ~/Documents/West PLC/Training Materials/Medicinal Plants.pptx
+9. ~/Personal
+10. ~/Pictures
+11. ~/Pictures/Nature
+12. ~/Pictures/Travel
+13. ~/Pictures/Travel/Europe Trip 2018
+14. ~/Resume
+15. ~/Resume/John_Miles_Resume.pdf
+16. ~/Work
+17. ~/Work/Projects
+18. ~/Work/Projects/Clients
+19. ~/Work/Projects/Clients/Client A
+20. ~/Work/Projects/Clients/Client B
+21. ~/Work/Projects/Medicinal Plant Research
+22. ~/Work/Projects/Medicinal Plant Research/Progress Reports
+23. ~/Work/Projects/Medicinal Plant Research/Progress Reports/Report 1.pdf
+24. ~/Work/Projects/Medicinal Plant Research/Progress Reports/Report 2.pdf
+25. ~/Work/Projects/Medicinal Plant Research/Progress Reports/Report 3.pdf
+26. ~/Work/Projects/Medicinal Plant Research/Proposal.docx
+",False,,"Final Answer: {21}
+
+Now let's describe your next action:
+
+1. Choose one of the following options.
+2. Explain the chosen option.
+
+Here are the options:
+
+1. Close the text file.
+2. Open the folder containing the text file.
+3. Search for related files or folders within the opened folder.
+4. Exit the current directory and choose another directory to explore.
+
+Which number corresponds to the chosen option?
+
+-->
+
+)->
+
+->
+
+->
+
+->
+
+->
+
+->
+
+",False,,"Final Answer: {21}
+
+Now let's describe your next action:
+
+1. Choose one of the following options.
+2. Explain the chosen option.
+
+Here are the options:
+
+1. Close the text file.
+2. Open the folder containing the text file.
+3. Search for related files or folders within the opened folder.
+4. Exit the current directory and choose another directory to explore.
+
+Which number corresponds to the chosen option?
+
+-->
+
+)->
+
+->
+
+->
+
+->
+
+->
+
+->
+
+",False,
+Final Answer: 9,Final Answer: 9,"Here is the description of what I am searching for: 
+This is a folder containing personal correspondence files. 
+","
+1. ~
+2. ~/Documents
+3. ~/Documents/West PLC
+4. ~/Documents/West PLC/Employee Handbook.pdf
+5. ~/Documents/West PLC/Health and Safety Procedures.docx
+6. ~/Documents/West PLC/Training Materials
+7. ~/Documents/West PLC/Training Materials/Herbalism Basics.pptx
+8. ~/Documents/West PLC/Training Materials/Medicinal Plants.pptx
+9. ~/Personal
+10. ~/Pictures
+11. ~/Pictures/Nature
+12. ~/Pictures/Nature/Forest Walk
+13. ~/Pictures/Nature/Forest Walk/0111.jpg
+14. ~/Pictures/Nature/Forest Walk/0112.jpg
+15. ~/Pictures/Nature/Mountains Hike
+16. ~/Pictures/Nature/Mountains Hike/0113.jpg
+17. ~/Pictures/Nature/Mountains Hike/0114.jpg
+18. ~/Pictures/Travel
+19. ~/Pictures/Travel/Europe Trip 2018
+20. ~/Pictures/Travel/Europe Trip 2018/Paris
+21. ~/Pictures/Travel/Europe Trip 2018/Paris/Eiffel Tower.jpg
+22. ~/Pictures/Travel/Europe Trip 2018/Paris/Louvre Museum.jpg
+23. ~/Pictures/Travel/Europe Trip 2018/Rome
+24. ~/Pictures/Travel/Europe Trip 2018/Rome/Colosseum.jpg
+25. ~/Pictures/Travel/Europe Trip 2018/Rome/Vatican City.jpg
+26. ~/Resume
+27. ~/Resume/John_Miles_Resume.pdf
+28. ~/Work
+",True,True,Final Answer: 9,True,True,Final Answer: 9,True,True
+Final Answer: 21,Final Answer: 3,"Here is the description of what I am searching for: 
+Home directory folder containing personal recipe collection. 
+","
+1. ~
+2. ~/Documents
+3. ~/Personal
+4. ~/Pictures
+5. ~/Pictures/Nature
+6. ~/Pictures/Nature/Forest Walk
+7. ~/Pictures/Nature/Mountains Hike
+8. ~/Pictures/Nature/Mountains Hike/0113.jpg
+9. ~/Pictures/Nature/Mountains Hike/0114.jpg
+10. ~/Pictures/Travel
+11. ~/Pictures/Travel/Europe Trip 2018
+12. ~/Pictures/Travel/Europe Trip 2018/Paris
+13. ~/Pictures/Travel/Europe Trip 2018/Rome
+14. ~/Resume
+15. ~/Resume/John_Miles_Resume.pdf
+16. ~/Work
+17. ~/Work/Projects
+18. ~/Work/Projects/Clients
+19. ~/Work/Projects/Clients/Client A
+20. ~/Work/Projects/Clients/Client A/Consultations
+21. ~/Work/Projects/Clients/Client A/Consultations/Session 1.txt
+22. ~/Work/Projects/Clients/Client A/Consultations/Session 2.txt
+23. ~/Work/Projects/Clients/Client A/Consultations/Session 3.txt
+24. ~/Work/Projects/Clients/Client B
+25. ~/Work/Projects/Clients/Client B/Notes
+26. ~/Work/Projects/Medicinal Plant Research
+27. ~/Work/Projects/Medicinal Plant Research/Progress Reports
+28. ~/Work/Projects/Medicinal Plant Research/Proposal.docx
+",False,True,Final Answer: 21,False,True,Final Answer: 21,False,True
+Final Answer: 11,Final Answer: 12,"Here is the description of what I am searching for: 
+Cookbook on healing herbs recipes PDF. 
+","
+1. ~
+2. ~/Documents
+3. ~/Personal
+4. ~/Personal/Correspondence
+5. ~/Personal/Correspondence/Family
+6. ~/Personal/Correspondence/Family/Letters
+7. ~/Personal/Correspondence/Friends
+8. ~/Personal/Financial Statements
+9. ~/Personal/Financial Statements/Budget 2021.xlsx
+10. ~/Personal/Financial Statements/Tax Returns 2019-2020.pdf
+11. ~/Personal/Recipes
+12. ~/Personal/Recipes/Healing Herbs Cookbook.pdf
+13. ~/Personal/Recipes/Seasonal Remedies.docx
+14. ~/Pictures
+15. ~/Pictures/Nature
+16. ~/Pictures/Nature/Forest Walk
+17. ~/Pictures/Nature/Mountains Hike
+18. ~/Pictures/Travel
+19. ~/Pictures/Travel/Europe Trip 2018
+20. ~/Pictures/Travel/Europe Trip 2018/Paris
+21. ~/Pictures/Travel/Europe Trip 2018/Paris/Eiffel Tower.jpg
+22. ~/Pictures/Travel/Europe Trip 2018/Paris/Louvre Museum.jpg
+23. ~/Pictures/Travel/Europe Trip 2018/Rome
+24. ~/Pictures/Travel/Europe Trip 2018/Rome/Colosseum.jpg
+25. ~/Pictures/Travel/Europe Trip 2018/Rome/Vatican City.jpg
+26. ~/Resume
+27. ~/Resume/John_Miles_Resume.pdf
+28. ~/Work
+29. ~/Work/Projects
+",False,True,Final Answer: 29,False,True,Final Answer: 29,False,True
+Final Answer: 21,Final Answer: 16,"Here is the description of what I am searching for: 
+John Miles' resume PDF document. 
+","
+1. ~
+2. ~/Documents
+3. ~/Documents/West PLC
+4. ~/Personal
+5. ~/Personal/Correspondence
+6. ~/Personal/Financial Statements
+7. ~/Personal/Financial Statements/Budget 2021.xlsx
+8. ~/Personal/Financial Statements/Tax Returns 2019-2020.pdf
+9. ~/Personal/Recipes
+10. ~/Personal/Recipes/Healing Herbs Cookbook.pdf
+11. ~/Personal/Recipes/Seasonal Remedies.docx
+12. ~/Pictures
+13. ~/Pictures/Nature
+14. ~/Pictures/Travel
+15. ~/Pictures/Travel/Europe Trip 2018
+16. ~/Resume
+17. ~/Work
+18. ~/Work/Projects
+19. ~/Work/Projects/Clients
+20. ~/Work/Projects/Clients/Client A
+21. ~/Work/Projects/Clients/Client A/Consultations
+22. ~/Work/Projects/Clients/Client B
+23. ~/Work/Projects/Clients/Client B/Notes
+24. ~/Work/Projects/Clients/Client B/Notes/Note 1.docx
+25. ~/Work/Projects/Clients/Client B/Notes/Note 2.docx
+26. ~/Work/Projects/Medicinal Plant Research
+",False,True,Final Answer: 21,False,True,Final Answer: 21,False,True
+Final Answer: 11,Final Answer: 3,"Here is the description of what I am searching for: 
+Geospatial Engineering lecture notes from University of Colorado Boulder Coursework. 
+","
+1. ~
+2. ~/Documents
+3. ~/Education
+4. ~/Personal
+5. ~/Personal/Pictures
+6. ~/Personal/Pictures/FamilyVacation2020.jpg
+7. ~/Personal/Pictures/MichaelLeeHiking.jpg
+8. ~/Personal/Travel Documents
+9. ~/Personal/Travel Documents/Passport.pdf
+10. ~/Personal/Travel Documents/Visa.pdf
+11. ~/Projects
+12. ~/Work Experience
+13. ~/Work Experience/Portfolio.pdf
+14. ~/Work Experience/Resume.pdf
+",False,True,Final Answer: 3,True,True,Final Answer: 3,True,True
+Final Answer: 6,Final Answer: 6,"Here is the description of what I am searching for: 
+Geospatial engineering coursework files at University of Colorado Boulder. 
+","
+1. ~
+2. ~/Documents
+3. ~/Documents/Mining Techniques.pptx
+4. ~/Documents/Surveying Notes.docx
+5. ~/Education
+6. ~/Education/University of Colorado Boulder
+7. ~/Personal
+8. ~/Projects
+9. ~/Projects/Gonzalez Inc Project 1
+10. ~/Projects/Gonzalez Inc Project 1/Design Plans.png
+11. ~/Projects/Gonzalez Inc Project 1/Proposal.pdf
+12. ~/Projects/Gonzalez Inc Project 2
+13. ~/Work Experience
+",True,True,Final Answer: 6,True,True,Final Answer: 6,True,True
+Final Answer: 9,Final Answer: 9,"Here is the description of what I am searching for: 
+Gonzalez Inc project design plan image. 
+","
+1. ~
+2. ~/Documents
+3. ~/Documents/Mining Techniques.pptx
+4. ~/Documents/Surveying Notes.docx
+5. ~/Education
+6. ~/Personal
+7. ~/Projects
+8. ~/Projects/Gonzalez Inc Project 1
+9. ~/Projects/Gonzalez Inc Project 1/Design Plans.png
+10. ~/Projects/Gonzalez Inc Project 1/Proposal.pdf
+11. ~/Projects/Gonzalez Inc Project 2
+12. ~/Projects/Gonzalez Inc Project 2/Data Analysis.xlsx
+13. ~/Projects/Gonzalez Inc Project 2/Recommendations.docx
+14. ~/Work Experience
+",True,True,Final Answer: 9,True,True,Final Answer: 9,True,True
+Final Answer: 6,Final Answer: 6,"Here is the description of what I am searching for: 
+Personal education files from University of Colorado Boulder. 
+","
+1. ~
+2. ~/Documents
+3. ~/Documents/Mining Techniques.pptx
+4. ~/Documents/Surveying Notes.docx
+5. ~/Education
+6. ~/Education/University of Colorado Boulder
+7. ~/Education/University of Colorado Boulder/Major: Geospatial Engineering
+8. ~/Personal
+9. ~/Personal/Pictures
+10. ~/Personal/Pictures/FamilyVacation2020.jpg
+11. ~/Personal/Pictures/MichaelLeeHiking.jpg
+12. ~/Personal/Travel Documents
+13. ~/Projects
+14. ~/Work Experience
+",True,True,Final Answer: 6,True,True,Final Answer: 6,True,True
+Final Answer: 10,Final Answer: 10,"Here is the description of what I am searching for: 
+Personal travel documents containing a visa PDF file. 
+","
+1. ~
+2. ~/Documents
+3. ~/Education
+4. ~/Personal
+5. ~/Personal/Pictures
+6. ~/Personal/Pictures/FamilyVacation2020.jpg
+7. ~/Personal/Pictures/MichaelLeeHiking.jpg
+8. ~/Personal/Travel Documents
+9. ~/Personal/Travel Documents/Passport.pdf
+10. ~/Personal/Travel Documents/Visa.pdf
+11. ~/Projects
+12. ~/Work Experience
+13. ~/Work Experience/Portfolio.pdf
+14. ~/Work Experience/Resume.pdf
+",True,True,Final Answer: 10,True,True,Final Answer: 10,True,True
+Final Answer: 8,Final Answer: 8,"Here is the description of what I am searching for: 
+Personal travel passport document PDF file. 
+","
+1. ~
+2. ~/Documents
+3. ~/Education
+4. ~/Personal
+5. ~/Personal/Pictures
+6. ~/Personal/Pictures/FamilyVacation2020.jpg
+7. ~/Personal/Pictures/MichaelLeeHiking.jpg
+8. ~/Personal/Travel Documents
+9. ~/Projects
+10. ~/Projects/Gonzalez Inc Project 1
+11. ~/Projects/Gonzalez Inc Project 1/Design Plans.png
+12. ~/Projects/Gonzalez Inc Project 1/Proposal.pdf
+13. ~/Projects/Gonzalez Inc Project 2
+14. ~/Work Experience
+",True,True,Final Answer: 8,True,True,Final Answer: 8,True,True
+Final Answer: 8,Final Answer: 6,"Here is the description of what I am searching for: 
+Personal directory with private files and folders. 
+","
+1. ~
+2. ~/Documents
+3. ~/Documents/Mining Techniques.pptx
+4. ~/Documents/Surveying Notes.docx
+5. ~/Education
+6. ~/Personal
+7. ~/Personal/Pictures
+8. ~/Personal/Travel Documents
+9. ~/Projects
+10. ~/Work Experience
+11. ~/Work Experience/Portfolio.pdf
+12. ~/Work Experience/Resume.pdf
+",False,True,Final Answer: 6,True,True,Final Answer: 6,True,True
+Final Answer: 4,Final Answer: 4,"Here is the description of what I am searching for: 
+Personal notes on surveying techniques document. 
+","
+1. ~
+2. ~/Documents
+3. ~/Documents/Mining Techniques.pptx
+4. ~/Documents/Surveying Notes.docx
+5. ~/Education
+6. ~/Personal
+7. ~/Personal/Pictures
+8. ~/Personal/Travel Documents
+9. ~/Personal/Travel Documents/Passport.pdf
+10. ~/Personal/Travel Documents/Visa.pdf
+11. ~/Projects
+12. ~/Projects/Gonzalez Inc Project 1
+13. ~/Projects/Gonzalez Inc Project 2
+14. ~/Work Experience
+",True,True,Final Answer: 4,True,True,Final Answer: 4,True,True
+Final Answer: 9,Final Answer: 3,"Here is the description of what I am searching for: 
+UCB Geospatial Engineering Surveying Course Materials 
+","
+1. ~
+2. ~/Documents
+3. ~/Education
+4. ~/Personal
+5. ~/Personal/Pictures
+6. ~/Personal/Pictures/FamilyVacation2020.jpg
+7. ~/Personal/Pictures/MichaelLeeHiking.jpg
+8. ~/Personal/Travel Documents
+9. ~/Projects
+10. ~/Work Experience
+11. ~/Work Experience/Portfolio.pdf
+12. ~/Work Experience/Resume.pdf
+",False,True,Final Answer: 3,True,True,Final Answer: 3,False,True
+Final Answer: 6,Final Answer: 6,"Here is the description of what I am searching for: 
+Gonzalez Incorporated project files for initial development stage. 
+","
+1. ~
+2. ~/Documents
+3. ~/Education
+4. ~/Personal
+5. ~/Projects
+6. ~/Projects/Gonzalez Inc Project 1
+7. ~/Projects/Gonzalez Inc Project 1/Design Plans.png
+8. ~/Projects/Gonzalez Inc Project 1/Proposal.pdf
+9. ~/Projects/Gonzalez Inc Project 2
+10. ~/Projects/Gonzalez Inc Project 2/Data Analysis.xlsx
+11. ~/Projects/Gonzalez Inc Project 2/Recommendations.docx
+12. ~/Work Experience
+13. ~/Work Experience/Portfolio.pdf
+14. ~/Work Experience/Resume.pdf
+",True,True,Final Answer: 6,True,True,Final Answer: 6,True,True
+Final Answer: 11,Final Answer: 11,"Here is the description of what I am searching for: 
+Personal book recommendation project folder for Crawford LLC. 
+","
+1. ~
+2. ~/Hobbies
+3. ~/Hobbies/Reading Notes
+4. ~/Hobbies/Reading Notes/Classics
+5. ~/Hobbies/Reading Notes/Classics/Moby Dick.docx
+6. ~/Hobbies/Reading Notes/Classics/Pride and Prejudice.txt
+7. ~/Hobbies/Reading Notes/Sci-Fi
+8. ~/Hobbies/Reading Notes/Sci-Fi/Dune.docx
+9. ~/Hobbies/Reading Notes/Sci-Fi/The Hitchhiker's Guide to the Galaxy.pdf
+10. ~/Personal
+11. ~/Work
+",True,True,Final Answer: 11,True,True,Final Answer: 11,True,True
+Final Answer: 12,Final Answer: 12,"Here is the description of what I am searching for: 
+PDF resume document for Steven Hill located at personal documents folder. 
+","
+1. ~
+2. ~/Hobbies
+3. ~/Hobbies/Reading Notes
+4. ~/Hobbies/Reading Notes/Classics
+5. ~/Hobbies/Reading Notes/Classics/Moby Dick.docx
+6. ~/Hobbies/Reading Notes/Classics/Pride and Prejudice.txt
+7. ~/Hobbies/Reading Notes/Sci-Fi
+8. ~/Personal
+9. ~/Personal/Books
+10. ~/Personal/Books/The Great Gatsby.txt
+11. ~/Personal/Books/To Kill a Mockingbird.docx
+12. ~/Personal/Documents
+13. ~/Personal/Pictures
+14. ~/Work
+",True,True,Final Answer: 12,True,True,Final Answer: 12,True,True
+Final Answer: 13,Final Answer: 13,"Here is the description of what I am searching for: 
+Colorful photograph from Costa Rica trip, taken during vacation 2019. 
+","
+1. ~
+2. ~/Hobbies
+3. ~/Hobbies/Reading Notes
+4. ~/Personal
+5. ~/Personal/Books
+6. ~/Personal/Books/The Great Gatsby.txt
+7. ~/Personal/Books/To Kill a Mockingbird.docx
+8. ~/Personal/Documents
+9. ~/Personal/Documents/ID Proof.jpg
+10. ~/Personal/Documents/Steven Hill Resume.pdf
+11. ~/Personal/Pictures
+12. ~/Personal/Pictures/2020 Birthday Party.jpg
+13. ~/Personal/Pictures/Vacation 2019
+14. ~/Work
+15. ~/Work/Crawford LLC
+",True,True,Final Answer: 13,True,True,Final Answer: 13,True,True
+Final Answer: 8,Final Answer: 8,"Here is the description of what I am searching for: 
+JPEG image of personal ID proof document. 
+","
+1. ~
+2. ~/Hobbies
+3. ~/Hobbies/Reading Notes
+4. ~/Hobbies/Reading Notes/Classics
+5. ~/Hobbies/Reading Notes/Sci-Fi
+6. ~/Personal
+7. ~/Personal/Books
+8. ~/Personal/Documents
+9. ~/Personal/Pictures
+10. ~/Work
+11. ~/Work/Crawford LLC
+12. ~/Work/Crawford LLC/Book Recommendations
+13. ~/Work/Crawford LLC/Client Information
+14. ~/Work/Crawford LLC/Sales Records
+15. ~/Work/Crawford LLC/Sales Records/Q1 2020.xlsx
+16. ~/Work/Crawford LLC/Sales Records/Q2 2020.xlsx
+",True,True,Final Answer: 8,True,True,Final Answer: 8,True,True
+Final Answer: 8,Final Answer: 7,"Here is the description of what I am searching for: 
+Document file for ""To Kill a Mockingbird"" novel. 
+","
+1. ~
+2. ~/Hobbies
+3. ~/Hobbies/Reading Notes
+4. ~/Personal
+5. ~/Personal/Books
+6. ~/Personal/Books/The Great Gatsby.txt
+7. ~/Personal/Books/To Kill a Mockingbird.docx
+8. ~/Personal/Documents
+9. ~/Personal/Documents/ID Proof.jpg
+10. ~/Personal/Documents/Steven Hill Resume.pdf
+11. ~/Personal/Pictures
+12. ~/Work
+13. ~/Work/Crawford LLC
+",False,True,Final Answer: 7,True,True,Final Answer: 7,True,True
+Final Answer: 8,Final Answer: 8,"Here is the description of what I am searching for: 
+""Photograph from 2019 Costa Rica vacation trip."" 
+","
+1. ~
+2. ~/Hobbies
+3. ~/Hobbies/Reading Notes
+4. ~/Hobbies/Reading Notes/Classics
+5. ~/Hobbies/Reading Notes/Classics/Moby Dick.docx
+6. ~/Hobbies/Reading Notes/Classics/Pride and Prejudice.txt
+7. ~/Hobbies/Reading Notes/Sci-Fi
+8. ~/Personal
+9. ~/Work
+",True,True,Final Answer: 8,True,True,Final Answer: 8,False,True
+Final Answer: 15,Final Answer: 15,"Here is the description of what I am searching for: 
+Home directory for work on Crawford LLC projects. 
+","
+1. ~
+2. ~/Hobbies
+3. ~/Hobbies/Reading Notes
+4. ~/Personal
+5. ~/Personal/Books
+6. ~/Personal/Books/The Great Gatsby.txt
+7. ~/Personal/Books/To Kill a Mockingbird.docx
+8. ~/Personal/Documents
+9. ~/Personal/Documents/ID Proof.jpg
+10. ~/Personal/Documents/Steven Hill Resume.pdf
+11. ~/Personal/Pictures
+12. ~/Personal/Pictures/2020 Birthday Party.jpg
+13. ~/Personal/Pictures/Vacation 2019
+14. ~/Personal/Pictures/Vacation 2019/Costa Rica
+15. ~/Work
+",True,True,Final Answer: 15,True,True,Final Answer: 15,True,True
+Final Answer: 12,Final Answer: 14,"Here is the description of what I am searching for: 
+Personal guide to fiction book recommendations by Crawford LLC. 
+","
+1. ~
+2. ~/Hobbies
+3. ~/Hobbies/Reading Notes
+4. ~/Hobbies/Reading Notes/Classics
+5. ~/Hobbies/Reading Notes/Classics/Moby Dick.docx
+6. ~/Hobbies/Reading Notes/Classics/Pride and Prejudice.txt
+7. ~/Hobbies/Reading Notes/Sci-Fi
+8. ~/Hobbies/Reading Notes/Sci-Fi/Dune.docx
+9. ~/Hobbies/Reading Notes/Sci-Fi/The Hitchhiker's Guide to the Galaxy.pdf
+10. ~/Personal
+11. ~/Personal/Books
+12. ~/Personal/Documents
+13. ~/Personal/Pictures
+14. ~/Work
+",False,True,Final Answer: 14,True,True,Final Answer: 14,False,True
+Final Answer: 11,Final Answer: 10,"Here is the description of what I am searching for: 
+""Sunset over Costa Rican beach captured on vacation."" 
+","
+1. ~
+2. ~/Hobbies
+3. ~/Hobbies/Reading Notes
+4. ~/Hobbies/Reading Notes/Classics
+5. ~/Hobbies/Reading Notes/Classics/Moby Dick.docx
+6. ~/Hobbies/Reading Notes/Classics/Pride and Prejudice.txt
+7. ~/Hobbies/Reading Notes/Sci-Fi
+8. ~/Hobbies/Reading Notes/Sci-Fi/Dune.docx
+9. ~/Hobbies/Reading Notes/Sci-Fi/The Hitchhiker's Guide to the Galaxy.pdf
+10. ~/Personal
+11. ~/Work
+",False,True,Final Answer: 10,True,True,Final Answer: 10,False,True
+Final Answer: 3,Final Answer: 3,"Here is the description of what I am searching for: 
+Home directory with personal files and folders. 
+","
+1. ~
+2. ~/Hobbies
+3. ~/Personal
+4. ~/Personal/Books
+5. ~/Personal/Books/The Great Gatsby.txt
+6. ~/Personal/Books/To Kill a Mockingbird.docx
+7. ~/Personal/Documents
+8. ~/Personal/Pictures
+9. ~/Personal/Pictures/2020 Birthday Party.jpg
+10. ~/Personal/Pictures/Vacation 2019
+11. ~/Work
+12. ~/Work/Crawford LLC
+13. ~/Work/Crawford LLC/Book Recommendations
+14. ~/Work/Crawford LLC/Client Information
+15. ~/Work/Crawford LLC/Sales Records
+16. ~/Work/Crawford LLC/Sales Records/Q1 2020.xlsx
+17. ~/Work/Crawford LLC/Sales Records/Q2 2020.xlsx
+",True,True,Final Answer: 3,True,True,Final Answer: 3,True,True
+Final Answer: 7,Final Answer: 7,"Here is the description of what I am searching for: 
+Excel spreadsheet for 2019 employee performance reviews in Hammond-Hernandez company. 
+","
+1. ~
+2. ~/Financial Documents
+3. ~/Personal Documents
+4. ~/Personal Documents/Birth Certificate.pdf
+5. ~/Personal Documents/ID Card.jpg
+6. ~/Work
+7. ~/Work/Hammond-Hernandez
+",True,True,Final Answer: 7,True,True,Final Answer: 7,True,True
+Final Answer: 2,Final Answer: 2,"Here is the description of what I am searching for: 
+Personal tax return document storage directory. 
+","
+1. ~
+2. ~/Financial Documents
+3. ~/Personal Documents
+4. ~/Work
+5. ~/Work/Hammond-Hernandez
+6. ~/Work/Hammond-Hernandez/Employee Handbook.docx
+7. ~/Work/Hammond-Hernandez/Employee Performance Reviews
+8. ~/Work/Hammond-Hernandez/Employee of the Month Certificates
+9. ~/Work/Hammond-Hernandez/Uniform Policy.pdf
+",True,True,Final Answer: 2,True,True,Final Answer: 2,True,True
+Final Answer: 10,Final Answer: 10,"Here is the description of what I am searching for: 
+Excel document for 2020 employee performance reviews in Hammond-Hernandez company. 
+","
+1. ~
+2. ~/Financial Documents
+3. ~/Financial Documents/Investment Accounts
+4. ~/Financial Documents/Investment Accounts/Bonds.csv
+5. ~/Financial Documents/Investment Accounts/Mutual Funds.csv
+6. ~/Financial Documents/Investment Accounts/Stocks.csv
+7. ~/Financial Documents/Pay stubs
+8. ~/Financial Documents/Tax Returns
+9. ~/Personal Documents
+10. ~/Work
+",True,True,Final Answer: 10,True,True,Final Answer: 10,True,True
+Final Answer: 4,Final Answer: 5,"Here is the description of what I am searching for: 
+""Employee of the Month Certificate for June 2020."" 
+","
+1. ~
+2. ~/Financial Documents
+3. ~/Personal Documents
+4. ~/Work
+5. ~/Work/Hammond-Hernandez
+",False,True,Final Answer: 4,False,True,Final Answer: 4,False,True
+Final Answer: 2,Final Answer: 2,"Here is the description of what I am searching for: 
+Personal finance data: investment accounts' mutual funds details. 
+","
+1. ~
+2. ~/Financial Documents
+3. ~/Personal Documents
+4. ~/Work
+",True,True,Final Answer: 2,True,True,Final Answer: 2,False,True
+Final Answer: 4,Final Answer: 4,"Here is the description of what I am searching for: 
+Personal birth certificate PDF document. 
+","
+1. ~
+2. ~/Financial Documents
+3. ~/Personal Documents
+4. ~/Personal Documents/Birth Certificate.pdf
+5. ~/Personal Documents/ID Card.jpg
+6. ~/Work
+",True,True,Final Answer: 4,True,True,Final Answer: 4,True,True
+Final Answer: 2,Final Answer: 2,"Here is the description of what I am searching for: 
+Home directory folder for financial documents storage. 
+","
+1. ~
+2. ~/Financial Documents
+3. ~/Personal Documents
+4. ~/Work
+",True,True,Final Answer: 2,True,True,Final Answer: 2,False,True
+Final Answer: 8,Final Answer: 8,"Here is the description of what I am searching for: 
+Personal work files for Hammond Hernandez collaboration project. 
+","
+1. ~
+2. ~/Financial Documents
+3. ~/Financial Documents/Investment Accounts
+4. ~/Financial Documents/Pay stubs
+5. ~/Financial Documents/Tax Returns
+6. ~/Personal Documents
+7. ~/Work
+8. ~/Work/Hammond-Hernandez
+",True,True,Final Answer: 8,True,True,Final Answer: 8,True,True
+Final Answer: 3,Final Answer: 3,"Here is the description of what I am searching for: 
+Personal investment bonds financial records data file. 
+","
+1. ~
+2. ~/Financial Documents
+3. ~/Financial Documents/Investment Accounts
+4. ~/Financial Documents/Pay stubs
+5. ~/Financial Documents/Tax Returns
+6. ~/Personal Documents
+7. ~/Personal Documents/Birth Certificate.pdf
+8. ~/Personal Documents/ID Card.jpg
+9. ~/Work
+",True,True,Final Answer: 3,True,True,Final Answer: 3,True,True
+Final Answer: 2,Final Answer: 2,"Here is the description of what I am searching for: 
+Personal investment data file: stocks accounts, financial records. 
+","
+1. ~
+2. ~/Financial Documents
+3. ~/Personal Documents
+4. ~/Work
+5. ~/Work/Hammond-Hernandez
+6. ~/Work/Hammond-Hernandez/Employee Handbook.docx
+7. ~/Work/Hammond-Hernandez/Employee Performance Reviews
+8. ~/Work/Hammond-Hernandez/Employee of the Month Certificates
+9. ~/Work/Hammond-Hernandez/Uniform Policy.pdf
+",True,True,Final Answer: 2,True,True,Final Answer: 2,True,True
+Final Answer: 3,Final Answer: 3,"Here is the description of what I am searching for: 
+Compressed archive for financial investment reports. 
+","
+1. ~
+2. ~/Career
+3. ~/Finance
+4. ~/Personal
+",True,True,Final Answer: 4,False,True,Final Answer: 4,False,True
+Final Answer: 5,Final Answer: 5,"Here is the description of what I am searching for: 
+Image of hospital staff ID card for doctor's career. 
+","
+1. ~
+2. ~/Career
+3. ~/Career/Hospital Doctor
+4. ~/Career/Hospital Doctor/Smith, Allen and Rosales Handbook.pdf
+5. ~/Career/Hospital Doctor/Staff Identification Card.jpg
+6. ~/Career/Hospital Doctor/Work Schedule.xlsx
+7. ~/Finance
+8. ~/Finance/Budget Tracker.xlsx
+9. ~/Finance/Investment Reports.zip
+10. ~/Personal
+",True,True,Final Answer: 5,True,True,Final Answer: 5,True,True
+Final Answer: 2,Final Answer: 2,"Here is the description of what I am searching for: 
+Personal career folder for hospital doctor resources. 
+","
+1. ~
+2. ~/Career
+3. ~/Finance
+4. ~/Finance/Budget Tracker.xlsx
+5. ~/Finance/Investment Reports.zip
+6. ~/Personal
+",True,True,Final Answer: 2,True,True,Final Answer: 2,False,True
+Final Answer: 9,Final Answer: 9,"Here is the description of what I am searching for: 
+A Word document for a university thesis on medicine degree. 
+","
+1. ~
+2. ~/Career
+3. ~/Career/Hospital Doctor
+4. ~/Finance
+5. ~/Personal
+6. ~/Personal/Documents
+7. ~/Personal/Documents/Medical Certifications.zip
+8. ~/Personal/Documents/Michelle Becker Resume.pdf
+9. ~/Personal/Education
+10. ~/Personal/Pictures
+",True,True,Final Answer: 9,True,True,Final Answer: 9,True,True
+Final Answer: 2,Final Answer: 2,"Here is the description of what I am searching for: 
+Excel spreadsheet for doctor's work schedule at hospital. 
+","
+1. ~
+2. ~/Career
+3. ~/Finance
+4. ~/Personal
+5. ~/Personal/Documents
+6. ~/Personal/Documents/Medical Certifications.zip
+7. ~/Personal/Documents/Michelle Becker Resume.pdf
+8. ~/Personal/Education
+9. ~/Personal/Pictures
+10. ~/Personal/Pictures/FamilyVacation.jpg
+11. ~/Personal/Pictures/GraduationDay.jpg
+",True,True,Final Answer: 2,True,True,Final Answer: 2,True,True
+Final Answer: 6,Final Answer: 6,"Here is the description of what I am searching for: 
+Personal photo collection storage folder. 
+","
+1. ~
+2. ~/Career
+3. ~/Finance
+4. ~/Finance/Budget Tracker.xlsx
+5. ~/Finance/Investment Reports.zip
+6. ~/Personal
+",True,True,Final Answer: 6,True,True,Final Answer: 6,True,True
+Final Answer: 6,Final Answer: 2,"Here is the description of what I am searching for: 
+Medical handbook by Smith, Allen & Rosales. 
+","
+1. ~
+2. ~/Career
+3. ~/Finance
+4. ~/Finance/Budget Tracker.xlsx
+5. ~/Finance/Investment Reports.zip
+6. ~/Personal
+",False,True,Final Answer: 6,False,True,Final Answer: 6,False,True
+Final Answer: 5,Final Answer: 5,"Here is the description of what I am searching for: 
+This is a home directory folder for personal education files or projects. 
+","
+1. ~
+2. ~/Career
+3. ~/Career/Hospital Doctor
+4. ~/Finance
+5. ~/Personal
+",True,True,Final Answer: 5,True,True,Final Answer: 5,False,True
+Final Answer: 2,Final Answer: 2,"Here is the description of what I am searching for: 
+Personal career development folder containing various files and subfolders. 
+","
+1. ~
+2. ~/Career
+3. ~/Career/Hospital Doctor
+4. ~/Finance
+5. ~/Personal
+6. ~/Personal/Documents
+7. ~/Personal/Education
+8. ~/Personal/Pictures
+9. ~/Personal/Pictures/FamilyVacation.jpg
+10. ~/Personal/Pictures/GraduationDay.jpg
+",True,True,Final Answer: 2,True,True,Final Answer: 2,True,True
+Final Answer: 7,Final Answer: 7,"Here is the description of what I am searching for: 
+Personal documents and folders stored on user's home directory. 
+","
+1. ~
+2. ~/Career
+3. ~/Career/Hospital Doctor
+4. ~/Finance
+5. ~/Finance/Budget Tracker.xlsx
+6. ~/Finance/Investment Reports.zip
+7. ~/Personal
+",True,True,Final Answer: 7,True,True,Final Answer: 7,False,True

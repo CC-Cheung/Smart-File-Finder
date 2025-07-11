@@ -24,13 +24,13 @@ FINETUNED_PATH=os.path.join(MODELS_PATH, 'finetuned')
 PROCESSED_DATA_PATH=os.path.join(DATA_PATH, 'processed')
 RAW_DATA_PATH=os.path.join(DATA_PATH, 'raw')
 USED_DATA_PATH=os.path.join(DATA_PATH, 'used')
-DATASET_PATH=os.path.join(USED_DATA_PATH, 'used_dataset_SUA_number_list.json')
+DATASET_PATH=os.path.join(USED_DATA_PATH, 'used_dataset_SUA_pick_number.json')
 
 
 MODEL_NAME="unsloth/mistral-7b-instruct-v0.3-bnb-4bit"
 # MODEL_NAME="unsloth/Meta-Llama-3.1-8B-Instruct-bnb-4bit"
-MODEL_NAME=os.path.join(FINETUNED_PATH, 'mistral_SUA_number_list2')
-SAVE_MODEL_NAME=os.path.join(FINETUNED_PATH, "mistral_SUA_number_list3")
+MODEL_NAME=os.path.join(FINETUNED_PATH, 'mistral_SUA_pick_number2')
+SAVE_MODEL_NAME=os.path.join(FINETUNED_PATH, "mistral_SUA_pick_number3")
 def pre_apply_chat_template(example):  
     conversations = example["text"]  
     input_ids = tokenizer.apply_chat_template(conversations, tokenize=True, add_generation_prompt=False)  
@@ -60,7 +60,7 @@ if __name__ == "__main__":
 
     dataset = dataset.map(pre_apply_chat_template)  
 
-    ###Comment out if from my pretrained
+    ##Comment out if from my pretrained
     # lora_configs = {
     #     "r": 16, # Choose any number > 0 ! Suggested 8, 16, 32, 64, 128
     #     "target_modules": ["q_proj", "k_proj", "v_proj", "o_proj",
@@ -72,18 +72,7 @@ if __name__ == "__main__":
     #     "loftq_config": None, 
     # }
     # model = FastLanguageModel.get_peft_model(
-    #     model, **lora_configs
-    #     # r = 16, # Choose any number > 0 ! Suggested 8, 16, 32, 64, 128
-    #     # target_modules = ["q_proj", "k_proj", "v_proj", "o_proj",
-    #     #                 "gate_proj", "up_proj", "down_proj",],
-    #     # lora_alpha = 16,
-    #     # lora_dropout = 0, # Supports any, but = 0 is optimized
-    #     # bias = "none",    # Supports any, but = "none" is optimized
-    #     # # [NEW] "unsloth" uses 30% less VRAM, fits 2x larger batch sizes!
-    #     # use_gradient_checkpointing = "unsloth", # True or "unsloth" for very long context
-    #     # random_state = 3407,
-    #     # use_rslora = False,  # We support rank stabilized LoRA
-    #     # loftq_config = None, # And LoftQ
+    #     model, **lora_configs       
     # )
 
     # wandb.login(key="WANDB_API_KEY")
@@ -105,12 +94,14 @@ if __name__ == "__main__":
         dataset_text_field="input_ids",
         max_seq_length=2048,
         args=TrainingArguments(
-            per_device_train_batch_size=2,
-            gradient_accumulation_steps=4,
-            learning_rate=2e-5,
+            # per_device_train_batch_size=2,
+            # gradient_accumulation_steps=4,
+            # learning_rate=2e-5,
+            
             output_dir=FINETUNED_PATH,
             report_to = "wandb", # Use this for WandB etc
             logging_steps=1,  # ADD THIS: Log after every step [1][7]
+            resume_from_checkpoint=True
             # max_steps=5,
         ),
 

@@ -1,8 +1,8 @@
-# from unsloth import FastLanguageModel
+from unsloth import FastLanguageModel
 import os
 import subprocess
-# from unsloth import get_chat_template
-
+from unsloth import get_chat_template
+import transformers
 FILE_PATH=os.path.dirname(os.path.abspath(__file__))
 CODE_PATH= os.path.join(FILE_PATH, '..', '..')
 MODEL_PATH=os.path.join(CODE_PATH, 'models')
@@ -12,85 +12,28 @@ BASE_MODEL_NAME = "unsloth/mistral-7b-instruct-v0.3-bnb-4bit"
 #Careful about name length
 #Careful about debugging
 FINETUNED_PATH="/home/kids/Linux_Coding/Smart-File-Finder/model_training/models/finetuned/"
-GGUF_PATH = os.path.join(FINETUNED_PATH, 'mistral_SUA_number_list3.gguf')
-ADAPTER_PATH = os.path.join(FINETUNED_PATH, 'mistral_SUA_number_list3')
+GGUF_PATH = os.path.join(FINETUNED_PATH, 'mistral_SUA_pick_number.gguf')
+ADAPTER_PATH = os.path.join(FINETUNED_PATH, 'mistral_SUA_pick_number')
 
 #Double check
 OLLAMA_PATH = os.path.join(FINETUNED_PATH, 'ollama')
-OLLAMA_MODEL_NAME="mistral_SUA_number_list3"
+OLLAMA_MODEL_NAME="mistral_SUA_pick_number"
 MODEL_FILE_NAME="Modelfile"
-# def formatting_prompts_func(example, method):    
-#     if method=="io":
-#         instruction = (
-#             "Given the following partial folder tree and file/folder description, "
-#             "predict which file/folder does the user wants or if not visible, predict the folder to explore.\n"
-#             f"Folder tree:\n{example['visible_tree']}\n"
-#             f"File/Folder description: {example['desired_description']}"
-#         )
-#         return {
-#             "instruction": instruction,
-#             "output": example["deepest_folder"]
-#         }
-#     elif method=="sys_use_ass":
-#         return {
-#             "text": [
-#                     {"role": "system", 
-#                      "content": "You are a file retrieval assistant. "
-#                                 "Given the following partial folder tree and file/folder description, "
-#                                 "If the desired file/folder is visible, output it, else, predict the next folder to explore.\n"},
 
-#                     {"role": "user", 
-#                      "content": f"Folder tree:\n{example['visible_tree']}\n"
-#                                 f"File/Folder description: {example['desired_description']}"},
-
-#                     {"role": "assistant", "content": example["deepest_folder"]},
-#                 ]            
-#         }
-    
-##WEIRD ERROR IF DIRECTLY FROM ADAPTER_PATH
-# model, tokenizer = FastLanguageModel.from_pretrained(
-#     model_name="unsloth/mistral-7b-instruct-v0.3-bnb-4bit",
-#     max_seq_length=2048,
-#     load_in_4bit=True,
-# )
-# Load adapter from directory
-# model.load_adapter(ADAPTER_PATH)
-
-
-# 1. Enable inference mode
-
-# GET GGUF first if not done
-# DO NOT model.load_adapter(ADAPTER_PATH). Use adapater path directly with FastLanguageModel.from_pretrained(
+  
+# # GET GGUF first if not done
+# # DO NOT model.load_adapter(ADAPTER_PATH). Use adapater path directly with FastLanguageModel.from_pretrained(
 # model, tokenizer = FastLanguageModel.from_pretrained(
 #     model_name=ADAPTER_PATH,
 #     max_seq_length=2048,
 #     load_in_4bit=True,
 # )
+# # model, tokenizer = FastLanguageModel.from_pretrained(
+# #     model_name=BASE_MODEL_NAME,
+# #     max_seq_length=2048,
+# #     load_in_4bit=True,
+# # )
 
-# lora_configs = {
-#     "r": 16, # Choose any number > 0 ! Suggested 8, 16, 32, 64, 128
-#     "target_modules": ["q_proj", "k_proj", "v_proj", "o_proj",
-#                     "gate_proj", "up_proj", "down_proj",],
-#     "lora_alpha": 16,
-#     "lora_dropout": 0, # Supports any, but = 0 is optimized
-#     "bias": "none",
-#     "use_rslora": False, 
-#     "loftq_config": None, 
-# }
-# model = FastLanguageModel.get_peft_model(
-#     model, **lora_configs
-#     # r = 16, # Choose any number > 0 ! Suggested 8, 16, 32, 64, 128
-#     # target_modules = ["q_proj", "k_proj", "v_proj", "o_proj",
-#     #                 "gate_proj", "up_proj", "down_proj",],
-#     # lora_alpha = 16,
-#     # lora_dropout = 0, # Supports any, but = 0 is optimized
-#     # bias = "none",    # Supports any, but = "none" is optimized
-#     # # [NEW] "unsloth" uses 30% less VRAM, fits 2x larger batch sizes!
-#     # use_gradient_checkpointing = "unsloth", # True or "unsloth" for very long context
-#     # random_state = 3407,
-#     # use_rslora = False,  # We support rank stabilized LoRA
-#     # loftq_config = None, # And LoftQ
-# )
 # FastLanguageModel.for_inference(model) 
 
 # tokenizer = get_chat_template(
@@ -107,7 +50,7 @@ MODEL_FILE_NAME="Modelfile"
 # )
 
 pass
-modelfile_content='''FROM /home/kids/Linux_Coding/Smart-File-Finder/model_training/models/finetuned/mistral_SUA_number_list3.gguf/unsloth.Q4_K_M.gguf
+modelfile_content='''FROM /home/kids/Linux_Coding/Smart-File-Finder/model_training/models/finetuned/mistral_SUA_pick_number.gguf/unsloth.Q4_K_M.gguf
 TEMPLATE """{{- if .Messages }}
 {{- range $index, $_ := .Messages }}
 {{- if eq .Role "user" }}

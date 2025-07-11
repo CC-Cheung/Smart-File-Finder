@@ -35,24 +35,49 @@ USED_DATA_PATH=os.path.join(DATA_PATH, 'used')
 
 def is_final_answer_in_choices(row):
     # Extract choices from prompt
-    choices = re.findall(r'\d+\.\s*(.+)', row['description'])
-    choices = [choice.strip() for choice in choices]
+    final_line=row['description'].splitlines()[-1]
+    largest_number = int(re.match(r'\d+', final_line)[0])
+    try:
+        choice = int(re.match(r'\d+', row['outputs'].lstrip('Final Answer: '))[0])
+    except:
+        return None
     # Extract final answer from output
-    answer = row['outputs'].lstrip('Final Answer: ')
-    return answer in choices
+    return largest_number>=choice
     # Check if final answer is in choices
-
+def clean_output(x):
+    result = re.search(r'Final Answer: \d+', x, re.IGNORECASE)
+    if result:
+        return result[0]
+    else:
+        return x
+    return result.group(0)
 # all_results = []
-df=pd.read_csv(os.path.join(LOGS_PATH,'outputs_SUA_number_list2.csv'))
-df2=pd.read_csv(os.path.join(LOGS_PATH,'outputs_SUA_number_list3.csv'))
-df3=df.copy()
-df3['outputs_2']=df2['outputs']
-df3['match_2']=df2['match']
-df3['same']=df2['match']==df['match']
+df=pd.read_csv(os.path.join(LOGS_PATH,'outputs_mistral_SUA_pick_number.csv'))
+df['outputs']=df['outputs'].map(clean_output) 
 
-df3['is_valid'] = df.apply(is_final_answer_in_choices, axis=1)
-df3['is_valid2'] = df2.apply(is_final_answer_in_choices, axis=1)
+# df['match'] = df['outputs'] == df['correct_outputs']
+df2=pd.read_csv(os.path.join(LOGS_PATH,'outputs_mistral_SUA_pick_number2.csv'))
+df2['outputs']=df2['outputs'].map(clean_output)
+
+df3=pd.read_csv(os.path.join(LOGS_PATH,'outputs_mistral_SUA_pick_number3.csv'))
+df3['outputs']=df2['outputs'].map(clean_output)
+
+df['is_valid'] = df.apply(is_final_answer_in_choices, axis=1)
+df2['is_valid'] = df2.apply(is_final_answer_in_choices, axis=1)
+df3['is_valid'] = df3.apply(is_final_answer_in_choices, axis=1)
+
+df4=df.copy()
+df4['outputs_2']=df2['outputs']
+df4['match_2']=df2['match']
+df4['is_valid_2']=df2['is_valid']
+df4['outputs_3']=df3['outputs']
+df4['match_3']=df3['match']
+df4['is_valid_3']=df3['is_valid']
+
+# df4['same']=df2['match']==df['match']
+
+
 pass
-# df.to_csv(os.path.join(LOGS_PATH,'outputs.csv'), index=False)
+# df.to_csv(os.path.join(LOGS_PATH,'outputs_mistral_SUA_pick_number.csv'), index=False)
 
 # df = df.loc[:, ~df.columns.str.contains('^Unnamed')]

@@ -7,7 +7,8 @@ from treelib import Tree
 import os
 import logging
 # Change to your fine-tuned model if needed
-MODEL_NAME = "mistral_SUA_number_list3:latest"
+MODEL_NAME = "mistral_SUA_pick_number3:latest"
+# MODEL_NAME = "deepseek-r1:8b"
 
 SELECTION_PHRASE = "The desired file/folder is "
 EXPLORATION_PHRASE = "The next folder to open is "
@@ -32,12 +33,22 @@ class FileExplorerTree:
         root_path=os.path.basename(full_root_path)
         self.path_before_root = full_root_path.rstrip(root_path)
         self.tree.create_node(tag=root_path, identifier=root_path)
+        self.numbered_files={}
         self.blacklist=[]
     def handle_suggestion(self, suggestion, logger):
         """Add the real children of folder_path to the tree, only if folder_path is already in the tree."""
-        path=suggestion.split(ANSWER_PHRASE)[-1].strip("\t\n\r\f\v"+PUNCTUATION)
-        path=path.lstrip("\t\n\r\f\v "+PUNCTUATION+string.digits)
-        path=path.rstrip("\t\n\r\f\v "+PUNCTUATION)
+        path_num=re.search(r'\d+', suggestion.strip(ANSWER_PHRASE))
+        
+        if path_num:
+            path_num = int(path_num[0])
+        else:
+            raise AllowedError(f"The output '{suggestion}' cannot be parsed. Cannot explore.")
+        self.update_numbered_files()
+
+        if path_num not in self.numbered_files.keys():
+            raise AllowedError(f"Option number '{path_num}' out of bounds. Cannot explore.")
+        else:
+            path=self.numbered_files[path_num]
 
         logger.main_program_info(f"Model suggestion: {path}")
 
@@ -63,14 +74,23 @@ class FileExplorerTree:
     
     def list_nodes(self, folder_path=None):
         output=""
-        i=0
+        i=1
         
         for key in self.tree.nodes.keys():
             if key in self.blacklist:
                 continue
-            output += f"{i+1}. {key}\n"
+            output += f"{i}. {key}\n"
             i+=1
         return output
+    
+    def update_numbered_files(self):
+        self.numbered_files={}
+        i=1
+        for key in self.tree.nodes.keys():
+            if key in self.blacklist:
+                continue
+            self.numbered_files[i]=key
+            i+=1
 
     
 def prompt_model(description, tree):
@@ -80,7 +100,7 @@ def prompt_model(description, tree):
 - You must choose one of those items by the following 2 rules:
     1. If the described item is in the visible list, choose it.         
     2. If not visible, choose the next folder to open.
-- The answer is in the format "Final Answer: {path to file/folder}"
+- The answer is in the format "Final Answer: {the number corresponding to the path to file/folder}" (e.g. "Final Answer: 4")
 - Again, the answer is within the list of visible items.
 """
     user_prompt=f'''Here is the description of what I am searching for: 
@@ -151,7 +171,8 @@ def main():
     testing+=[testing[-1]]
     i=0
     result=None
-    
+    num_bad_outputs=0
+
     while True:
         
         suggestion = prompt_model(description, visible_tree.list_nodes())
