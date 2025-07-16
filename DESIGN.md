@@ -15,7 +15,7 @@ The model does not differentiate between selecting vs. exploring because it was 
 Synthetic data generation was used generate the training data samples since there was no premade dataset. The process was as follows:
 1. Various personas were created using the Faker library. 
 2. These were fed into the dolphin3 ollama model to create a variety of file systems. 
-3. These were then cleaned and multiple partial views were obtained from each. 
+3. These were then cleaned and multiple partial views were obtained from each.
 4. Next, a random desired file/folder in the file system was selected per partial view. A description of desired file/folder was generated with dolphin3 and the correct output (number corresponding to desired file/folder or the deepest available folder) was determined.
 5. This information was packaged into the model prompt and answer format.
 
