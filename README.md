@@ -14,8 +14,5 @@ The Smart-File-Finder is CLI app that smartly navigates file systems based on a 
 3. See [DESIGN.md](./DESIGN.md) for a design report of the app.
 ## Demo
 
-<video src="media/command_usage.mp4" width="600" controls></video>
+[<video src="media/command_usage.mp4" width="600" controls></video>](https://github.com/user-attachments/assets/cb8dc5bc-642e-4f98-bb4b-02677aeaafcb)
 
-## License
-
-MIT
