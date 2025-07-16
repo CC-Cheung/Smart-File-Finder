@@ -76,6 +76,7 @@ df4['is_valid_3']=df3['is_valid']
 
 # df4['same']=df2['match']==df['match']
 
+df4.to_csv(os.path.join(LOGS_PATH,'mistral_SUA_pick_number_results.csv'), index=False)
 
 pass
 # df.to_csv(os.path.join(LOGS_PATH,'outputs_mistral_SUA_pick_number.csv'), index=False)

@@ -2,7 +2,6 @@ from unsloth import FastLanguageModel
 import os
 import subprocess
 from unsloth import get_chat_template
-import transformers
 FILE_PATH=os.path.dirname(os.path.abspath(__file__))
 CODE_PATH= os.path.join(FILE_PATH, '..', '..')
 MODEL_PATH=os.path.join(CODE_PATH, 'models')
@@ -21,35 +20,31 @@ OLLAMA_MODEL_NAME="mistral_SUA_pick_number"
 MODEL_FILE_NAME="Modelfile"
 
   
-# # GET GGUF first if not done
-# # DO NOT model.load_adapter(ADAPTER_PATH). Use adapater path directly with FastLanguageModel.from_pretrained(
-# model, tokenizer = FastLanguageModel.from_pretrained(
-#     model_name=ADAPTER_PATH,
-#     max_seq_length=2048,
-#     load_in_4bit=True,
-# )
-# # model, tokenizer = FastLanguageModel.from_pretrained(
-# #     model_name=BASE_MODEL_NAME,
-# #     max_seq_length=2048,
-# #     load_in_4bit=True,
-# # )
+# GET GGUF first if not done
+# DO NOT model.load_adapter(ADAPTER_PATH). Use adapater path directly with FastLanguageModel.from_pretrained(
+model, tokenizer = FastLanguageModel.from_pretrained(
+    model_name=ADAPTER_PATH,
+    max_seq_length=2048,
+    load_in_4bit=True,
+)
 
-# FastLanguageModel.for_inference(model) 
+FastLanguageModel.for_inference(model) 
 
-# tokenizer = get_chat_template(
-#         tokenizer,
-#         chat_template = "mistral", # change this to the right chat_template name
-#     )
+tokenizer = get_chat_template(
+        tokenizer,
+        chat_template = "mistral", # change this to the right chat_template name
+    )
 
 
-# model.save_pretrained_gguf(
-#         GGUF_PATH,
-#         tokenizer,
-#         quantization_method="q4_k_m",
-#         maximum_memory_usage=0.0001,
-# )
+model.save_pretrained_gguf(
+        GGUF_PATH,
+        tokenizer,
+        quantization_method="q4_k_m",
+        maximum_memory_usage=0.0001,
+)
 
 pass
+# Edit the FROM location to the gguf file
 modelfile_content='''FROM /home/kids/Linux_Coding/Smart-File-Finder/model_training/models/finetuned/mistral_SUA_pick_number.gguf/unsloth.Q4_K_M.gguf
 TEMPLATE """{{- if .Messages }}
 {{- range $index, $_ := .Messages }}

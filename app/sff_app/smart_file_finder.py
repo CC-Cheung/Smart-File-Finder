@@ -93,7 +93,7 @@ class FileExplorerTree:
             i+=1
 
     
-def prompt_model(description, tree):
+def prompt_model(description, tree, model_name):
     # From training
     system_prompt="""You are a file-finder AI. Your task:
 - The user provides a file/folder description and a list of visible items.
@@ -110,7 +110,7 @@ Here are the visible items. Choose one of the following:
 {tree}
 '''
     response = ollama.chat(
-        model=MODEL_NAME,
+        model=model_name,
         messages=[
             {'role': 'system', 'content': system_prompt},
             {'role': 'user', 'content': user_prompt}
@@ -147,6 +147,7 @@ def main():
     parser = argparse.ArgumentParser(description="Smart File Finder with Ollama model")
     parser.add_argument("description", help="File/folder description to search for")
     parser.add_argument(
+        "-s",
         "--start",
         default=os.getcwd(),
         help="Start folder for the search (default: current working directory)"
@@ -158,8 +159,16 @@ def main():
         help="See intermediate folders"
     )
 
+    parser.add_argument(
+        "-m",
+        "--model",
+        default= "mistral_SUA_pick_number3:latest",
+        help="Type ollama list and copy the model name (eg. mymodel:latest)"
+    )
+
 
     args = parser.parse_args()
+    model_name=args.model
     logger=get_logger(MAIN_PROGRAM_INFO if args.verbose else MAIN_PROGRAM)
 
     description = args.description
@@ -175,7 +184,7 @@ def main():
 
     while True:
         
-        suggestion = prompt_model(description, visible_tree.list_nodes())
+        suggestion = prompt_model(description, visible_tree.list_nodes(), model_name=model_name)
 
         try:
             result=visible_tree.handle_suggestion(suggestion, logger)
@@ -184,7 +193,7 @@ def main():
             logger.main_program_info(e)
             num_bad_outputs+=1
             if num_bad_outputs>20:
-                logger.main_program("Too many (>20) bad outputs in a row. Try searching yoruself")
+                logger.main_program("Too many (>20) bad outputs in a row. Try searching yourself")
                 break
             continue
         except Exception as e:

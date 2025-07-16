@@ -133,24 +133,24 @@ def generate_sample():
 
 if __name__ == "__main__":
     # Verify Ollama service is running first (`ollama serve` in another terminal)
-    # dataset = []
-    # fake=Faker()
-    # for i in range(NUM_SAMPLES):
-    #     try:
-    #         sample = generate_sample()
-    #         dataset.append(sample)
-    #         print(f"Generated sample {i+1}/{NUM_SAMPLES}")
-    #         time.sleep(SLEEP_TIME)
-    #     except Exception as e:
-    #         print(f"Error generating sample {i+1}: {str(e)}")
+    dataset = []
+    fake=Faker()
+    for i in range(NUM_SAMPLES):
+        try:
+            sample = generate_sample()
+            dataset.append(sample)
+            print(f"Generated sample {i+1}/{NUM_SAMPLES}")
+            time.sleep(SLEEP_TIME)
+        except Exception as e:
+            print(f"Error generating sample {i+1}: {str(e)}")
     
-    # with open(os.path.join(RAW_DATA_PATH,FILE_NAME), 'w') as f:
-    #     json.dump(dataset, f, indent=2)
+    with open(os.path.join(RAW_DATA_PATH,FILE_NAME), 'w') as f:
+        json.dump(dataset, f, indent=2)
     
-    # print(f"\nDataset saved to {FILE_NAME} ({len(dataset)} samples)")
+    print(f"\nDataset saved to {FILE_NAME} ({len(dataset)} samples)")
 
-    with open(os.path.join(RAW_DATA_PATH,FILE_NAME), 'r') as f:
-        file_system_dataset = json.load(f)   
-        pass
+    # with open(os.path.join(RAW_DATA_PATH,FILE_NAME), 'r') as f:
+    #     file_system_dataset = json.load(f)   
+    #     pass
 
 

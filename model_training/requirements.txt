@@ -1,0 +1,15 @@
+bitsandbytes~=0.45.5
+datasets~=3.6.0
+Faker~=37.4.0
+numpy~=2.3.1
+packaging~=25.0
+pandas~=2.3.1
+psutil~=7.0.0
+torch~=2.7.0
+transformers~=4.51.3
+treelib~=1.7.1
+trl~=0.15.2
+unsloth~=2025.5.6
+unsloth_zoo~=2025.5.7
+vllm~=0.9.2
+wandb~=0.21.0

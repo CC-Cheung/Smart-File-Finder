@@ -209,13 +209,7 @@ def generate_visibility(complete_tree, desired):
     """
 
     visible_tree=random_tree_subset(complete_tree=complete_tree, percentage=0.5)
-    # visible_tree=random_tree_subset_ratio(complete_tree=complete_tree, percentage=PERCENTAGE, new_tree_density=NEW_TREE_DENSITY)
     
-    #remove desired (OLD)
-    # if desired in visible_tree.nodes:
-    #     for sibling in visible_tree.siblings(desired):
-    #         visible_tree.remove_node(sibling.identifier)
-    #     visible_tree.remove_node(desired)
     if desired in visible_tree.nodes:
         deepest_visible=desired
     else: 
@@ -274,69 +268,69 @@ def formatting_prompts_func(example, method):
             "output": example["deepest_folder"]
         }
     #used for mistral
-    elif method=="sys_use_ass":
-        return {
-            "text": [
-                    {"role": "system", 
-                     "content": "You are a file retrieval assistant. "
-                                "Given the following partial folder tree and file/folder description, "
-                                "If the desired file/folder is visible, output it, else, predict the next folder to explore.\n"},
+#     elif method=="sys_use_ass":
+#         return {
+#             "text": [
+#                     {"role": "system", 
+#                      "content": "You are a file retrieval assistant. "
+#                                 "Given the following partial folder tree and file/folder description, "
+#                                 "If the desired file/folder is visible, output it, else, predict the next folder to explore.\n"},
 
-                    {"role": "user", 
-                     "content": f"Folder tree:\n{example['visible_tree']}\n"
-                                f"File/Folder description: {example['desired_description']}"
-                                f"Pick one of the following: {example['visible_tree']}"}, ###
+#                     {"role": "user", 
+#                      "content": f"Folder tree:\n{example['visible_tree']}\n"
+#                                 f"File/Folder description: {example['desired_description']}"
+#                                 f"Pick one of the following: {example['visible_tree']}"}, ###
 
-                    {"role": "assistant", "content": example["deepest_folder"]},
-                ]            
-        }
+#                     {"role": "assistant", "content": example["deepest_folder"]},
+#                 ]            
+#         }
     
-    elif method=="sys_use_ass_list":
+#     elif method=="sys_use_ass_list":
 
-        return {
-            "text": [
-                    {"role": "system", 
-                     "content": "You are a file retrieval assistant. "
-                                "Given the following file/folder description and a partial folder tree, "
-                                "if the desired file/folder is visible, output it, else, predict the next folder to explore.\n"},
+#         return {
+#             "text": [
+#                     {"role": "system", 
+#                      "content": "You are a file retrieval assistant. "
+#                                 "Given the following file/folder description and a partial folder tree, "
+#                                 "if the desired file/folder is visible, output it, else, predict the next folder to explore.\n"},
 
-                    {"role": "user", 
-                     "content": 
-f"""File/Folder description: 
-{example['desired_description']}
-Pick from one of the following:"""+
-'\n'.join(extract_paths(example['visible_tree']))},
+#                     {"role": "user", 
+#                      "content": 
+# f"""File/Folder description: 
+# {example['desired_description']}
+# Pick from one of the following:"""+
+# '\n'.join(extract_paths(example['visible_tree']))},
 
-                    {"role": "assistant", "content": example["deepest_folder"]},
-                ]            
-        }
-    elif method=="SUA_number_list":
-        path_str="\n".join([f"{i+1}. {path}" for i,path in enumerate(extract_paths(example['visible_tree']))])
-        return {
-            "text": [
-                {"role": "system", 
-                    "content": 
-"""You are a file-finder AI. Your task:
-- The user provides a file/folder description and a list of visible items.
-- You must choose one of those items by the following 2 rules:
-    1. If the described item is in the visible list, choose it.         
-    2. If not visible, choose the next folder to open.
-- The answer is in the format "Final Answer: {path to file/folder}"
-- Again, the answer is within the list of visible items.
-"""},
+#                     {"role": "assistant", "content": example["deepest_folder"]},
+#                 ]            
+#         }
+#     elif method=="SUA_number_list":
+#         path_str="\n".join([f"{i+1}. {path}" for i,path in enumerate(extract_paths(example['visible_tree']))])
+#         return {
+#             "text": [
+#                 {"role": "system", 
+#                     "content": 
+# """You are a file-finder AI. Your task:
+# - The user provides a file/folder description and a list of visible items.
+# - You must choose one of those items by the following 2 rules:
+#     1. If the described item is in the visible list, choose it.         
+#     2. If not visible, choose the next folder to open.
+# - The answer is in the format "Final Answer: {path to file/folder}"
+# - Again, the answer is within the list of visible items.
+# """},
 
-                {"role": "user", 
-                    "content":                     
-f"""Here is the description of what I am searching for: 
-{example['desired_description']} 
+#                 {"role": "user", 
+#                     "content":                     
+# f"""Here is the description of what I am searching for: 
+# {example['desired_description']} 
 
-Here are the visible items. Choose one of the following: 
-{path_str}
-"""},
+# Here are the visible items. Choose one of the following: 
+# {path_str}
+# """},
                 
-                {"role": "assistant", "content": "Final Answer: "+ example["deepest_folder"]},
-            ]            
-        }
+#                 {"role": "assistant", "content": "Final Answer: "+ example["deepest_folder"]},
+#             ]            
+#         }
     elif method=="SUA_pick_number":
         final_answer=str([i+1 for i,path in enumerate(extract_paths(example['visible_tree'])) if path==example["deepest_folder"]][0])
         path_str="\n".join([f"{i+1}. {path}" for i,path in enumerate(extract_paths(example['visible_tree']))])
@@ -367,33 +361,28 @@ Here are the visible items. Choose one of the following:
         }
 # Example usage
 if __name__ == "__main__":
-    # np.random.seed(42)
-    # with open(os.path.join(RAW_DATA_PATH, 'file_systems_dataset.json'), 'r') as f:
-    #     file_system_dataset = json.load(f)   
+    np.random.seed(42)
+    with open(os.path.join(RAW_DATA_PATH, 'file_systems_dataset.json'), 'r') as f:
+        file_system_dataset = json.load(f)   
 
-    # all_dataset = generate_dataset(file_system_dataset, num_desired=NUM_DESIRED)
-    # # # print(json.dumps(used_dataset[:2], indent=2))  # Print first 2 samples
-    # # print(all_dataset)
+    all_dataset = generate_dataset(file_system_dataset, num_desired=NUM_DESIRED)
+    # # print(json.dumps(used_dataset[:2], indent=2))  # Print first 2 samples
+    # print(all_dataset)
 
-    # with open(os.path.join(PROCESSED_DATA_PATH, 'all_dataset_test.json'), "w") as f:
-    #     f.write(json.dumps(all_dataset, indent=2))
+    with open(os.path.join(PROCESSED_DATA_PATH, 'all_dataset_fix_punc.json'), "w") as f:
+        f.write(json.dumps(all_dataset, indent=2))
     pass
-    # with open(os.path.join(PROCESSED_DATA_PATH, 'all_dataset_fix_punc.json'), "r") as f:
-    #     all_dataset = json.load(f)
+    with open(os.path.join(PROCESSED_DATA_PATH, 'all_dataset_fix_punc.json'), "r") as f:
+        all_dataset = json.load(f)
     
-    # used_dataset = []
+    used_dataset = []
     method="SUA_pick_number"
-    # with open(os.path.join(USED_DATA_PATH, f"used_dataset_{method}.json"), "w") as f:
-    #     for persona in all_dataset:
-    #         # formatted_data = [formatting_prompts_func(desired) for desired in persona['visibility_data']]
-    #         formatted_data = [formatting_prompts_func(desired, method=method) for desired in persona['visibility_data']]
-    #         used_dataset.extend(formatted_data)
-            
-    #     f.write(json.dumps(used_dataset, indent=2))
-    # print(f"\nDataset saved to used_dataset_{method}.json ({len(all_dataset)} samples)")
-
     with open(os.path.join(USED_DATA_PATH, f"used_dataset_{method}.json"), "w") as f:
-        used_dataset = json.load(f)
-    
-    pass
+        for persona in all_dataset:
+            # formatted_data = [formatting_prompts_func(desired) for desired in persona['visibility_data']]
+            formatted_data = [formatting_prompts_func(desired, method=method) for desired in persona['visibility_data']]
+            used_dataset.extend(formatted_data)
+            
+        f.write(json.dumps(used_dataset, indent=2))
+    print(f"\nDataset saved to used_dataset_{method}.json ({len(all_dataset)} samples)")
 
