@@ -26,5 +26,5 @@ options:
   -m, --model MODEL  Type ollama list and copy the model name (eg. mymodel:latest)
 ```
 Tips:
-1. Edit the defaul model so you don't need to keep inputting it in with ```-m```.
+1. Edit the default model so you don't need to keep inputting it in with ```-m```.
 2. Use verbose as it gives an idea what the current partial view is (as well as other info).
